@@ -1,0 +1,4 @@
+{
+  "/api/email-generator/route": "app/api/email-generator/route.js",
+  "/page": "app/page.js"
+}
