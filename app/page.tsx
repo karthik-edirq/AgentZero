@@ -1,13 +1,17 @@
 "use client"
 
 import { useState } from "react"
+import { LandingPage } from "@/components/landing-page"
 import { DashboardView } from "@/components/dashboard-view"
-import { CampaignView } from "@/components/campaign-view"
-import { EmailGeneratorView } from "@/components/email-generator-view"
 import { SWRConfig } from "swr"
 
 export default function Home() {
+  const [showDashboard, setShowDashboard] = useState(false)
   const [selectedCampaignId, setSelectedCampaignId] = useState<string | null>(null)
+
+  if (!showDashboard) {
+    return <LandingPage onGetStarted={() => setShowDashboard(true)} />
+  }
 
   return (
     <SWRConfig
