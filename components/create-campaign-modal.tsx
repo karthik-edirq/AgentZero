@@ -93,17 +93,28 @@ export function CreateCampaignModal({
     }
 
     setIsFetchingRecipients(true)
-    // Simulate API call to Supabase
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    try {
+      const params = new URLSearchParams({
+        organization: org,
+        businessFunction: businessFunc,
+      })
+      const response = await fetch(`/api/recipients?${params.toString()}`)
+      const result = await response.json()
 
-    // Mock: Fetch recipients based on organization and business function
-    // In real app, this would query Supabase: 
-    // SELECT COUNT(*) FROM recipients WHERE organization = org AND (business_function = businessFunc OR businessFunc = 'all')
-    const mockCount = businessFunc === "all" ? 45 : Math.floor(Math.random() * 20) + 5
+      if (result.error) {
+        throw new Error(result.error)
+      }
 
-    setRecipientCount(mockCount)
-    setFormData((prev) => ({ ...prev, numberOfTargets: mockCount }))
-    setIsFetchingRecipients(false)
+      const count = result.data?.length || 0
+      setRecipientCount(count)
+      setFormData((prev) => ({ ...prev, numberOfTargets: count }))
+    } catch (error: any) {
+      console.error("Error fetching recipients:", error)
+      setRecipientCount(0)
+      setFormData((prev) => ({ ...prev, numberOfTargets: 0 }))
+    } finally {
+      setIsFetchingRecipients(false)
+    }
   }
 
   const handleAddTag = () => {

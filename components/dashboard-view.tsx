@@ -16,30 +16,36 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { TimelineModal } from "./timeline-modal"
-import {
-  LoadingRAGAnimation,
-  LoadingFetchingEmailsAnimation,
-  LoadingPersonalizingEmailsAnimation,
-  LoadingResendAnimation,
-} from "./loading-animations"
+import { MultiStepLoader } from "@/components/ui/multi-step-loader"
+import { motion, AnimatePresence } from "motion/react"
 
 export function DashboardView({ onCampaignSelect }: { onCampaignSelect?: (id: string | null) => void }) {
-  const { campaigns } = useCampaigns()
+  const { campaigns, isLoading: campaignsLoading } = useCampaigns()
   const { metrics } = useDashboardMetrics()
-  const [selectedCampaignId, setSelectedCampaignId] = useState<string | null>(campaigns[0]?.id || null)
+  const [selectedCampaignId, setSelectedCampaignId] = useState<string | null>(null)
+  
+  // Update selected campaign when campaigns load
+  useEffect(() => {
+    if (!campaignsLoading && campaigns.length > 0 && !selectedCampaignId) {
+      setSelectedCampaignId(campaigns[0].id)
+    } else if (!campaignsLoading && campaigns.length === 0) {
+      setSelectedCampaignId(null)
+    }
+  }, [campaigns, campaignsLoading, selectedCampaignId])
   const [createModalOpen, setCreateModalOpen] = useState(false)
   const [addRecipientsModalOpen, setAddRecipientsModalOpen] = useState(false)
   const [timelineOpen, setTimelineOpen] = useState(false)
   const [selectedEmail, setSelectedEmail] = useState<any>(null)
-  const [campaignLaunchState, setCampaignLaunchState] = useState<{
-    isLaunching: boolean
-    step: "rag" | "fetching" | "personalizing" | "sending" | null
-    progress: { current: number; total: number }
-  }>({
-    isLaunching: false,
-    step: null,
-    progress: { current: 0, total: 0 },
-  })
+  const [isLaunchingCampaign, setIsLaunchingCampaign] = useState(false)
+  const [currentStep, setCurrentStep] = useState(0)
+  const [showDashboard, setShowDashboard] = useState(true)
+
+  const loadingStates = [
+    { text: "Searching database for relevant documents..." },
+    { text: "Fetching recipients from organization..." },
+    { text: "Generating personalized emails for each user..." },
+    { text: "Sending emails through Resend API..." },
+  ]
   const [currentDate, setCurrentDate] = useState<string>("")
 
   useEffect(() => {
@@ -47,81 +53,70 @@ export function DashboardView({ onCampaignSelect }: { onCampaignSelect?: (id: st
     setCurrentDate(new Date().toLocaleDateString())
   }, [])
 
-  const selectedCampaign = selectedCampaignId
+  const selectedCampaign = selectedCampaignId && campaigns.length > 0
     ? campaigns.find((c) => c.id === selectedCampaignId)
-    : campaigns[0]
+    : campaigns.length > 0 ? campaigns[0] : null
 
   const handleCreateCampaign = async (data: CampaignFormData) => {
     console.log("Created campaign:", data)
     setCreateModalOpen(false)
 
-    const totalRecipients = data.numberOfTargets || 10
-
     // Start campaign launch sequence
-    setCampaignLaunchState({ isLaunching: true, step: "rag", progress: { current: 0, total: 0 } })
+    setIsLaunchingCampaign(true)
+    setCurrentStep(0)
 
     // Step 1: Search database for relevant docs (RAG)
     await new Promise((resolve) => setTimeout(resolve, 2000))
-    setCampaignLaunchState({
-      isLaunching: true,
-      step: "fetching",
-      progress: { current: 0, total: totalRecipients },
-    })
+    setCurrentStep(1)
 
-    // Step 2: Fetch emails from organization (based on organization and business function)
-    for (let i = 1; i <= totalRecipients; i++) {
-      await new Promise((resolve) => setTimeout(resolve, 200))
-      setCampaignLaunchState({
-        isLaunching: true,
-        step: "fetching",
-        progress: { current: i, total: totalRecipients },
-      })
-    }
+    // Step 2: Fetch emails from organization
+    const totalRecipients = data.numberOfTargets || 10
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+    setCurrentStep(2)
 
     // Step 3: Generate personalized emails
-    setCampaignLaunchState({
-      isLaunching: true,
-      step: "personalizing",
-      progress: { current: 0, total: totalRecipients },
-    })
-    for (let i = 1; i <= totalRecipients; i++) {
-      await new Promise((resolve) => setTimeout(resolve, 500))
-      setCampaignLaunchState({
-        isLaunching: true,
-        step: "personalizing",
-        progress: { current: i, total: totalRecipients },
-      })
-    }
+    await new Promise((resolve) => setTimeout(resolve, 3000))
+    setCurrentStep(3)
 
     // Step 4: Send through Resend API
-    setCampaignLaunchState({
-      isLaunching: true,
-      step: "sending",
-      progress: { current: 0, total: totalRecipients },
-    })
-    for (let i = 1; i <= totalRecipients; i++) {
-      await new Promise((resolve) => setTimeout(resolve, 300))
-      setCampaignLaunchState({
-        isLaunching: true,
-        step: "sending",
-        progress: { current: i, total: totalRecipients },
-      })
-    }
+    await new Promise((resolve) => setTimeout(resolve, 2000))
 
-    // Complete
-    setCampaignLaunchState({ isLaunching: false, step: null, progress: { current: 0, total: 0 } })
+    // Fade out loader and fade in dashboard
+    setIsLaunchingCampaign(false)
+    setCurrentStep(0)
+    setShowDashboard(true)
   }
 
   return (
-    <div className="p-4 md:p-8 space-y-6 bg-background min-h-screen">
+    <>
+      {/* Campaign Launch Multi-Step Loader */}
+      <AnimatePresence mode="wait">
+        {isLaunchingCampaign && (
+          <MultiStepLoader
+            loadingStates={loadingStates}
+            loading={isLaunchingCampaign}
+            duration={2000}
+            loop={false}
+            currentStep={currentStep}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Dashboard with fade-in animation */}
+      <motion.div
+        className="p-4 md:p-8 space-y-6 bg-background min-h-screen"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: showDashboard ? 1 : 0 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      >
       {/* Header with Campaign Selector */}
       <div className="flex items-start justify-between">
         <div>
           <h1 className="text-3xl font-bold text-foreground">
-            {selectedCampaign?.name || "Campaign 1"}
+            {selectedCampaign?.name || "No Campaign Selected"}
           </h1>
           <p className="text-muted-foreground mt-1">
-            {selectedCampaign?.status || "Unknown"} • {currentDate || "Loading..."}
+            {selectedCampaign ? `${selectedCampaign.status} • ${currentDate || "Loading..."}` : "Create a campaign to get started"}
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -166,7 +161,7 @@ export function DashboardView({ onCampaignSelect }: { onCampaignSelect?: (id: st
           <div className="flex items-start justify-between">
             <div>
               <p className="text-sm font-medium text-muted-foreground">Total Sent</p>
-              <p className="text-3xl font-bold text-foreground mt-2">{selectedCampaign?.totalSent || 14}</p>
+              <p className="text-3xl font-bold text-foreground mt-2">{selectedCampaign?.totalSent || 0}</p>
             </div>
             <div className="p-3 bg-primary/10 rounded-lg">
               <Mail className="w-6 h-6 text-primary" />
@@ -190,7 +185,7 @@ export function DashboardView({ onCampaignSelect }: { onCampaignSelect?: (id: st
           <div className="flex items-start justify-between">
             <div>
               <p className="text-sm font-medium text-muted-foreground">Delivered</p>
-              <p className="text-3xl font-bold text-foreground mt-2">{selectedCampaign?.delivered || 9}</p>
+              <p className="text-3xl font-bold text-foreground mt-2">{selectedCampaign?.delivered || 0}</p>
             </div>
             <div className="p-3 bg-green-500/10 rounded-lg">
               <CheckCircle2 className="w-6 h-6 text-green-600" />
@@ -217,9 +212,9 @@ export function DashboardView({ onCampaignSelect }: { onCampaignSelect?: (id: st
           <div className="flex items-start justify-between">
             <div>
               <p className="text-sm font-medium text-muted-foreground">Clicked</p>
-              <p className="text-3xl font-bold text-foreground mt-2">{selectedCampaign?.clicked || 1}</p>
+              <p className="text-3xl font-bold text-foreground mt-2">{selectedCampaign?.clicked || 0}</p>
               <p className="text-xs text-muted-foreground mt-2">
-                {selectedCampaign?.clickRate || 7.1}% rate
+                {selectedCampaign?.clickRate || 0.0}% rate
               </p>
             </div>
             <div className="p-3 bg-red-500/10 rounded-lg">
@@ -279,7 +274,7 @@ export function DashboardView({ onCampaignSelect }: { onCampaignSelect?: (id: st
                 </tr>
               </thead>
               <tbody>
-                {selectedCampaign?.emails && selectedCampaign.emails.length > 0 ? (
+                {selectedCampaign && selectedCampaign.emails && selectedCampaign.emails.length > 0 ? (
                   selectedCampaign.emails.map((email: any) => (
                     <tr
                       key={email.id}
@@ -334,32 +329,6 @@ export function DashboardView({ onCampaignSelect }: { onCampaignSelect?: (id: st
 
       </div>
 
-      {/* Campaign Launch Loading Overlay */}
-      {campaignLaunchState.isLaunching && (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-          <Card className="bg-card border border-border p-8 max-w-2xl w-full mx-4">
-            {campaignLaunchState.step === "rag" && <LoadingRAGAnimation />}
-            {campaignLaunchState.step === "fetching" && (
-              <LoadingFetchingEmailsAnimation
-                progress={campaignLaunchState.progress.current}
-                total={campaignLaunchState.progress.total}
-              />
-            )}
-            {campaignLaunchState.step === "personalizing" && (
-              <LoadingPersonalizingEmailsAnimation
-                current={campaignLaunchState.progress.current}
-                total={campaignLaunchState.progress.total}
-              />
-            )}
-            {campaignLaunchState.step === "sending" && (
-              <LoadingResendAnimation
-                sent={campaignLaunchState.progress.current}
-                total={campaignLaunchState.progress.total}
-              />
-            )}
-          </Card>
-        </div>
-      )}
 
       {/* Modals */}
       <CreateCampaignModal
@@ -381,6 +350,7 @@ export function DashboardView({ onCampaignSelect }: { onCampaignSelect?: (id: st
         onOpenChange={setTimelineOpen}
         email={selectedEmail}
       />
-    </div>
+      </motion.div>
+    </>
   )
 }

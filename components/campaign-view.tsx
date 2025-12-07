@@ -7,6 +7,7 @@ import { Plus, Search, Filter, Play, Pause, Trash2, Eye } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { EmailImportModal } from "./email-import-modal"
 import { CreateCampaignModal, type CampaignFormData } from "./create-campaign-modal"
+import { useCampaigns } from "@/hooks/use-campaigns"
 
 const statusColors = {
   active: "bg-primary/10 text-primary border border-primary/20",
@@ -15,64 +16,77 @@ const statusColors = {
   draft: "bg-muted text-muted-foreground border border-border",
 }
 
-const DUMMY_CAMPAIGNS = [
-  {
-    id: 1,
-    name: "Q1 2025 Security Training",
-    status: "active" as const,
-    progress: 65,
-    sent: 250,
-    clicked: 85,
-    victims: 23,
-    created: "2025-01-15",
-  },
-  {
-    id: 2,
-    name: "Executive Phishing Simulation",
-    status: "completed" as const,
-    progress: 100,
-    sent: 45,
-    clicked: 18,
-    victims: 8,
-    created: "2024-12-20",
-  },
-  {
-    id: 3,
-    name: "HR Department Test",
-    status: "paused" as const,
-    progress: 42,
-    sent: 120,
-    clicked: 34,
-    victims: 12,
-    created: "2025-01-10",
-  },
-  {
-    id: 4,
-    name: "Finance Team Awareness",
-    status: "draft" as const,
-    progress: 0,
-    sent: 0,
-    clicked: 0,
-    victims: 0,
-    created: "2025-01-20",
-  },
-  {
-    id: 5,
-    name: "Vendor Email Spoofing",
-    status: "active" as const,
-    progress: 28,
-    sent: 180,
-    clicked: 42,
-    victims: 15,
-    created: "2025-01-18",
-  },
-]
+// DUMMY_CAMPAIGNS - COMMENTED OUT - now using real-time data from Supabase
+// const DUMMY_CAMPAIGNS = [
+//   {
+//     id: 1,
+//     name: "Q1 2025 Security Training",
+//     status: "active" as const,
+//     progress: 65,
+//     sent: 250,
+//     clicked: 85,
+//     victims: 23,
+//     created: "2025-01-15",
+//   },
+//   {
+//     id: 2,
+//     name: "Executive Phishing Simulation",
+//     status: "completed" as const,
+//     progress: 100,
+//     sent: 45,
+//     clicked: 18,
+//     victims: 8,
+//     created: "2024-12-20",
+//   },
+//   {
+//     id: 3,
+//     name: "HR Department Test",
+//     status: "paused" as const,
+//     progress: 42,
+//     sent: 120,
+//     clicked: 34,
+//     victims: 12,
+//     created: "2025-01-10",
+//   },
+//   {
+//     id: 4,
+//     name: "Finance Team Awareness",
+//     status: "draft" as const,
+//     progress: 0,
+//     sent: 0,
+//     clicked: 0,
+//     victims: 0,
+//     created: "2025-01-20",
+//   },
+//   {
+//     id: 5,
+//     name: "Vendor Email Spoofing",
+//     status: "active" as const,
+//     progress: 28,
+//     sent: 180,
+//     clicked: 42,
+//     victims: 15,
+//     created: "2025-01-18",
+//   },
+// ]
 
 export function CampaignView() {
   const [search, setSearch] = useState("")
   const [importModalOpen, setImportModalOpen] = useState(false)
   const [createModalOpen, setCreateModalOpen] = useState(false)
-  const [campaigns, setCampaigns] = useState(DUMMY_CAMPAIGNS)
+  const { campaigns: realCampaigns, isLoading, refresh } = useCampaigns()
+  
+  // Transform real campaigns data to match component expectations
+  const campaigns = realCampaigns.map((campaign: any) => ({
+    id: campaign.id,
+    name: campaign.name,
+    status: campaign.status as "active" | "paused" | "completed" | "draft",
+    progress: campaign.totalSent > 0 ? Math.round((campaign.delivered / campaign.totalSent) * 100) : 0,
+    sent: campaign.totalSent || 0,
+    clicked: campaign.clicked || 0,
+    victims: campaign.clicked || 0,
+    created: campaign.createdAt ? new Date(campaign.createdAt).toISOString().split("T")[0] : new Date().toISOString().split("T")[0],
+  }))
 
   const handleDelete = async (campaignId: number) => {
     console.log("Deleted campaign:", campaignId)
@@ -82,19 +96,10 @@ export function CampaignView() {
     console.log("Importing emails:", emails)
   }
 
-  const handleCreateCampaign = (data: CampaignFormData) => {
-    const newCampaign = {
-      id: campaigns.length + 1,
-      name: data.name,
-      status: "draft" as const,
-      progress: 0,
-      sent: 0,
-      clicked: 0,
-      victims: 0,
-      created: new Date().toISOString().split("T")[0],
-    }
-    setCampaigns([newCampaign, ...campaigns])
-    console.log("Created campaign:", newCampaign)
+  const handleCreateCampaign = async (data: CampaignFormData) => {
+    // Campaign creation is handled by the modal's onSubmit
+    // Refresh campaigns list after creation
+    await refresh()
   }
 
   const filteredCampaigns = campaigns.filter(

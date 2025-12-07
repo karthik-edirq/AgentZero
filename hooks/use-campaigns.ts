@@ -1,108 +1,183 @@
 "use client";
 
-// Mock data for serverless mode
-const MOCK_CAMPAIGNS = [
-  {
-    id: "1",
-    name: "Campaign 1",
-    status: "active",
-    totalSent: 14,
-    sent: 0,
-    delivered: 9,
-    opened: 0,
-    clicked: 1,
-    openRate: 0.0,
-    clickRate: 7.1,
-    emails: [
-      {
-        id: "1",
-        status: "delivered",
-        recipient: "***@gmail.com",
-        subject: "Thank you for speaking at the Supabase Select Hackathon",
-        sentAt: "4:50:06 PM",
-      },
-      {
-        id: "2",
-        status: "delivered",
-        recipient: "***@datadoghq.com",
-        subject:
-          "Datadog speaker update: new Resend prize category announced at the hackathon",
-        sentAt: "4:50:26 PM",
-      },
-      {
-        id: "3",
-        status: "bounced",
-        recipient: "***@supabase.io",
-        subject: "Redeem your Resend API credits for the Hackathon",
-        sentAt: "4:50:39 PM",
-      },
-      {
-        id: "4",
-        status: "delivered",
-        recipient: "***@snapchat.com",
-        subject: "Your Resend API credits for the Hackathon, Jake",
-        sentAt: "4:50:59 PM",
-      },
-    ],
-  },
-  {
-    id: "2",
-    name: "Q1 2025 Security Training",
-    status: "active",
-    totalSent: 250,
-    sent: 0,
-    delivered: 245,
-    opened: 85,
-    clicked: 23,
-    openRate: 34.7,
-    clickRate: 9.2,
-    emails: [],
-  },
-  {
-    id: "3",
-    name: "Executive Phishing Simulation",
-    status: "completed",
-    totalSent: 45,
-    sent: 0,
-    delivered: 45,
-    opened: 18,
-    clicked: 8,
-    openRate: 40.0,
-    clickRate: 17.8,
-    emails: [],
-  },
-];
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
 
 export function useCampaigns() {
+  const [campaigns, setCampaigns] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchCampaigns = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch("/api/campaigns");
+      const result = await response.json();
+
+      if (result.error) {
+        throw new Error(result.error);
+      }
+
+      // If no campaigns, return empty array
+      if (!result.data || result.data.length === 0) {
+        setCampaigns([]);
+        setError(null);
+        return;
+      }
+
+      // Fetch emails for each campaign
+      const campaignsWithEmails = await Promise.all(
+        result.data.map(async (campaign: any) => {
+          const { data: emails } = await supabase
+            .from("emails")
+            .select(
+              `
+              *,
+              recipient:recipients(*)
+            `
+            )
+            .eq("campaign_id", campaign.id)
+            .order("sent_at", { ascending: false });
+
+          return {
+            ...campaign,
+            emails: (emails || []).map((email: any) => ({
+              id: email.id,
+              status: email.status,
+              recipient: email.recipient?.email || "Unknown",
+              subject: email.subject,
+              sentAt: email.sent_at
+                ? new Date(email.sent_at).toLocaleTimeString()
+                : "",
+            })),
+          };
+        })
+      );
+
+      setCampaigns(campaignsWithEmails);
+      setError(null);
+    } catch (err: any) {
+      setError(err.message);
+      console.error("Error fetching campaigns:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCampaigns();
+  }, []);
+
   return {
-    campaigns: MOCK_CAMPAIGNS,
-    isLoading: false,
-    error: null,
-    refresh: () => Promise.resolve(),
+    campaigns,
+    isLoading,
+    error,
+    refresh: fetchCampaigns,
   };
 }
 
 export function useCampaign(id: string) {
-  const campaign = MOCK_CAMPAIGNS.find((c) => c.id === id);
+  const [campaign, setCampaign] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchCampaign = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch("/api/campaigns");
+      const result = await response.json();
+
+      if (result.error) {
+        throw new Error(result.error);
+      }
+
+      const found = result.data.find((c: any) => c.id === id);
+      if (found) {
+        // Fetch emails for this campaign
+        const { data: emails } = await supabase
+          .from("emails")
+          .select(
+            `
+            *,
+            recipient:recipients(*)
+          `
+          )
+          .eq("campaign_id", id)
+          .order("sent_at", { ascending: false });
+
+        setCampaign({
+          ...found,
+          emails: (emails || []).map((email: any) => ({
+            id: email.id,
+            status: email.status,
+            recipient: email.recipient?.email || "Unknown",
+            subject: email.subject,
+            sentAt: email.sent_at
+              ? new Date(email.sent_at).toLocaleTimeString()
+              : "",
+          })),
+        });
+      } else {
+        setCampaign(null);
+      }
+      setError(null);
+    } catch (err: any) {
+      setError(err.message);
+      console.error("Error fetching campaign:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (id) {
+      fetchCampaign();
+    }
+  }, [id]);
+
   return {
-    campaign: campaign || null,
-    isLoading: false,
-    error: null,
-    refresh: () => Promise.resolve(),
+    campaign,
+    isLoading,
+    error,
+    refresh: fetchCampaign,
   };
 }
 
 export async function createCampaign(campaignData: any) {
-  return {
-    data: { ...campaignData, id: String(MOCK_CAMPAIGNS.length + 1) },
-    status: 200,
-  };
+  try {
+    const response = await fetch("/api/campaigns", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(campaignData),
+    });
+
+    const result = await response.json();
+
+    if (result.error) {
+      throw new Error(result.error);
+    }
+
+    return {
+      data: result.data,
+      status: response.status,
+    };
+  } catch (error: any) {
+    return {
+      data: null,
+      status: 500,
+      error: error.message,
+    };
+  }
 }
 
 export async function updateCampaign(id: string, campaignData: any) {
+  // TODO: Implement update endpoint
   return { data: { ...campaignData, id }, status: 200 };
 }
 
 export async function deleteCampaign(id: string) {
+  // TODO: Implement delete endpoint
   return { data: { id }, status: 200 };
 }

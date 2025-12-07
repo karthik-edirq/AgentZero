@@ -4530,9 +4530,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$create$2d$camp
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$add$2d$recipients$2d$modal$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/add-recipients-modal.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/select.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$timeline$2d$modal$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/timeline-modal.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$loading$2d$animations$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/loading-animations.tsx [app-ssr] (ecmascript)");
 "use client";
-;
 ;
 ;
 ;
@@ -4552,14 +4550,22 @@ function DashboardView({ onCampaignSelect }) {
     const [addRecipientsModalOpen, setAddRecipientsModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [timelineOpen, setTimelineOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [selectedEmail, setSelectedEmail] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
-    const [campaignLaunchState, setCampaignLaunchState] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
-        isLaunching: false,
-        step: null,
-        progress: {
-            current: 0,
-            total: 0
+    const [isLaunchingCampaign, setIsLaunchingCampaign] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [currentStep, setCurrentStep] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(0);
+    const loadingStates = [
+        {
+            text: "Searching database for relevant documents..."
+        },
+        {
+            text: "Fetching recipients from organization..."
+        },
+        {
+            text: "Generating personalized emails for each user..."
+        },
+        {
+            text: "Sending emails through Resend API..."
         }
-    });
+    ];
     const [currentDate, setCurrentDate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         // Set date only on client to avoid hydration mismatch
@@ -4569,87 +4575,24 @@ function DashboardView({ onCampaignSelect }) {
     const handleCreateCampaign = async (data)=>{
         console.log("Created campaign:", data);
         setCreateModalOpen(false);
-        const totalRecipients = data.numberOfTargets || 10;
         // Start campaign launch sequence
-        setCampaignLaunchState({
-            isLaunching: true,
-            step: "rag",
-            progress: {
-                current: 0,
-                total: 0
-            }
-        });
+        setIsLaunchingCampaign(true);
+        setCurrentStep(0);
         // Step 1: Search database for relevant docs (RAG)
         await new Promise((resolve)=>setTimeout(resolve, 2000));
-        setCampaignLaunchState({
-            isLaunching: true,
-            step: "fetching",
-            progress: {
-                current: 0,
-                total: totalRecipients
-            }
-        });
-        // Step 2: Fetch emails from organization (based on organization and business function)
-        for(let i = 1; i <= totalRecipients; i++){
-            await new Promise((resolve)=>setTimeout(resolve, 200));
-            setCampaignLaunchState({
-                isLaunching: true,
-                step: "fetching",
-                progress: {
-                    current: i,
-                    total: totalRecipients
-                }
-            });
-        }
+        setCurrentStep(1);
+        // Step 2: Fetch emails from organization
+        const totalRecipients = data.numberOfTargets || 10;
+        await new Promise((resolve)=>setTimeout(resolve, 2000));
+        setCurrentStep(2);
         // Step 3: Generate personalized emails
-        setCampaignLaunchState({
-            isLaunching: true,
-            step: "personalizing",
-            progress: {
-                current: 0,
-                total: totalRecipients
-            }
-        });
-        for(let i = 1; i <= totalRecipients; i++){
-            await new Promise((resolve)=>setTimeout(resolve, 500));
-            setCampaignLaunchState({
-                isLaunching: true,
-                step: "personalizing",
-                progress: {
-                    current: i,
-                    total: totalRecipients
-                }
-            });
-        }
+        await new Promise((resolve)=>setTimeout(resolve, 3000));
+        setCurrentStep(3);
         // Step 4: Send through Resend API
-        setCampaignLaunchState({
-            isLaunching: true,
-            step: "sending",
-            progress: {
-                current: 0,
-                total: totalRecipients
-            }
-        });
-        for(let i = 1; i <= totalRecipients; i++){
-            await new Promise((resolve)=>setTimeout(resolve, 300));
-            setCampaignLaunchState({
-                isLaunching: true,
-                step: "sending",
-                progress: {
-                    current: i,
-                    total: totalRecipients
-                }
-            });
-        }
+        await new Promise((resolve)=>setTimeout(resolve, 2000));
         // Complete
-        setCampaignLaunchState({
-            isLaunching: false,
-            step: null,
-            progress: {
-                current: 0,
-                total: 0
-            }
-        });
+        setIsLaunchingCampaign(false);
+        setCurrentStep(0);
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "p-4 md:p-8 space-y-6 bg-background min-h-screen",
@@ -4664,7 +4607,7 @@ function DashboardView({ onCampaignSelect }) {
                                 children: selectedCampaign?.name || "Campaign 1"
                             }, void 0, false, {
                                 fileName: "[project]/components/dashboard-view.tsx",
-                                lineNumber: 120,
+                                lineNumber: 83,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4676,13 +4619,13 @@ function DashboardView({ onCampaignSelect }) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard-view.tsx",
-                                lineNumber: 123,
+                                lineNumber: 86,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/dashboard-view.tsx",
-                        lineNumber: 119,
+                        lineNumber: 82,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4697,14 +4640,14 @@ function DashboardView({ onCampaignSelect }) {
                                         className: "w-4 h-4"
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard-view.tsx",
-                                        lineNumber: 133,
+                                        lineNumber: 96,
                                         columnNumber: 13
                                     }, this),
                                     "Add Recipients"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard-view.tsx",
-                                lineNumber: 128,
+                                lineNumber: 91,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -4715,14 +4658,14 @@ function DashboardView({ onCampaignSelect }) {
                                         className: "w-4 h-4"
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard-view.tsx",
-                                        lineNumber: 140,
+                                        lineNumber: 103,
                                         columnNumber: 13
                                     }, this),
                                     "New Campaign"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard-view.tsx",
-                                lineNumber: 136,
+                                lineNumber: 99,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -4733,14 +4676,14 @@ function DashboardView({ onCampaignSelect }) {
                                         className: "w-4 h-4"
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard-view.tsx",
-                                        lineNumber: 144,
+                                        lineNumber: 107,
                                         columnNumber: 13
                                     }, this),
                                     "Refresh"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard-view.tsx",
-                                lineNumber: 143,
+                                lineNumber: 106,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Select"], {
@@ -4753,12 +4696,12 @@ function DashboardView({ onCampaignSelect }) {
                                             placeholder: "Select campaign"
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-view.tsx",
-                                            lineNumber: 149,
+                                            lineNumber: 112,
                                             columnNumber: 15
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard-view.tsx",
-                                        lineNumber: 148,
+                                        lineNumber: 111,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -4767,30 +4710,30 @@ function DashboardView({ onCampaignSelect }) {
                                                 children: campaign.name
                                             }, campaign.id, false, {
                                                 fileName: "[project]/components/dashboard-view.tsx",
-                                                lineNumber: 153,
+                                                lineNumber: 116,
                                                 columnNumber: 17
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard-view.tsx",
-                                        lineNumber: 151,
+                                        lineNumber: 114,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard-view.tsx",
-                                lineNumber: 147,
+                                lineNumber: 110,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/dashboard-view.tsx",
-                        lineNumber: 127,
+                        lineNumber: 90,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dashboard-view.tsx",
-                lineNumber: 118,
+                lineNumber: 81,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4808,7 +4751,7 @@ function DashboardView({ onCampaignSelect }) {
                                             children: "Total Sent"
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-view.tsx",
-                                            lineNumber: 168,
+                                            lineNumber: 131,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4816,13 +4759,13 @@ function DashboardView({ onCampaignSelect }) {
                                             children: selectedCampaign?.totalSent || 14
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-view.tsx",
-                                            lineNumber: 169,
+                                            lineNumber: 132,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/dashboard-view.tsx",
-                                    lineNumber: 167,
+                                    lineNumber: 130,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4831,23 +4774,23 @@ function DashboardView({ onCampaignSelect }) {
                                         className: "w-6 h-6 text-primary"
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard-view.tsx",
-                                        lineNumber: 172,
+                                        lineNumber: 135,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/dashboard-view.tsx",
-                                    lineNumber: 171,
+                                    lineNumber: 134,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/dashboard-view.tsx",
-                            lineNumber: 166,
+                            lineNumber: 129,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard-view.tsx",
-                        lineNumber: 165,
+                        lineNumber: 128,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -4862,7 +4805,7 @@ function DashboardView({ onCampaignSelect }) {
                                             children: "Sent"
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-view.tsx",
-                                            lineNumber: 180,
+                                            lineNumber: 143,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4870,13 +4813,13 @@ function DashboardView({ onCampaignSelect }) {
                                             children: selectedCampaign?.sent || 0
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-view.tsx",
-                                            lineNumber: 181,
+                                            lineNumber: 144,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/dashboard-view.tsx",
-                                    lineNumber: 179,
+                                    lineNumber: 142,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4885,23 +4828,23 @@ function DashboardView({ onCampaignSelect }) {
                                         className: "w-6 h-6 text-primary"
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard-view.tsx",
-                                        lineNumber: 184,
+                                        lineNumber: 147,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/dashboard-view.tsx",
-                                    lineNumber: 183,
+                                    lineNumber: 146,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/dashboard-view.tsx",
-                            lineNumber: 178,
+                            lineNumber: 141,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard-view.tsx",
-                        lineNumber: 177,
+                        lineNumber: 140,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -4916,7 +4859,7 @@ function DashboardView({ onCampaignSelect }) {
                                             children: "Delivered"
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-view.tsx",
-                                            lineNumber: 192,
+                                            lineNumber: 155,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4924,13 +4867,13 @@ function DashboardView({ onCampaignSelect }) {
                                             children: selectedCampaign?.delivered || 9
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-view.tsx",
-                                            lineNumber: 193,
+                                            lineNumber: 156,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/dashboard-view.tsx",
-                                    lineNumber: 191,
+                                    lineNumber: 154,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -4939,23 +4882,23 @@ function DashboardView({ onCampaignSelect }) {
                                         className: "w-6 h-6 text-green-600"
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard-view.tsx",
-                                        lineNumber: 196,
+                                        lineNumber: 159,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/dashboard-view.tsx",
-                                    lineNumber: 195,
+                                    lineNumber: 158,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/dashboard-view.tsx",
-                            lineNumber: 190,
+                            lineNumber: 153,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard-view.tsx",
-                        lineNumber: 189,
+                        lineNumber: 152,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -4970,7 +4913,7 @@ function DashboardView({ onCampaignSelect }) {
                                             children: "Opened"
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-view.tsx",
-                                            lineNumber: 204,
+                                            lineNumber: 167,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4978,7 +4921,7 @@ function DashboardView({ onCampaignSelect }) {
                                             children: selectedCampaign?.opened || 0
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-view.tsx",
-                                            lineNumber: 205,
+                                            lineNumber: 168,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -4989,13 +4932,13 @@ function DashboardView({ onCampaignSelect }) {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/dashboard-view.tsx",
-                                            lineNumber: 206,
+                                            lineNumber: 169,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/dashboard-view.tsx",
-                                    lineNumber: 203,
+                                    lineNumber: 166,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5004,23 +4947,23 @@ function DashboardView({ onCampaignSelect }) {
                                         className: "w-6 h-6 text-primary"
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard-view.tsx",
-                                        lineNumber: 211,
+                                        lineNumber: 174,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/dashboard-view.tsx",
-                                    lineNumber: 210,
+                                    lineNumber: 173,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/dashboard-view.tsx",
-                            lineNumber: 202,
+                            lineNumber: 165,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard-view.tsx",
-                        lineNumber: 201,
+                        lineNumber: 164,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -5035,7 +4978,7 @@ function DashboardView({ onCampaignSelect }) {
                                             children: "Clicked"
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-view.tsx",
-                                            lineNumber: 219,
+                                            lineNumber: 182,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5043,7 +4986,7 @@ function DashboardView({ onCampaignSelect }) {
                                             children: selectedCampaign?.clicked || 1
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-view.tsx",
-                                            lineNumber: 220,
+                                            lineNumber: 183,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5054,13 +4997,13 @@ function DashboardView({ onCampaignSelect }) {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/dashboard-view.tsx",
-                                            lineNumber: 221,
+                                            lineNumber: 184,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/dashboard-view.tsx",
-                                    lineNumber: 218,
+                                    lineNumber: 181,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5069,23 +5012,23 @@ function DashboardView({ onCampaignSelect }) {
                                         className: "w-6 h-6 text-red-600"
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard-view.tsx",
-                                        lineNumber: 226,
+                                        lineNumber: 189,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/components/dashboard-view.tsx",
-                                    lineNumber: 225,
+                                    lineNumber: 188,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/dashboard-view.tsx",
-                            lineNumber: 217,
+                            lineNumber: 180,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard-view.tsx",
-                        lineNumber: 216,
+                        lineNumber: 179,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -5100,7 +5043,7 @@ function DashboardView({ onCampaignSelect }) {
                                             children: "Email Generator"
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-view.tsx",
-                                            lineNumber: 235,
+                                            lineNumber: 198,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5108,13 +5051,13 @@ function DashboardView({ onCampaignSelect }) {
                                             children: "AI-powered email generation"
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-view.tsx",
-                                            lineNumber: 236,
+                                            lineNumber: 199,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/dashboard-view.tsx",
-                                    lineNumber: 234,
+                                    lineNumber: 197,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -5129,18 +5072,18 @@ function DashboardView({ onCampaignSelect }) {
                                     children: "Generate Email"
                                 }, void 0, false, {
                                     fileName: "[project]/components/dashboard-view.tsx",
-                                    lineNumber: 238,
+                                    lineNumber: 201,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/dashboard-view.tsx",
-                            lineNumber: 233,
+                            lineNumber: 196,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/dashboard-view.tsx",
-                        lineNumber: 232,
+                        lineNumber: 195,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -5154,7 +5097,7 @@ function DashboardView({ onCampaignSelect }) {
                                         children: "Campaign Results"
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard-view.tsx",
-                                        lineNumber: 254,
+                                        lineNumber: 217,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -5162,13 +5105,13 @@ function DashboardView({ onCampaignSelect }) {
                                         children: "Detailed breakdown of email delivery and engagement"
                                     }, void 0, false, {
                                         fileName: "[project]/components/dashboard-view.tsx",
-                                        lineNumber: 255,
+                                        lineNumber: 218,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/dashboard-view.tsx",
-                                lineNumber: 253,
+                                lineNumber: 216,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5185,7 +5128,7 @@ function DashboardView({ onCampaignSelect }) {
                                                         children: "STATUS"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/dashboard-view.tsx",
-                                                        lineNumber: 264,
+                                                        lineNumber: 227,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -5193,7 +5136,7 @@ function DashboardView({ onCampaignSelect }) {
                                                         children: "RECIPIENT"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/dashboard-view.tsx",
-                                                        lineNumber: 267,
+                                                        lineNumber: 230,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -5201,7 +5144,7 @@ function DashboardView({ onCampaignSelect }) {
                                                         children: "SUBJECT"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/dashboard-view.tsx",
-                                                        lineNumber: 270,
+                                                        lineNumber: 233,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -5209,7 +5152,7 @@ function DashboardView({ onCampaignSelect }) {
                                                         children: "SENT AT"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/dashboard-view.tsx",
-                                                        lineNumber: 273,
+                                                        lineNumber: 236,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -5217,18 +5160,18 @@ function DashboardView({ onCampaignSelect }) {
                                                         children: "ACTIONS"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/dashboard-view.tsx",
-                                                        lineNumber: 276,
+                                                        lineNumber: 239,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/dashboard-view.tsx",
-                                                lineNumber: 263,
+                                                lineNumber: 226,
                                                 columnNumber: 17
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-view.tsx",
-                                            lineNumber: 262,
+                                            lineNumber: 225,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -5244,14 +5187,14 @@ function DashboardView({ onCampaignSelect }) {
                                                                         className: "w-3 h-3"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/dashboard-view.tsx",
-                                                                        lineNumber: 291,
+                                                                        lineNumber: 254,
                                                                         columnNumber: 29
                                                                     }, this),
                                                                     "Delivered"
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/dashboard-view.tsx",
-                                                                lineNumber: 290,
+                                                                lineNumber: 253,
                                                                 columnNumber: 27
                                                             }, this) : email.status === "bounced" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                 className: "inline-flex items-center gap-1.5 px-2 py-1 bg-red-100 text-red-800 text-xs font-medium rounded-full border border-red-200",
@@ -5261,26 +5204,26 @@ function DashboardView({ onCampaignSelect }) {
                                                                         children: "!"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/components/dashboard-view.tsx",
-                                                                        lineNumber: 296,
+                                                                        lineNumber: 259,
                                                                         columnNumber: 29
                                                                     }, this),
                                                                     "Bounced"
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/components/dashboard-view.tsx",
-                                                                lineNumber: 295,
+                                                                lineNumber: 258,
                                                                 columnNumber: 27
                                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                 className: "inline-block px-2 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full",
                                                                 children: email.status
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/dashboard-view.tsx",
-                                                                lineNumber: 300,
+                                                                lineNumber: 263,
                                                                 columnNumber: 27
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/dashboard-view.tsx",
-                                                            lineNumber: 288,
+                                                            lineNumber: 251,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -5288,7 +5231,7 @@ function DashboardView({ onCampaignSelect }) {
                                                             children: email.recipient
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/dashboard-view.tsx",
-                                                            lineNumber: 305,
+                                                            lineNumber: 268,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -5296,7 +5239,7 @@ function DashboardView({ onCampaignSelect }) {
                                                             children: email.subject
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/dashboard-view.tsx",
-                                                            lineNumber: 306,
+                                                            lineNumber: 269,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -5304,7 +5247,7 @@ function DashboardView({ onCampaignSelect }) {
                                                             children: email.sentAt
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/dashboard-view.tsx",
-                                                            lineNumber: 307,
+                                                            lineNumber: 270,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -5321,23 +5264,23 @@ function DashboardView({ onCampaignSelect }) {
                                                                     className: "w-4 h-4"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/components/dashboard-view.tsx",
-                                                                    lineNumber: 318,
+                                                                    lineNumber: 281,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/components/dashboard-view.tsx",
-                                                                lineNumber: 309,
+                                                                lineNumber: 272,
                                                                 columnNumber: 25
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/dashboard-view.tsx",
-                                                            lineNumber: 308,
+                                                            lineNumber: 271,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, email.id, true, {
                                                     fileName: "[project]/components/dashboard-view.tsx",
-                                                    lineNumber: 284,
+                                                    lineNumber: 247,
                                                     columnNumber: 21
                                                 }, this)) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -5346,86 +5289,116 @@ function DashboardView({ onCampaignSelect }) {
                                                     children: "No emails sent yet"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/dashboard-view.tsx",
-                                                    lineNumber: 325,
+                                                    lineNumber: 288,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/components/dashboard-view.tsx",
-                                                lineNumber: 324,
+                                                lineNumber: 287,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/components/dashboard-view.tsx",
-                                            lineNumber: 281,
+                                            lineNumber: 244,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/dashboard-view.tsx",
-                                    lineNumber: 261,
+                                    lineNumber: 224,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/dashboard-view.tsx",
-                                lineNumber: 260,
+                                lineNumber: 223,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/dashboard-view.tsx",
-                        lineNumber: 252,
+                        lineNumber: 215,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dashboard-view.tsx",
-                lineNumber: 163,
+                lineNumber: 126,
                 columnNumber: 7
             }, this),
-            campaignLaunchState.isLaunching && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "fixed inset-0 bg-black/50 z-50 flex items-center justify-center",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
-                    className: "bg-card border border-border p-8 max-w-2xl w-full mx-4",
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(Dialog, {
+                open: campaignLaunchState.isLaunching,
+                onOpenChange: ()=>{},
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(DialogContent, {
+                    className: "max-w-2xl bg-card border-border p-0 overflow-hidden",
+                    showCloseButton: false,
                     children: [
-                        campaignLaunchState.step === "rag" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$loading$2d$animations$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["LoadingRAGAnimation"], {}, void 0, false, {
-                            fileName: "[project]/components/dashboard-view.tsx",
-                            lineNumber: 341,
-                            columnNumber: 52
-                        }, this),
-                        campaignLaunchState.step === "fetching" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$loading$2d$animations$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["LoadingFetchingEmailsAnimation"], {
-                            progress: campaignLaunchState.progress.current,
-                            total: campaignLaunchState.progress.total
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(DialogHeader, {
+                            className: "sr-only",
+                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(DialogTitle, {
+                                children: [
+                                    campaignLaunchState.step === "rag" && "Searching database for relevant documents",
+                                    campaignLaunchState.step === "fetching" && "Fetching recipients from organization",
+                                    campaignLaunchState.step === "personalizing" && "Generating personalized emails",
+                                    campaignLaunchState.step === "sending" && "Sending emails through Resend API"
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/dashboard-view.tsx",
+                                lineNumber: 304,
+                                columnNumber: 13
+                            }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/dashboard-view.tsx",
-                            lineNumber: 343,
-                            columnNumber: 15
+                            lineNumber: 303,
+                            columnNumber: 11
                         }, this),
-                        campaignLaunchState.step === "personalizing" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$loading$2d$animations$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["LoadingPersonalizingEmailsAnimation"], {
-                            current: campaignLaunchState.progress.current,
-                            total: campaignLaunchState.progress.total
-                        }, void 0, false, {
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "p-8",
+                            children: [
+                                campaignLaunchState.step === "rag" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(LoadingRAGAnimation, {}, void 0, false, {
+                                    fileName: "[project]/components/dashboard-view.tsx",
+                                    lineNumber: 312,
+                                    columnNumber: 52
+                                }, this),
+                                campaignLaunchState.step === "fetching" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(LoadingFetchingEmailsAnimation, {
+                                    progress: campaignLaunchState.progress.current,
+                                    total: campaignLaunchState.progress.total
+                                }, void 0, false, {
+                                    fileName: "[project]/components/dashboard-view.tsx",
+                                    lineNumber: 314,
+                                    columnNumber: 15
+                                }, this),
+                                campaignLaunchState.step === "personalizing" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(LoadingPersonalizingEmailsAnimation, {
+                                    current: campaignLaunchState.progress.current,
+                                    total: campaignLaunchState.progress.total
+                                }, void 0, false, {
+                                    fileName: "[project]/components/dashboard-view.tsx",
+                                    lineNumber: 320,
+                                    columnNumber: 15
+                                }, this),
+                                campaignLaunchState.step === "sending" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(LoadingResendAnimation, {
+                                    sent: campaignLaunchState.progress.current,
+                                    total: campaignLaunchState.progress.total
+                                }, void 0, false, {
+                                    fileName: "[project]/components/dashboard-view.tsx",
+                                    lineNumber: 326,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
                             fileName: "[project]/components/dashboard-view.tsx",
-                            lineNumber: 349,
-                            columnNumber: 15
-                        }, this),
-                        campaignLaunchState.step === "sending" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$loading$2d$animations$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["LoadingResendAnimation"], {
-                            sent: campaignLaunchState.progress.current,
-                            total: campaignLaunchState.progress.total
-                        }, void 0, false, {
-                            fileName: "[project]/components/dashboard-view.tsx",
-                            lineNumber: 355,
-                            columnNumber: 15
+                            lineNumber: 311,
+                            columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/dashboard-view.tsx",
-                    lineNumber: 340,
-                    columnNumber: 11
+                    lineNumber: 302,
+                    columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/dashboard-view.tsx",
-                lineNumber: 339,
-                columnNumber: 9
+                lineNumber: 301,
+                columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$create$2d$campaign$2d$modal$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CreateCampaignModal"], {
                 open: createModalOpen,
@@ -5433,7 +5406,7 @@ function DashboardView({ onCampaignSelect }) {
                 onSubmit: handleCreateCampaign
             }, void 0, false, {
                 fileName: "[project]/components/dashboard-view.tsx",
-                lineNumber: 365,
+                lineNumber: 336,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$add$2d$recipients$2d$modal$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AddRecipientsModal"], {
@@ -5444,7 +5417,7 @@ function DashboardView({ onCampaignSelect }) {
                 }
             }, void 0, false, {
                 fileName: "[project]/components/dashboard-view.tsx",
-                lineNumber: 371,
+                lineNumber: 342,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$timeline$2d$modal$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TimelineModal"], {
@@ -5453,13 +5426,13 @@ function DashboardView({ onCampaignSelect }) {
                 email: selectedEmail
             }, void 0, false, {
                 fileName: "[project]/components/dashboard-view.tsx",
-                lineNumber: 379,
+                lineNumber: 350,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/dashboard-view.tsx",
-        lineNumber: 116,
+        lineNumber: 79,
         columnNumber: 5
     }, this);
 }

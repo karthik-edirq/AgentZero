@@ -96,20 +96,40 @@ export function AddRecipientsModal({ open, onOpenChange, onSubmit }: AddRecipien
     if (!organization || emails.length === 0) return
 
     setIsUploading(true)
-    // Simulate uploading to Supabase
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    try {
+      const response = await fetch("/api/recipients", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          organization,
+          emails,
+        }),
+      })
 
-    if (onSubmit) {
-      onSubmit({ organization, emails })
+      const result = await response.json()
+
+      if (result.error) {
+        throw new Error(result.error)
+      }
+
+      if (onSubmit) {
+        onSubmit({ organization, emails })
+      }
+
+      // Reset form
+      setOrganization("")
+      setEmails([])
+      setCurrentEmail({ email: "", name: "", role: "", businessFunction: "" })
+      setImportMethod("manual")
+      onOpenChange(false)
+    } catch (error: any) {
+      console.error("Error adding recipients:", error)
+      alert(`Failed to add recipients: ${error.message}`)
+    } finally {
+      setIsUploading(false)
     }
-
-    // Reset form
-    setOrganization("")
-    setEmails([])
-    setCurrentEmail({ email: "", name: "", role: "", businessFunction: "" })
-    setImportMethod("manual")
-    setIsUploading(false)
-    onOpenChange(false)
   }
 
   const handleCancel = () => {

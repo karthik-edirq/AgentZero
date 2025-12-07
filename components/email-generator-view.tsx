@@ -13,34 +13,35 @@ import {
   LoadingResendAnimation,
 } from "./loading-animations"
 
-const DUMMY_GENERATED_EMAIL: GeneratedEmail = {
-  subject: "Your Q1 Security Training Credentials Are Ready",
-  body: `Hi Sarah,
-
-Your Q1 Security Training credentials have been processed and are now ready to use. Please click the link below to access your personalized dashboard and complete the required modules.
-
-Access Your Dashboard: https://security-training.company.com/verify?token=9a7k3m2p
-
-Required Modules:
-- Phishing Recognition (45 min)
-- Password Security Best Practices (30 min)
-- Data Classification Training (40 min)
-
-Important: You must complete all modules by January 31, 2025. Your progress will be tracked automatically.
-
-If you have any questions or experience technical issues, contact our support team at training-support@company.com
-
-Best regards,
-Corporate Security Team`,
-  confidence: 94,
-  successRate: "42-58%",
-  model: "Claude 3.5",
-}
+// DUMMY_GENERATED_EMAIL - COMMENTED OUT - now using real-time data from Gemini API
+// const DUMMY_GENERATED_EMAIL: GeneratedEmail = {
+//   subject: "Your Q1 Security Training Credentials Are Ready",
+//   body: `Hi Sarah,
+//
+// Your Q1 Security Training credentials have been processed and are now ready to use. Please click the link below to access your personalized dashboard and complete the required modules.
+//
+// Access Your Dashboard: https://security-training.company.com/verify?token=9a7k3m2p
+//
+// Required Modules:
+// - Phishing Recognition (45 min)
+// - Password Security Best Practices (30 min)
+// - Data Classification Training (40 min)
+//
+// Important: You must complete all modules by January 31, 2025. Your progress will be tracked automatically.
+//
+// If you have any questions or experience technical issues, contact our support team at training-support@company.com
+//
+// Best regards,
+// Corporate Security Team`,
+//   confidence: 94,
+//   successRate: "42-58%",
+//   model: "Claude 3.5",
+// }
 
 export function EmailGeneratorView() {
   const [context, setContext] = useState("")
   const [targetRole, setTargetRole] = useState("")
-  const [generatedEmail, setGeneratedEmail] = useState<GeneratedEmail | null>(DUMMY_GENERATED_EMAIL)
+  const [generatedEmail, setGeneratedEmail] = useState<GeneratedEmail | null>(null)
   const [showSendingAnimation, setShowSendingAnimation] = useState(false)
   const [showRAGAnimation, setShowRAGAnimation] = useState(false)
   const [sendProgress, setSendProgress] = useState({ sent: 0, total: 0 })
