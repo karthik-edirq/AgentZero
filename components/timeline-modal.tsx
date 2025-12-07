@@ -21,6 +21,11 @@ interface TimelineModalProps {
     subject: string
     status: string
     sentAt: string
+    body?: string
+    sent_at?: string
+    delivered_at?: string
+    opened_at?: string
+    clicked_at?: string
   }
 }
 
@@ -43,97 +48,175 @@ const eventColors = {
 export function TimelineModal({ open, onOpenChange, email }: TimelineModalProps) {
   if (!email) return null
 
-  // Generate timeline events based on email status
+  // Generate timeline events based on actual timestamps from database
   const generateEvents = (): TimelineEvent[] => {
-    const today = new Date().toLocaleDateString("en-US", { month: "2-digit", day: "2-digit", year: "numeric" })
-    const baseTime = email.sentAt
-    const baseTimestamp = `${today}, ${baseTime}`
+    const formatTimestamp = (dateString: string | null | undefined): string | null => {
+      if (!dateString) return null
+      try {
+        const date = new Date(dateString)
+        const dateStr = date.toLocaleDateString("en-US", { month: "2-digit", day: "2-digit", year: "numeric" })
+        const timeStr = date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", second: "2-digit" })
+        return `${dateStr}, ${timeStr}`
+      } catch {
+        return null
+      }
+    }
     
-    const events: TimelineEvent[] = [
-      {
-        id: "1",
-        type: "sent",
-        timestamp: baseTimestamp,
-        details: "Email successfully sent",
-      },
-    ]
+    const events: TimelineEvent[] = []
 
-    if (email.status === "delivered" || email.status === "bounced" || email.status === "clicked") {
-      // Parse time and add 1 second
-      const timeMatch = baseTime.match(/(\d+):(\d+):(\d+)\s*(AM|PM)/)
-      if (timeMatch) {
-        let [, h, m, s, period] = timeMatch
-        let hour = parseInt(h)
-        let minute = parseInt(m)
-        let second = parseInt(s) + 1
-        
-        if (second >= 60) {
-          second = 0
-          minute += 1
-        }
-        if (minute >= 60) {
-          minute = 0
-          hour += 1
-        }
-        
-        const deliveredTime = `${hour}:${String(minute).padStart(2, "0")}:${String(second).padStart(2, "0")} ${period}`
+    // Sent event (always present)
+    if (email.sent_at) {
+      const sentTimestamp = formatTimestamp(email.sent_at)
+      if (sentTimestamp) {
+        events.push({
+          id: "1",
+          type: "sent",
+          timestamp: sentTimestamp,
+          details: "Email successfully sent",
+        })
+      }
+    }
+
+    // Delivered event
+    if (email.delivered_at) {
+      const deliveredTimestamp = formatTimestamp(email.delivered_at)
+      if (deliveredTimestamp) {
         events.push({
           id: "2",
           type: "delivered",
-          timestamp: `${today}, ${deliveredTime}`,
+          timestamp: deliveredTimestamp,
           details: "Email delivered to recipient",
         })
       }
+    } else if (email.status === "delivered" && email.status !== "clicked") {
+      // Fallback: if status is delivered (but not clicked) but no timestamp, use sent_at + 1 second
+      // Don't add delivered if status is clicked - clicked implies delivered
+      if (email.sent_at) {
+        try {
+          const sentDate = new Date(email.sent_at)
+          sentDate.setSeconds(sentDate.getSeconds() + 1)
+          const deliveredTimestamp = formatTimestamp(sentDate.toISOString())
+          if (deliveredTimestamp) {
+            events.push({
+              id: "2",
+              type: "delivered",
+              timestamp: deliveredTimestamp,
+              details: "Email delivered to recipient",
+            })
+          }
+        } catch {}
+      }
     }
 
-    if (email.status === "clicked") {
-      // Add 5 minutes for clicked
-      const timeMatch = baseTime.match(/(\d+):(\d+):(\d+)\s*(AM|PM)/)
-      if (timeMatch) {
-        let [, h, m, , period] = timeMatch
-        let hour = parseInt(h)
-        let minute = parseInt(m) + 5
-        
-        if (minute >= 60) {
-          minute -= 60
-          hour += 1
-        }
-        
-        const clickedTime = `${hour}:${String(minute).padStart(2, "0")}:53 ${period}`
+    // Opened event (if we have the timestamp)
+    if (email.opened_at) {
+      const openedTimestamp = formatTimestamp(email.opened_at)
+      if (openedTimestamp) {
         events.push({
           id: "3",
-          type: "clicked",
-          timestamp: `${today}, ${clickedTime}`,
-          details: "Recipient clicked link in email",
+          type: "opened",
+          timestamp: openedTimestamp,
+          details: "Email opened by recipient",
         })
       }
     }
 
-    if (email.status === "bounced") {
-      // Add 2 seconds for bounced
-      const timeMatch = baseTime.match(/(\d+):(\d+):(\d+)\s*(AM|PM)/)
-      if (timeMatch) {
-        let [, h, m, s, period] = timeMatch
-        let hour = parseInt(h)
-        let minute = parseInt(m)
-        let second = parseInt(s) + 2
-        
-        if (second >= 60) {
-          second = 0
-          minute += 1
+    // Clicked event (use actual timestamp from database)
+    // Always show clicked event if status is clicked or clicked_at exists
+    // Check if we already have a clicked event to prevent duplicates
+    const hasClickedEvent = events.some(e => e.type === "clicked")
+    
+    if (!hasClickedEvent) {
+      if (email.clicked_at) {
+        const clickedTimestamp = formatTimestamp(email.clicked_at)
+        if (clickedTimestamp) {
+          events.push({
+            id: "4",
+            type: "clicked",
+            timestamp: clickedTimestamp,
+            details: "Recipient clicked link in email",
+          })
         }
-        
-        const bouncedTime = `${hour}:${String(minute).padStart(2, "0")}:${String(second).padStart(2, "0")} ${period}`
-        events.push({
-          id: "3",
-          type: "failed",
-          timestamp: `${today}, ${bouncedTime}`,
-          details: "Email bounced - delivery failed",
-        })
+      } else if (email.status === "clicked" && email.sent_at) {
+        // Fallback: if status is clicked but no timestamp, use sent_at + 5 minutes
+        try {
+          const sentDate = new Date(email.sent_at)
+          sentDate.setMinutes(sentDate.getMinutes() + 5)
+          const clickedTimestamp = formatTimestamp(sentDate.toISOString())
+          if (clickedTimestamp) {
+            events.push({
+              id: "4",
+              type: "clicked",
+              timestamp: clickedTimestamp,
+              details: "Recipient clicked link in email",
+            })
+          }
+        } catch {}
+      }
+    }
+    
+    // If status is clicked but we don't have delivered_at, add delivered event before clicked
+    // This ensures proper event ordering
+    if (email.status === "clicked" && !email.delivered_at && email.sent_at) {
+      // Check if we already have a delivered event
+      const hasDelivered = events.some(e => e.type === "delivered")
+      if (!hasDelivered) {
+        try {
+          const sentDate = new Date(email.sent_at)
+          sentDate.setSeconds(sentDate.getSeconds() + 1)
+          const deliveredTimestamp = formatTimestamp(sentDate.toISOString())
+          if (deliveredTimestamp) {
+            // Insert delivered event before clicked (which should be last)
+            const clickedIndex = events.findIndex(e => e.type === "clicked")
+            const deliveredEvent = {
+              id: "2",
+              type: "delivered" as const,
+              timestamp: deliveredTimestamp,
+              details: "Email delivered to recipient",
+            }
+            if (clickedIndex >= 0) {
+              events.splice(clickedIndex, 0, deliveredEvent)
+            } else {
+              events.push(deliveredEvent)
+            }
+          }
+        } catch {}
       }
     }
 
-    return events
+    // Bounced event
+    if (email.status === "bounced" && email.sent_at) {
+      try {
+        const sentDate = new Date(email.sent_at)
+        sentDate.setSeconds(sentDate.getSeconds() + 2)
+        const bouncedTimestamp = formatTimestamp(sentDate.toISOString())
+        if (bouncedTimestamp) {
+          events.push({
+            id: "5",
+            type: "failed",
+            timestamp: bouncedTimestamp,
+            details: "Email bounced - delivery failed",
+          })
+        }
+      } catch {}
+    }
+
+    // Sort events by timestamp to ensure proper order
+    events.sort((a, b) => {
+      const dateA = new Date(a.timestamp).getTime()
+      const dateB = new Date(b.timestamp).getTime()
+      return dateA - dateB
+    })
+    
+    // Remove duplicate events (same type) - keep the first one
+    const seenTypes = new Set<string>()
+    return events.filter(event => {
+      if (seenTypes.has(event.type)) {
+        return false
+      }
+      seenTypes.add(event.type)
+      return true
+    })
   }
 
   const events = generateEvents()
@@ -150,26 +233,30 @@ export function TimelineModal({ open, onOpenChange, email }: TimelineModalProps)
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-lg">{email.subject}</DialogTitle>
+          <DialogTitle className="text-lg break-words pr-8">{email.subject}</DialogTitle>
         </DialogHeader>
 
         {/* Email Details */}
         <Card className="bg-secondary border border-border p-6">
-          <div className="grid grid-cols-3 gap-4">
-            <div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="min-w-0">
               <p className="text-xs text-muted-foreground mb-1">Recipient</p>
-              <p className="text-sm font-medium text-foreground">{email.recipient}</p>
+              <p className="text-sm font-medium text-foreground truncate" title={email.recipient}>
+                {email.recipient}
+              </p>
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="text-xs text-muted-foreground mb-1">Status</p>
-              <div className={`inline-block px-2 py-1 rounded-full text-xs font-medium border ${statusBadgeColor}`}>
+              <div className={`inline-block px-2 py-1 rounded-full text-xs font-medium border ${statusBadgeColor} whitespace-nowrap`}>
                 {email.status.charAt(0).toUpperCase() + email.status.slice(1)}
               </div>
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="text-xs text-muted-foreground mb-1">Sent At</p>
-              <p className="text-sm font-medium text-foreground">{email.sentAt}</p>
-            </div>
+              <p className="text-sm font-medium text-foreground truncate" title={email.sentAt}>
+                {email.sentAt}
+              </p>
+          </div>
           </div>
         </Card>
 
@@ -189,10 +276,10 @@ export function TimelineModal({ open, onOpenChange, email }: TimelineModalProps)
                       </div>
                       {idx < events.length - 1 && <div className="w-0.5 h-8 bg-border mt-2" />}
                     </div>
-                    <div className="flex-1 pt-1">
-                      <p className="font-medium text-foreground capitalize">{event.type}</p>
-                      <p className="text-xs text-muted-foreground mt-1">{event.timestamp}</p>
-                      <p className="text-sm text-muted-foreground mt-1">{event.details}</p>
+                    <div className="flex-1 pt-1 min-w-0">
+                      <p className="font-medium text-foreground capitalize break-words">{event.type}</p>
+                      <p className="text-xs text-muted-foreground mt-1 break-words">{event.timestamp}</p>
+                      <p className="text-sm text-muted-foreground mt-1 break-words">{event.details}</p>
                     </div>
                   </div>
                 )
@@ -204,13 +291,8 @@ export function TimelineModal({ open, onOpenChange, email }: TimelineModalProps)
           <div>
             <h3 className="text-sm font-semibold text-foreground mb-4">Email Content</h3>
             <Card className="bg-secondary border border-border p-4">
-              <div className="text-sm text-foreground whitespace-pre-wrap">
-                Hi Nick,
-
-Thanks for joining the Supabase Select Hackathon! As an attendee, you have Resend API credits waiting for you to redeem. You can access them in your Resend dashboard under Credits.
-
-Best regards,
-The Team
+              <div className="text-sm text-foreground whitespace-pre-wrap break-words overflow-x-auto max-h-64 overflow-y-auto">
+                {email.body || 'No email content available'}
               </div>
             </Card>
           </div>

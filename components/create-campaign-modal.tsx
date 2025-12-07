@@ -26,6 +26,7 @@ interface CreateCampaignModalProps {
   onOpenChange: (open: boolean) => void
   onViewCampaigns?: () => void
   onSubmit?: (data: CampaignFormData) => void
+  onAddRecipients?: () => void
 }
 
 export interface CampaignFormData {
@@ -41,6 +42,7 @@ export function CreateCampaignModal({
   onOpenChange,
   onViewCampaigns,
   onSubmit,
+  onAddRecipients,
 }: CreateCampaignModalProps) {
   const [formData, setFormData] = useState<CampaignFormData>({
     name: "",
@@ -275,6 +277,27 @@ export function CreateCampaignModal({
               Recipients are automatically fetched from Supabase based on organization and business
               function
             </p>
+            {formData.numberOfTargets === 0 && formData.organization && formData.businessFunction && !isFetchingRecipients && (
+              <div className="mt-3 p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+                <p className="text-sm text-yellow-600 dark:text-yellow-400 mb-2">
+                  No recipients found for this organization and business function.
+                </p>
+                {onAddRecipients && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => {
+                      onOpenChange(false)
+                      onAddRecipients()
+                    }}
+                    className="w-full border-yellow-500/30 text-yellow-600 dark:text-yellow-400 hover:bg-yellow-500/20"
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Recipients First
+                  </Button>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Tags */}
@@ -328,7 +351,8 @@ export function CreateCampaignModal({
             </Button>
             <Button
               type="submit"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm"
+              disabled={formData.numberOfTargets === 0}
+              className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Launch Campaign
             </Button>

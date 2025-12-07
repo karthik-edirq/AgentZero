@@ -204,15 +204,15 @@ Make the email realistic and tailored to the ${businessFunction} department at $
         }
         // Format the email body properly - replace \n with actual line breaks
         let formattedBody = emailData.body || generatedText;
-        formattedBody = formattedBody.replace(/\\n/g, '\n');
+        formattedBody = formattedBody.replace(/\\n/g, "\n");
         formattedBody = formattedBody.replace(/\\"/g, '"');
         // Get the subject to remove it from body if it appears
         const emailSubject = emailData.subject || "Security Training Update";
         // Remove subject line if it appears in the body (comprehensive removal)
         // First, remove any lines that explicitly say "Subject:"
-        formattedBody = formattedBody.replace(/^\s*[Ss]ubject\s*:\s*.*$/gmi, '').replace(/^\s*SUBJECT\s*:\s*.*$/gmi, '').replace(/Subject:\s*[^\n]*/gi, '').replace(/subject:\s*[^\n]*/gi, '');
+        formattedBody = formattedBody.replace(/^\s*[Ss]ubject\s*:\s*.*$/gim, "").replace(/^\s*SUBJECT\s*:\s*.*$/gim, "").replace(/Subject:\s*[^\n]*/gi, "").replace(/subject:\s*[^\n]*/gi, "");
         // Split by lines and filter more aggressively
-        const bodyLines = formattedBody.split('\n');
+        const bodyLines = formattedBody.split("\n");
         const cleanedLines = bodyLines.filter((line)=>{
             const trimmedLine = line.trim();
             // Remove lines that start with "Subject:" (case insensitive, with or without colon)
@@ -229,11 +229,11 @@ Make the email realistic and tailored to the ${businessFunction} department at $
             }
             return true;
         });
-        formattedBody = cleanedLines.join('\n').trim();
+        formattedBody = cleanedLines.join("\n").trim();
         // Remove any leading/trailing empty lines
-        formattedBody = formattedBody.replace(/^\n+|\n+$/g, '');
+        formattedBody = formattedBody.replace(/^\n+|\n+$/g, "");
         // Final cleanup - remove any remaining subject patterns
-        formattedBody = formattedBody.replace(/Subject:\s*[^\n]*\n?/gi, '').replace(/subject:\s*[^\n]*\n?/gi, '').replace(/^Subject:.*$/gmi, '').replace(/^subject:.*$/gmi, '').trim();
+        formattedBody = formattedBody.replace(/Subject:\s*[^\n]*\n?/gi, "").replace(/subject:\s*[^\n]*\n?/gi, "").replace(/^Subject:.*$/gim, "").replace(/^subject:.*$/gim, "").trim();
         // Ensure the test link is in the email (replace any malicious-looking links)
         if (!formattedBody.includes(randomLink)) {
             // If the link wasn't included, add it at the end
@@ -242,7 +242,7 @@ Make the email realistic and tailored to the ${businessFunction} department at $
             // Replace any suspicious links with our test link
             formattedBody = formattedBody.replace(/https?:\/\/[^\s\)]+/g, (match)=>{
                 // Keep the test link, replace others
-                if (match.includes(randomLink.split('?')[0])) {
+                if (match.includes(randomLink.split("?")[0])) {
                     return match;
                 }
                 // Replace suspicious links with test link

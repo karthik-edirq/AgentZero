@@ -10,16 +10,22 @@ export interface GeneratedEmail {
   model: string
 }
 
+export interface EmailGenerationParams {
+  organization: string
+  campaignName: string
+  businessFunction: string
+  targetRole?: string
+  context?: string
+  tags?: string[]
+  testLink?: string
+}
+
 export function useEmailGenerator() {
   const [isGenerating, setIsGenerating] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   const generateEmail = async (
-    context: string,
-    targetRole: string,
-    recipientName?: string,
-    organization?: string,
-    businessFunction?: string
+    params: EmailGenerationParams
   ): Promise<GeneratedEmail | null> => {
     setIsGenerating(true)
     setError(null)
@@ -31,21 +37,24 @@ export function useEmailGenerator() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          context,
-          targetRole,
-          recipientName,
-          organization,
-          businessFunction,
+          organization: params.organization,
+          campaignName: params.campaignName,
+          businessFunction: params.businessFunction,
+          targetRole: params.targetRole,
+          context: params.context,
+          tags: params.tags || [],
+          testLink: params.testLink,
         }),
       })
 
       const result = await response.json()
 
-      if (result.error || !result.data) {
+      if (result.error) {
         throw new Error(result.error || "Failed to generate email")
       }
 
-      return result.data as GeneratedEmail
+      // The API returns the data directly, not wrapped in a data property
+      return result as GeneratedEmail
     } catch (err: any) {
       setError(err.message)
       console.error("Error generating email:", err)

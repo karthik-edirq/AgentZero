@@ -1,29 +1,1317 @@
-[00:00:00.436] Server  LOG      ✓ Ready in 279ms
-[00:00:02.937] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:03.082] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:03.082] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:03.082] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765035069014}
-[00:00:06.994] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:07.131] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:07.131] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:07.131] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765035073062}
-[00:01:43.632] Server  LOG      ✓ Compiled in 33ms
-[00:02:26.600] Server  LOG      ✓ Compiled in 44ms
-[00:03:22.256] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:03:22.386] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:03:22.386] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:03:22.386] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765035268301}
-[00:03:42.902] Browser LOG     Created campaign: {"businessFunction":"all","name":"q1 training","numberOfTargets":0,"organization":"acme-corp","tags":[]}
-[00:05:13.599] Server  LOG      ✓ Compiled in 22ms
-[00:05:15.582] Server  LOG      ✓ Compiled in 21ms
-[00:05:23.035] Server  LOG      ✓ Compiled in 18ms
-[00:05:29.414] Server  LOG      ✓ Compiled in 17ms
-[00:05:31.364] Server  LOG      ✓ Compiled in 18ms
-[00:05:33.625] Server  LOG      ✓ Compiled in 18ms
-[00:05:42.485] Server  LOG      ✓ Compiled in 18ms
-[00:05:54.991] Server  LOG      ✓ Compiled in 20ms
-[00:08:50.253] Browser LOG     Created campaign: {"businessFunction":"hr","name":"qt training","numberOfTargets":0,"organization":"acme-corp","tags":["blockchain"]}
-[00:14:16.003] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:14:16.153] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:14:16.153] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:14:16.153] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765035922065}
+[00:00:00.625] Server  LOG      ✓ Ready in 396ms
+[00:00:14.493] Server  WARN     ⚠ Cross origin request detected from noninvincibly-epitomic-frida.ngrok-free.dev to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+[00:00:14.689] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:14.689] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:14.689] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:00:14.689] Browser LOG     %c[Vercel Web Analytics]%c [pageview] https://noninvincibly-epitomic-frida.ngrok-free.dev/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"https://noninvincibly-epitomic-frida.ngrok-free.dev/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765090533244}
+[00:00:18.938] Server  LOG     Campaign deleted successfully: 81e68944-ed3f-46da-aee9-42181424a891 (QT training)
+[00:00:28.081] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:28.081] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:28.081] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:00:28.081] Browser LOG     %c[Vercel Web Analytics]%c [pageview] https://noninvincibly-epitomic-frida.ngrok-free.dev/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"https://noninvincibly-epitomic-frida.ngrok-free.dev/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765090546868}
+[00:02:45.523] Server  LOG     Generated campaign ID: "8de76f2f-db46-4875-8b4a-b25a62762c56" "for campaign:" "Test"
+[00:02:45.817] Server  LOG     Campaign created successfully with ID: "8de76f2f-db46-4875-8b4a-b25a62762c56"
+[00:02:46.056] Browser LOG     Campaign creation response: {"data":{"business_function":"all","completed_at":null,"created_at":"2025-12-07T06:58:04.619141+00:00","id":"8de76f2f-db46-4875-8b4a-b25a62762c56","launched_at":null,"name":"Test","organization_id":"466c426f-92ca-4daf-a4bb-7c05d6da4594","status":"draft","tags":["Web3","crypto","blockchain"],"updated_at":"2025-12-07T06:58:04.619141+00:00"},"error":null}
+[00:02:46.056] Browser LOG     Campaign created with ID: 8de76f2f-db46-4875-8b4a-b25a62762c56 Type: string
+[00:02:46.991] Browser LOG     Campaign verified in database
+[00:02:48.297] Browser LOG     Found 1 recipients for campaign launch
+[00:02:48.297] Browser LOG     Launching campaign with ID: 8de76f2f-db46-4875-8b4a-b25a62762c56 Type: string Recipients: 1
+[00:02:48.297] Browser LOG     Launch URL: /api/campaigns/8de76f2f-db46-4875-8b4a-b25a62762c56/launch
+[00:02:48.422] Server  ERROR    ⨯ ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+
+
+[00:02:48.673] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:02:49.192] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:02:49.192] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:02:49.939] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:02:49.939] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:02:49.939] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:02:49.939] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:02:49.939] Browser ERROR   Error fetching campaigns: {}
+[00:02:53.741] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:02:53.741] Browser ERROR   Launch API error: {"error":"HTTP 500: "} Status: 500
+[00:02:53.741] Browser ERROR   Error launching campaign: {}
+[00:02:55.250] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:02:55.933] Browser ERROR   Error fetching campaigns: {}
+[00:02:55.933] Browser ERROR   Error fetching dashboard metrics: {}
+[00:02:55.934] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:02:59.929] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:02:59.929] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:02:59.931] Browser ERROR   Error fetching dashboard metrics: {}
+[00:02:59.931] Browser ERROR   Error fetching campaigns: {}
+[00:02:59.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:02:59.931] Browser ERROR   Error fetching campaigns: {}
+[00:02:59.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:01.946] Browser ERROR   Error fetching campaigns: {}
+[00:03:01.946] Browser ERROR   Error fetching dashboard metrics: {}
+[00:03:01.946] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:01.946] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:05.948] Browser ERROR   Error fetching dashboard metrics: {}
+[00:03:05.948] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:05.948] Browser ERROR   Error fetching campaigns: {}
+[00:03:05.948] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:05.948] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:05.948] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:07.940] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:07.940] Browser ERROR   Error fetching dashboard metrics: {}
+[00:03:07.940] Browser ERROR   Error fetching campaigns: {}
+[00:03:07.940] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:09.913] Browser ERROR   Error fetching campaigns: {}
+[00:03:09.913] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:09.918] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:13.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:13.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:13.932] Browser ERROR   Error fetching dashboard metrics: {}
+[00:03:13.932] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:13.932] Browser ERROR   Error fetching campaigns: {}
+[00:03:13.932] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:15.933] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:15.955] Browser ERROR   Error fetching dashboard metrics: {}
+[00:03:15.955] Browser ERROR   Error fetching campaigns: {}
+[00:03:15.955] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:19.921] Browser ERROR   Error fetching campaigns: {}
+[00:03:19.921] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:19.922] Browser ERROR   Error fetching dashboard metrics: {}
+[00:03:19.922] Browser ERROR   Error fetching campaigns: {}
+[00:03:19.922] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:20.957] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:20.962] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:25.953] Browser ERROR   Error fetching dashboard metrics: {}
+[00:03:25.953] Browser ERROR   Error fetching campaigns: {}
+[00:03:25.953] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:25.954] Browser ERROR   Error fetching dashboard metrics: {}
+[00:03:25.954] Browser ERROR   Error fetching campaigns: {}
+[00:03:25.954] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:29.948] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:29.948] Browser ERROR   Error fetching campaigns: {}
+[00:03:29.948] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:31.918] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:32.928] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:32.933] Browser ERROR   Error fetching campaigns: {}
+[00:03:32.933] Browser ERROR   Error fetching dashboard metrics: {}
+[00:03:32.933] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:32.933] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:35.943] Browser ERROR   Error fetching campaigns: {}
+[00:03:35.943] Browser ERROR   Error fetching dashboard metrics: {}
+[00:03:35.943] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:35.943] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:37.926] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:37.926] Browser ERROR   Error fetching dashboard metrics: {}
+[00:03:37.927] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:37.927] Browser ERROR   Error fetching campaigns: {}
+[00:03:39.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:39.933] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:41.947] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:41.947] Browser ERROR   Error fetching campaigns: {}
+[00:03:41.947] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:43.935] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:43.936] Browser ERROR   Error fetching campaigns: {}
+[00:03:43.936] Browser ERROR   Error fetching dashboard metrics: {}
+[00:03:43.936] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:47.933] Browser ERROR   Error fetching campaigns: {}
+[00:03:47.934] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:47.934] Browser ERROR   Error fetching dashboard metrics: {}
+[00:03:47.934] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:47.969] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:47.969] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:49.931] Browser ERROR   Error fetching campaigns: {}
+[00:03:49.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:49.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:49.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:49.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:49.931] Browser ERROR   Error fetching campaigns: {}
+[00:03:49.931] Browser ERROR   Error fetching dashboard metrics: {}
+[00:03:49.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:49.931] Browser ERROR   Error fetching campaigns: {}
+[00:03:49.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:52.923] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:52.923] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:55.936] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:55.936] Browser ERROR   Error fetching campaigns: {}
+[00:03:55.936] Browser ERROR   Error fetching dashboard metrics: {}
+[00:03:55.936] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:55.949] Browser ERROR   Error fetching dashboard metrics: {}
+[00:03:55.949] Browser ERROR   Error fetching campaigns: {}
+[00:03:55.949] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:03:55.949] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:00.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:00.932] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:01.947] Browser ERROR   Error fetching campaigns: {}
+[00:04:01.947] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:01.947] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:01.947] Browser ERROR   Error fetching campaigns: {}
+[00:04:01.947] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:01.947] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:07.941] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:07.941] Browser ERROR   Error fetching campaigns: {}
+[00:04:07.941] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:07.941] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:07.941] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:07.941] Browser ERROR   Error fetching campaigns: {}
+[00:04:07.941] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:07.941] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:13.945] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:13.945] Browser ERROR   Error fetching campaigns: {}
+[00:04:13.945] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:13.947] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:13.947] Browser ERROR   Error fetching campaigns: {}
+[00:04:13.947] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:19.964] Browser ERROR   Error fetching campaigns: {}
+[00:04:19.964] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:19.964] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:19.964] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:19.964] Browser ERROR   Error fetching campaigns: {}
+[00:04:19.964] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:25.934] Browser ERROR   Error fetching campaigns: {}
+[00:04:25.934] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:25.934] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:25.934] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:25.941] Browser ERROR   Error fetching campaigns: {}
+[00:04:25.941] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:25.941] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:25.941] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:31.914] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:31.914] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:31.914] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:31.914] Browser ERROR   Error fetching campaigns: {}
+[00:04:31.914] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:31.925] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:31.925] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:31.925] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:31.925] Browser ERROR   Error fetching campaigns: {}
+[00:04:31.925] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:37.959] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:37.959] Browser ERROR   Error fetching campaigns: {}
+[00:04:37.959] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:37.959] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:37.961] Browser ERROR   Error fetching campaigns: {}
+[00:04:37.961] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:37.961] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:37.961] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:43.934] Browser ERROR   Error fetching campaigns: {}
+[00:04:43.934] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:43.934] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:43.939] Browser ERROR   Error fetching campaigns: {}
+[00:04:43.939] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:43.939] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:49.944] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:49.944] Browser ERROR   Error fetching campaigns: {}
+[00:04:49.944] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:49.944] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:49.944] Browser ERROR   Error fetching campaigns: {}
+[00:04:49.944] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:49.945] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:49.945] Browser ERROR   Error fetching campaigns: {}
+[00:04:49.945] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:49.945] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:49.945] Browser ERROR   Error fetching campaigns: {}
+[00:04:49.945] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:55.929] Browser ERROR   Error fetching campaigns: {}
+[00:04:55.929] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:55.929] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:04:55.933] Browser ERROR   Error fetching dashboard metrics: {}
+[00:04:55.933] Browser ERROR   Error fetching campaigns: {}
+[00:04:55.933] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:05:01.927] Browser ERROR   Error fetching dashboard metrics: {}
+[00:05:01.927] Browser ERROR   Error fetching campaigns: {}
+[00:05:01.927] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:05:01.929] Browser ERROR   Error fetching dashboard metrics: {}
+[00:05:01.929] Browser ERROR   Error fetching campaigns: {}
+[00:05:01.929] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:05:07.977] Browser ERROR   Error fetching campaigns: {}
+[00:05:07.977] Browser ERROR   Error fetching dashboard metrics: {}
+[00:05:07.977] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times
+[00:05:07.984] Browser ERROR   Error fetching dashboard metrics: {}
+[00:05:07.984] Browser ERROR   Error fetching campaigns: {}
+[00:05:07.984] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
+Ecmascript file had an error
+  427 |     // Step 3: Save email records to database and create events
+  428 |     const results = []
+> 429 |     const processedRecipients = new Set<string>()
+      |           ^^^^^^^^^^^^^^^^^^^
+  430 |     
+  431 |     // Process successful sends
+  432 |     for (let i = 0; i < batchResult.data.length; i++) {
+
+the name `processedRecipients` is defined multiple times

@@ -1,5 +1,8 @@
 {
+  "/api/campaigns/[id]/launch/route": "app/api/campaigns/[id]/launch/route.js",
+  "/api/campaigns/[id]/route": "app/api/campaigns/[id]/route.js",
   "/api/campaigns/route": "app/api/campaigns/route.js",
+  "/api/metrics/dashboard/route": "app/api/metrics/dashboard/route.js",
   "/api/recipients/route": "app/api/recipients/route.js",
   "/page": "app/page.js"
 }

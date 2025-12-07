@@ -34,6 +34,7 @@ interface AddRecipientsModalProps {
 
 export function AddRecipientsModal({ open, onOpenChange, onSubmit }: AddRecipientsModalProps) {
   const [organization, setOrganization] = useState("")
+  const [defaultBusinessFunction, setDefaultBusinessFunction] = useState("")
   const [importMethod, setImportMethod] = useState<"excel" | "manual">("manual")
   const [emails, setEmails] = useState<Array<{ email: string; name?: string; role?: string; businessFunction?: string }>>([])
   const [currentEmail, setCurrentEmail] = useState({ email: "", name: "", role: "", businessFunction: "" })
@@ -47,9 +48,11 @@ export function AddRecipientsModal({ open, onOpenChange, onSubmit }: AddRecipien
           email: currentEmail.email,
           name: currentEmail.name || undefined,
           role: currentEmail.role || undefined,
-          businessFunction: currentEmail.businessFunction || undefined,
+          // Use individual businessFunction if set, otherwise use default
+          businessFunction: currentEmail.businessFunction || defaultBusinessFunction || undefined,
         },
       ])
+      // Reset individual fields but keep default business function
       setCurrentEmail({ email: "", name: "", role: "", businessFunction: "" })
     }
   }
@@ -79,7 +82,10 @@ export function AddRecipientsModal({ open, onOpenChange, onSubmit }: AddRecipien
             email: values[emailIndex] || "",
             name: nameIndex >= 0 ? values[nameIndex] : undefined,
             role: roleIndex >= 0 ? values[roleIndex] : undefined,
-            businessFunction: businessFunctionIndex >= 0 ? values[businessFunctionIndex] : undefined,
+            // Use CSV value if present, otherwise use default business function
+            businessFunction: businessFunctionIndex >= 0 && values[businessFunctionIndex] 
+              ? values[businessFunctionIndex] 
+              : (defaultBusinessFunction || undefined),
           }
         })
 
@@ -120,6 +126,7 @@ export function AddRecipientsModal({ open, onOpenChange, onSubmit }: AddRecipien
 
       // Reset form
       setOrganization("")
+      setDefaultBusinessFunction("")
       setEmails([])
       setCurrentEmail({ email: "", name: "", role: "", businessFunction: "" })
       setImportMethod("manual")
@@ -134,6 +141,7 @@ export function AddRecipientsModal({ open, onOpenChange, onSubmit }: AddRecipien
 
   const handleCancel = () => {
     setOrganization("")
+    setDefaultBusinessFunction("")
     setEmails([])
     setCurrentEmail({ email: "", name: "", role: "", businessFunction: "" })
     setImportMethod("manual")
@@ -178,6 +186,39 @@ export function AddRecipientsModal({ open, onOpenChange, onSubmit }: AddRecipien
                   <SelectItem value="healthcare-sys">Healthcare Systems</SelectItem>
                 </SelectContent>
               </Select>
+            </div>
+
+            {/* Business Function */}
+            <div className="space-y-2">
+              <Label htmlFor="business-function" className="text-sm font-medium text-foreground">
+                Business Function
+              </Label>
+              <Select
+                value={currentEmail.businessFunction}
+                onValueChange={(value) => {
+                  setCurrentEmail({ ...currentEmail, businessFunction: value })
+                }}
+              >
+                <SelectTrigger
+                  id="business-function"
+                  className="w-full bg-secondary border-border text-foreground"
+                >
+                  <SelectValue placeholder="Select function (optional)" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All</SelectItem>
+                  <SelectItem value="finance">Finance</SelectItem>
+                  <SelectItem value="hr">Human Resources</SelectItem>
+                  <SelectItem value="it">IT Department</SelectItem>
+                  <SelectItem value="executive">Executive</SelectItem>
+                  <SelectItem value="operations">Operations</SelectItem>
+                  <SelectItem value="sales">Sales</SelectItem>
+                  <SelectItem value="marketing">Marketing</SelectItem>
+                </SelectContent>
+              </Select>
+              <p className="text-xs text-muted-foreground">
+                This will be applied to all recipients you add. You can override for individual recipients below.
+              </p>
             </div>
 
             {/* Import Method */}
@@ -270,16 +311,42 @@ export function AddRecipientsModal({ open, onOpenChange, onSubmit }: AddRecipien
                       />
                     </div>
                     <div>
-                      <Label className="text-xs text-muted-foreground">Business Function</Label>
-                      <Input
-                        type="text"
-                        value={currentEmail.businessFunction}
-                        onChange={(e) =>
-                          setCurrentEmail({ ...currentEmail, businessFunction: e.target.value })
+                      <Label className="text-xs text-muted-foreground">Business Function (optional)</Label>
+                      <Select
+                        value={
+                          currentEmail.businessFunction 
+                            ? currentEmail.businessFunction 
+                            : (defaultBusinessFunction ? "__default__" : undefined)
                         }
-                        placeholder="IT, Finance, HR, etc."
-                        className="bg-background border-border text-foreground mt-1"
-                      />
+                        onValueChange={(value) => {
+                          // Handle the special "__default__" value
+                          if (value === "__default__") {
+                            setCurrentEmail({ ...currentEmail, businessFunction: "" })
+                          } else {
+                            setCurrentEmail({ ...currentEmail, businessFunction: value })
+                          }
+                        }}
+                      >
+                        <SelectTrigger className="w-full bg-background border-border text-foreground mt-1">
+                          <SelectValue placeholder={defaultBusinessFunction || "Use default or select"} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {defaultBusinessFunction && (
+                            <SelectItem value="__default__">Use default ({defaultBusinessFunction})</SelectItem>
+                          )}
+                          <SelectItem value="all">All</SelectItem>
+                          <SelectItem value="finance">Finance</SelectItem>
+                          <SelectItem value="hr">Human Resources</SelectItem>
+                          <SelectItem value="it">IT Department</SelectItem>
+                          <SelectItem value="executive">Executive</SelectItem>
+                          <SelectItem value="operations">Operations</SelectItem>
+                          <SelectItem value="sales">Sales</SelectItem>
+                          <SelectItem value="marketing">Marketing</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Default: {defaultBusinessFunction || "None set"}
+                      </p>
                     </div>
                   </div>
                   <Button

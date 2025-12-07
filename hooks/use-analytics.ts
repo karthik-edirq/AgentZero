@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { supabase } from "@/lib/supabase"
 
 // Mock data - COMMENTED OUT - now using real-time data from Supabase
 // const MOCK_EVENTS_LIST = [
@@ -53,49 +52,44 @@ export function useAnalytics(campaignId?: string) {
     try {
       setIsLoading(true)
       
-      // Fetch campaign stats
-      let query = supabase.from('campaign_stats').select('*')
-      if (campaignId) {
-        query = query.eq('id', campaignId)
-      }
-      const { data: statsData } = await query
+      // Fetch campaign stats via API
+      const url = campaignId 
+        ? `/api/stats/${campaignId}`
+        : '/api/metrics/dashboard'
+      
+      const response = await fetch(url)
+      const result = await response.json()
 
-      // Calculate metrics from real data
-      const totalEmailsSent = statsData?.reduce((sum: number, stat: any) => sum + (stat.total_sent || 0), 0) || 0
-      const totalOpened = statsData?.reduce((sum: number, stat: any) => sum + (stat.opened || 0), 0) || 0
-      const totalClicked = statsData?.reduce((sum: number, stat: any) => sum + (stat.clicked || 0), 0) || 0
-      const activeCampaigns = statsData?.filter((stat: any) => stat.status === 'active').length || 0
-      const avgClickRate = statsData?.length > 0 
-        ? statsData.reduce((sum: number, stat: any) => sum + (stat.click_rate || 0), 0) / statsData.length 
-        : 0
-
-      // Fetch events for today
-      const today = new Date()
-      today.setHours(0, 0, 0, 0)
-      const { data: eventsToday } = await supabase
-        .from('email_events')
-        .select('*')
-        .gte('created_at', today.toISOString())
-
-      const metrics = {
-        campaignPerformance: statsData?.slice(0, 7).map((stat: any, index: number) => ({
-          date: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][index] || `Day ${index + 1}`,
-          campaigns: 1,
-          engaged: stat.opened || 0,
-          clicked: stat.clicked || 0,
-        })) || [],
-        activeCampaigns,
-        totalEmailsSent,
-        clickRate: avgClickRate,
-        usersAtRisk: totalClicked,
-        totalEventsToday: eventsToday?.length || 0,
-        totalEventsTodayChange: "+0%",
-        highPriorityAlerts: statsData?.filter((stat: any) => (stat.click_rate || 0) > 10).length || 0,
-        avgDetectionTime: 3.2,
-        avgDetectionTimePrevious: 4.5,
+      if (result.error) {
+        throw new Error(result.error)
       }
 
-      setAnalytics(metrics)
+      // If fetching single campaign stats, transform to analytics format
+      if (campaignId && result.data) {
+        const stats = result.data
+        const metrics = {
+          campaignPerformance: [{
+            date: new Date().toLocaleDateString('en-US', { weekday: 'short' }),
+            campaigns: 1,
+            engaged: stats.total_opened || 0,
+            clicked: stats.total_clicked || 0,
+          }],
+          activeCampaigns: 1,
+          totalEmailsSent: stats.total_sent || 0,
+          clickRate: stats.click_rate || 0,
+          usersAtRisk: stats.total_clicked || 0,
+          totalEventsToday: stats.total_opened + stats.total_clicked || 0,
+          totalEventsTodayChange: "+0%",
+          highPriorityAlerts: (stats.click_rate || 0) > 10 ? 1 : 0,
+          avgDetectionTime: 3.2,
+          avgDetectionTimePrevious: 4.5,
+        }
+        setAnalytics(metrics)
+      } else {
+        // Dashboard metrics format
+        setAnalytics(result.data)
+      }
+      
       setError(null)
     } catch (err: any) {
       setError(err.message)
@@ -127,54 +121,52 @@ export function useEvents(filters?: any) {
     try {
       setIsLoading(true)
       
-      // Fetch email events from Supabase
-      let query = supabase
-        .from('email_events')
-        .select(`
-          *,
-          email:emails(
-            *,
-            campaign:campaigns(name),
-            recipient:recipients(email, name)
-          )
-        `)
-        .order('created_at', { ascending: false })
-        .limit(100)
-
+      // Fetch email events via API
+      const params = new URLSearchParams()
       if (filters?.campaignId) {
-        query = query.eq('email.campaign_id', filters.campaignId)
+        params.append('campaignId', filters.campaignId)
       }
-
-      const { data: eventsData, error: eventsError } = await query
-
-      if (eventsError) throw eventsError
-
-      // Transform events for chart (group by hour)
-      const eventsByHour: { [key: string]: number } = {}
-      eventsData?.forEach((event: any) => {
-        const hour = new Date(event.created_at).getHours()
-        const timeKey = `${String(hour).padStart(2, '0')}:00`
-        eventsByHour[timeKey] = (eventsByHour[timeKey] || 0) + 1
+      params.append('limit', '100')
+      
+      const response = await fetch(`/api/metrics/events?${params.toString()}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
 
-      const chartData = Object.entries(eventsByHour)
-        .map(([time, count]) => ({ time, events: count }))
-        .sort((a, b) => a.time.localeCompare(b.time))
+      // Check if response is ok
+      if (!response.ok) {
+        const contentType = response.headers.get('content-type')
+        if (contentType && contentType.includes('text/html')) {
+          throw new Error(`Server returned HTML instead of JSON (${response.status}). API route may not exist.`)
+        }
+        throw new Error(`Failed to fetch events: ${response.status} ${response.statusText}`)
+      }
 
-      // Transform events for list
-      const listData = eventsData?.map((event: any) => ({
-        id: event.id,
-        type: event.event_type,
-        campaign: event.email?.campaign?.name || 'Unknown',
-        user: event.email?.recipient?.email || 'Unknown',
-        status: event.event_type === 'clicked' ? 'detected' : event.event_type === 'opened' ? 'reported' : 'detected',
-        time: new Date(event.created_at).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
-      })) || []
+      // Check if response is JSON
+      const contentType = response.headers.get('content-type')
+      if (!contentType || !contentType.includes('application/json')) {
+        const text = await response.text()
+        throw new Error(`Server returned non-JSON response: ${contentType}. Response: ${text.substring(0, 100)}`)
+      }
 
-      setEvents(chartData)
-      setEventList(listData)
+      const result = await response.json()
+
+      if (result.error) {
+        throw new Error(result.error)
+      }
+
+      setEvents(result.data.events || [])
+      setEventList(result.data.eventList || [])
       setError(null)
     } catch (err: any) {
+      // Handle network errors gracefully
+      if (err.message === "Failed to fetch" || err.name === "TypeError") {
+        console.warn("Network error fetching events - server may not be running or network unavailable")
+        setError("Unable to connect to server. Please check your connection.")
+        return
+      }
       setError(err.message)
       console.error("Error fetching events:", err)
     } finally {
@@ -204,63 +196,47 @@ export function useDashboardMetrics() {
     try {
       setIsLoading(true)
       
-      // Fetch all campaign stats
-      const { data: statsData } = await supabase
-        .from('campaign_stats')
-        .select('*')
+      // Fetch dashboard metrics via API
+      const response = await fetch('/api/metrics/dashboard', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
 
-      // Calculate aggregate metrics
-      const totalEmailsSent = statsData?.reduce((sum: number, stat: any) => sum + (stat.total_sent || 0), 0) || 0
-      const totalOpened = statsData?.reduce((sum: number, stat: any) => sum + (stat.opened || 0), 0) || 0
-      const totalClicked = statsData?.reduce((sum: number, stat: any) => sum + (stat.clicked || 0), 0) || 0
-      const activeCampaigns = statsData?.filter((stat: any) => stat.status === 'active').length || 0
-      const avgClickRate = statsData?.length > 0 
-        ? statsData.reduce((sum: number, stat: any) => sum + (stat.click_rate || 0), 0) / statsData.length 
-        : 0
-
-      // Fetch events for today
-      const today = new Date()
-      today.setHours(0, 0, 0, 0)
-      const { data: eventsToday } = await supabase
-        .from('email_events')
-        .select('*')
-        .gte('created_at', today.toISOString())
-
-      // Generate weekly performance data
-      const weeklyData = []
-      const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-      for (let i = 6; i >= 0; i--) {
-        const date = new Date()
-        date.setDate(date.getDate() - i)
-        const dayStats = statsData?.filter((stat: any) => {
-          const statDate = new Date(stat.created_at || 0)
-          return statDate.toDateString() === date.toDateString()
-        }) || []
-        
-        weeklyData.push({
-          date: days[date.getDay()],
-          campaigns: dayStats.length,
-          engaged: dayStats.reduce((sum: number, s: any) => sum + (s.opened || 0), 0),
-          clicked: dayStats.reduce((sum: number, s: any) => sum + (s.clicked || 0), 0),
-        })
+      // Check if response is ok
+      if (!response.ok) {
+        // Check if response is HTML (error page)
+        const contentType = response.headers.get('content-type')
+        if (contentType && contentType.includes('text/html')) {
+          throw new Error(`Server returned HTML instead of JSON (${response.status}). API route may not exist.`)
+        }
+        throw new Error(`Failed to fetch metrics: ${response.status} ${response.statusText}`)
       }
 
-      const dashboardMetrics = {
-        campaignPerformance: weeklyData,
-        activeCampaigns,
-        totalEmailsSent,
-        clickRate: avgClickRate,
-        usersAtRisk: totalClicked,
-        totalEventsToday: eventsToday?.length || 0,
-        totalEventsTodayChange: "+0%",
-        highPriorityAlerts: statsData?.filter((stat: any) => (stat.click_rate || 0) > 10).length || 0,
-        avgDetectionTime: 3.2,
-        avgDetectionTimePrevious: 4.5,
+      // Check if response is JSON
+      const contentType = response.headers.get('content-type')
+      if (!contentType || !contentType.includes('application/json')) {
+        const text = await response.text()
+        throw new Error(`Server returned non-JSON response: ${contentType}. Response: ${text.substring(0, 100)}`)
       }
 
-      setMetrics(dashboardMetrics)
+      const result = await response.json()
+
+      if (result.error) {
+        throw new Error(result.error)
+      }
+
+      setMetrics(result.data)
       setError(null)
     } catch (err: any) {
+      // Handle network errors gracefully
+      if (err.message === "Failed to fetch" || err.name === "TypeError") {
+        console.warn("Network error fetching metrics - server may not be running or network unavailable")
+        setError("Unable to connect to server. Please check your connection.")
+        // Don't clear metrics on network error - keep existing data
+        return
+      }
       setError(err.message)
       console.error("Error fetching dashboard metrics:", err)
     } finally {

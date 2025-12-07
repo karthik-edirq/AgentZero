@@ -54,7 +54,13 @@ export function EmailGeneratorView() {
     setShowRAGAnimation(false)
 
     // Then generate email
-    const email = await generateEmail(context, targetRole)
+    const email = await generateEmail({
+      organization: "Company",
+      campaignName: "Security Training Campaign",
+      businessFunction: "General",
+      targetRole: targetRole,
+      context: context,
+    })
     if (email) {
       setGeneratedEmail(email)
     }
@@ -144,6 +150,12 @@ export function EmailGeneratorView() {
           ) : isGenerating ? (
             <div className="bg-secondary border border-border rounded-lg p-12">
               <LoadingGeneratingAnimation />
+            </div>
+          ) : error ? (
+            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6">
+              <h3 className="text-sm font-semibold text-red-800 dark:text-red-200 mb-2">Error Generating Email</h3>
+              <p className="text-sm text-red-600 dark:text-red-300">{error}</p>
+              <p className="text-xs text-red-500 dark:text-red-400 mt-2">Please check your GEMINI_API_KEY in .env.local</p>
             </div>
           ) : showSendingAnimation ? (
             <div className="bg-secondary border border-border rounded-lg p-12">
