@@ -4,10 +4,11 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Card } from "@/components/ui/card"
 import { Mail, Check, Eye, Hand, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useState, useEffect, useCallback } from "react"
 
 interface TimelineEvent {
   id: string
-  type: "sent" | "delivered" | "opened" | "clicked" | "failed"
+  type: "sent" | "delivered" | "opened" | "clicked" | "failed" | "bounced" | "complained" | "unsubscribed"
   timestamp: string
   details: string
 }
@@ -29,26 +30,70 @@ interface TimelineModalProps {
   }
 }
 
-const eventIcons = {
+const eventIcons: Record<string, typeof Mail> = {
   sent: Mail,
   delivered: Check,
   opened: Eye,
   clicked: Hand,
   failed: X,
+  bounced: X,
+  complained: X,
+  unsubscribed: X,
 }
 
-const eventColors = {
+const eventColors: Record<string, string> = {
   sent: "bg-blue-500/10 text-blue-600 border-blue-200",
   delivered: "bg-green-500/10 text-green-600 border-green-200",
   opened: "bg-amber-500/10 text-amber-600 border-amber-200",
   clicked: "bg-red-500/10 text-red-600 border-red-200",
   failed: "bg-gray-500/10 text-gray-600 border-gray-200",
+  bounced: "bg-gray-500/10 text-gray-600 border-gray-200",
+  complained: "bg-orange-500/10 text-orange-600 border-orange-200",
+  unsubscribed: "bg-purple-500/10 text-purple-600 border-purple-200",
 }
 
 export function TimelineModal({ open, onOpenChange, email }: TimelineModalProps) {
+  const [eventsFromAPI, setEventsFromAPI] = useState<TimelineEvent[]>([])
+  const [isLoadingEvents, setIsLoadingEvents] = useState(false)
+
   if (!email) return null
 
-  // Generate timeline events based on actual timestamps from database
+  const fetchEvents = useCallback(async () => {
+    if (!email?.id) return
+
+    setIsLoadingEvents(true)
+    try {
+      const response = await fetch(`/api/emails/${email.id}/events`)
+      if (!response.ok) {
+        throw new Error(`Failed to fetch events: ${response.status}`)
+      }
+      const result = await response.json()
+      if (result.error) {
+        throw new Error(result.error)
+      }
+      setEventsFromAPI(result.data || [])
+    } catch (error: any) {
+      console.error("Error fetching email events:", error)
+      // Don't show error to user, just use fallback events
+    } finally {
+      setIsLoadingEvents(false)
+    }
+  }, [email?.id])
+
+  // Fetch events from API when modal opens or email changes
+  useEffect(() => {
+    if (open && email?.id) {
+      fetchEvents()
+      // Set up auto-refresh every 3 seconds while modal is open
+      const interval = setInterval(() => {
+        fetchEvents()
+      }, 3000)
+
+      return () => clearInterval(interval)
+    }
+  }, [open, email?.id, fetchEvents])
+
+    // Generate timeline events - combine API events with fallback from email timestamps
   const generateEvents = (): TimelineEvent[] => {
     const formatTimestamp = (dateString: string | null | undefined): string | null => {
       if (!dateString) return null
@@ -62,13 +107,31 @@ export function TimelineModal({ open, onOpenChange, email }: TimelineModalProps)
       }
     }
     
-    const events: TimelineEvent[] = []
+    // Start with events from API (most accurate, from webhooks)
+    const events: TimelineEvent[] = eventsFromAPI.map((event) => ({
+      ...event,
+      timestamp: formatTimestamp(event.timestamp) || event.timestamp,
+    })).filter((event) => event.timestamp) // Filter out invalid timestamps
+
+    // If we have API events, use them (they're from webhooks and most accurate)
+    if (events.length > 0) {
+      // Sort by timestamp
+      events.sort((a, b) => {
+        const dateA = new Date(a.timestamp).getTime()
+        const dateB = new Date(b.timestamp).getTime()
+        return dateA - dateB
+      })
+      return events
+    }
+
+    // Fallback: Generate events from email timestamp fields if API events not available
+    const fallbackEvents: TimelineEvent[] = []
 
     // Sent event (always present)
     if (email.sent_at) {
       const sentTimestamp = formatTimestamp(email.sent_at)
       if (sentTimestamp) {
-        events.push({
+        fallbackEvents.push({
           id: "1",
           type: "sent",
           timestamp: sentTimestamp,
@@ -81,7 +144,7 @@ export function TimelineModal({ open, onOpenChange, email }: TimelineModalProps)
     if (email.delivered_at) {
       const deliveredTimestamp = formatTimestamp(email.delivered_at)
       if (deliveredTimestamp) {
-        events.push({
+        fallbackEvents.push({
           id: "2",
           type: "delivered",
           timestamp: deliveredTimestamp,
@@ -97,7 +160,7 @@ export function TimelineModal({ open, onOpenChange, email }: TimelineModalProps)
           sentDate.setSeconds(sentDate.getSeconds() + 1)
           const deliveredTimestamp = formatTimestamp(sentDate.toISOString())
           if (deliveredTimestamp) {
-            events.push({
+            fallbackEvents.push({
               id: "2",
               type: "delivered",
               timestamp: deliveredTimestamp,
@@ -112,7 +175,7 @@ export function TimelineModal({ open, onOpenChange, email }: TimelineModalProps)
     if (email.opened_at) {
       const openedTimestamp = formatTimestamp(email.opened_at)
       if (openedTimestamp) {
-        events.push({
+        fallbackEvents.push({
           id: "3",
           type: "opened",
           timestamp: openedTimestamp,
@@ -124,13 +187,13 @@ export function TimelineModal({ open, onOpenChange, email }: TimelineModalProps)
     // Clicked event (use actual timestamp from database)
     // Always show clicked event if status is clicked or clicked_at exists
     // Check if we already have a clicked event to prevent duplicates
-    const hasClickedEvent = events.some(e => e.type === "clicked")
+    const hasClickedEvent = fallbackEvents.some(e => e.type === "clicked")
     
     if (!hasClickedEvent) {
       if (email.clicked_at) {
         const clickedTimestamp = formatTimestamp(email.clicked_at)
         if (clickedTimestamp) {
-          events.push({
+          fallbackEvents.push({
             id: "4",
             type: "clicked",
             timestamp: clickedTimestamp,
@@ -144,7 +207,7 @@ export function TimelineModal({ open, onOpenChange, email }: TimelineModalProps)
           sentDate.setMinutes(sentDate.getMinutes() + 5)
           const clickedTimestamp = formatTimestamp(sentDate.toISOString())
           if (clickedTimestamp) {
-            events.push({
+            fallbackEvents.push({
               id: "4",
               type: "clicked",
               timestamp: clickedTimestamp,
@@ -159,7 +222,7 @@ export function TimelineModal({ open, onOpenChange, email }: TimelineModalProps)
     // This ensures proper event ordering
     if (email.status === "clicked" && !email.delivered_at && email.sent_at) {
       // Check if we already have a delivered event
-      const hasDelivered = events.some(e => e.type === "delivered")
+      const hasDelivered = fallbackEvents.some(e => e.type === "delivered")
       if (!hasDelivered) {
         try {
           const sentDate = new Date(email.sent_at)
@@ -167,7 +230,7 @@ export function TimelineModal({ open, onOpenChange, email }: TimelineModalProps)
           const deliveredTimestamp = formatTimestamp(sentDate.toISOString())
           if (deliveredTimestamp) {
             // Insert delivered event before clicked (which should be last)
-            const clickedIndex = events.findIndex(e => e.type === "clicked")
+            const clickedIndex = fallbackEvents.findIndex(e => e.type === "clicked")
             const deliveredEvent = {
               id: "2",
               type: "delivered" as const,
@@ -175,9 +238,9 @@ export function TimelineModal({ open, onOpenChange, email }: TimelineModalProps)
               details: "Email delivered to recipient",
             }
             if (clickedIndex >= 0) {
-              events.splice(clickedIndex, 0, deliveredEvent)
+              fallbackEvents.splice(clickedIndex, 0, deliveredEvent)
             } else {
-              events.push(deliveredEvent)
+              fallbackEvents.push(deliveredEvent)
             }
           }
         } catch {}
@@ -191,7 +254,7 @@ export function TimelineModal({ open, onOpenChange, email }: TimelineModalProps)
         sentDate.setSeconds(sentDate.getSeconds() + 2)
         const bouncedTimestamp = formatTimestamp(sentDate.toISOString())
         if (bouncedTimestamp) {
-          events.push({
+          fallbackEvents.push({
             id: "5",
             type: "failed",
             timestamp: bouncedTimestamp,
@@ -201,8 +264,8 @@ export function TimelineModal({ open, onOpenChange, email }: TimelineModalProps)
       } catch {}
     }
 
-    // Sort events by timestamp to ensure proper order
-    events.sort((a, b) => {
+    // Sort fallback events by timestamp to ensure proper order
+    fallbackEvents.sort((a, b) => {
       const dateA = new Date(a.timestamp).getTime()
       const dateB = new Date(b.timestamp).getTime()
       return dateA - dateB
@@ -210,7 +273,7 @@ export function TimelineModal({ open, onOpenChange, email }: TimelineModalProps)
     
     // Remove duplicate events (same type) - keep the first one
     const seenTypes = new Set<string>()
-    return events.filter(event => {
+    return fallbackEvents.filter(event => {
       if (seenTypes.has(event.type)) {
         return false
       }
@@ -263,27 +326,36 @@ export function TimelineModal({ open, onOpenChange, email }: TimelineModalProps)
         {/* Timeline */}
         <div className="space-y-6">
           <div>
-            <h3 className="text-sm font-semibold text-foreground mb-4">Status Timeline</h3>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-sm font-semibold text-foreground">Status Timeline</h3>
+              {isLoadingEvents && (
+                <span className="text-xs text-muted-foreground">Refreshing...</span>
+              )}
+            </div>
             <div className="space-y-4">
-              {events.map((event, idx) => {
-                const Icon = eventIcons[event.type]
-                const colors = eventColors[event.type]
-                return (
-                  <div key={event.id} className="flex gap-4">
-                    <div className="flex flex-col items-center">
-                      <div className={`p-2 rounded-full border-2 ${colors}`}>
-                        <Icon className="w-4 h-4" />
+              {events.length > 0 ? (
+                events.map((event, idx) => {
+                  const Icon = eventIcons[event.type] || Mail
+                  const colors = eventColors[event.type] || eventColors.sent
+                  return (
+                    <div key={event.id} className="flex gap-4">
+                      <div className="flex flex-col items-center">
+                        <div className={`p-2 rounded-full border-2 ${colors}`}>
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        {idx < events.length - 1 && <div className="w-0.5 h-8 bg-border mt-2" />}
                       </div>
-                      {idx < events.length - 1 && <div className="w-0.5 h-8 bg-border mt-2" />}
+                      <div className="flex-1 pt-1 min-w-0">
+                        <p className="font-medium text-foreground capitalize break-words">{event.type}</p>
+                        <p className="text-xs text-muted-foreground mt-1 break-words">{event.timestamp}</p>
+                        <p className="text-sm text-muted-foreground mt-1 break-words">{event.details}</p>
+                      </div>
                     </div>
-                    <div className="flex-1 pt-1 min-w-0">
-                      <p className="font-medium text-foreground capitalize break-words">{event.type}</p>
-                      <p className="text-xs text-muted-foreground mt-1 break-words">{event.timestamp}</p>
-                      <p className="text-sm text-muted-foreground mt-1 break-words">{event.details}</p>
-                    </div>
-                  </div>
-                )
-              })}
+                  )
+                })
+              ) : (
+                <p className="text-sm text-muted-foreground">No events yet. Events will appear here as they occur.</p>
+              )}
             </div>
           </div>
 

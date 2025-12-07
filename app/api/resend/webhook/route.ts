@@ -428,11 +428,10 @@ export async function POST(request: NextRequest) {
           let skipReason = ''
           
           if (mappedEventType === 'clicked') {
-            // Only skip if both status is 'clicked' AND clicked_at is already set
-            // This ensures clicked_at gets set even if status was already 'clicked' but timestamp was missing
+            // Only update if not already clicked
             if (currentEmail.status === 'clicked' && currentEmail.clicked_at) {
               shouldUpdate = false
-              skipReason = 'already marked as clicked with timestamp'
+              skipReason = 'already marked as clicked'
             }
           } else if (mappedEventType === 'delivered') {
             // Only update if not already delivered with timestamp
@@ -464,25 +463,16 @@ export async function POST(request: NextRequest) {
           if (!shouldUpdate) {
             console.log(`⚠️ Email status already updated for ${mappedEventType}, skipping duplicate update: ${skipReason}`)
           } else {
-            console.log(`Updating email status to: ${mappedEventType}`, {
-              emailId: emailRecordId,
-              update,
-              eventTimestamp,
-            })
+            console.log(`Updating email status to: ${mappedEventType}`, update)
             const { error: updateError } = await supabase
               .from('emails')
               .update(update)
               .eq('id', emailRecordId)
             
             if (updateError) {
-              console.error(`❌ Error updating email status for ${mappedEventType}:`, updateError)
+              console.error('Error updating email status:', updateError)
             } else {
-              console.log(`✅ Email status updated successfully for ${mappedEventType}`, {
-                emailId: emailRecordId,
-                newStatus: update.status || 'unchanged',
-                clicked_at: update.clicked_at || 'not set',
-                opened_at: update.opened_at || 'not set',
-              })
+              console.log('✅ Email status updated successfully')
             }
           }
         } else {
@@ -570,11 +560,9 @@ export async function POST(request: NextRequest) {
             let skipReason = ''
             
             if (mappedEventType === 'clicked') {
-              // Only skip if both status is 'clicked' AND clicked_at is already set
-              // This ensures clicked_at gets set even if status was already 'clicked' but timestamp was missing
               if (emailRecord.status === 'clicked' && emailRecord.clicked_at) {
                 shouldUpdate = false
-                skipReason = 'already marked as clicked with timestamp'
+                skipReason = 'already marked as clicked'
               }
             } else if (mappedEventType === 'delivered') {
               if (emailRecord.status === 'delivered' && emailRecord.delivered_at) {
@@ -602,20 +590,11 @@ export async function POST(request: NextRequest) {
             if (!shouldUpdate) {
               console.log(`⚠️ Email status already updated for ${mappedEventType} (fallback), skipping: ${skipReason}`)
             } else {
-              const { error: updateError } = await supabase
+              await supabase
                 .from('emails')
                 .update(update)
                 .eq('id', emailRecord.id)
-              
-              if (updateError) {
-                console.error(`❌ Error updating email status via fallback lookup for ${mappedEventType}:`, updateError)
-              } else {
-                console.log(`✅ Email status updated via fallback lookup: ${mappedEventType}`, {
-                  emailId: emailRecord.id,
-                  update,
-                  eventTimestamp,
-                })
-              }
+              console.log(`✅ Email status updated via fallback lookup: ${mappedEventType}`)
             }
           }
         }
@@ -629,19 +608,6 @@ export async function POST(request: NextRequest) {
       }
     } else {
       console.warn('⚠️ Cannot update email status: emailRecordId and emailId are both null')
-    }
-
-    // Log summary for click events to help debug timeline issues
-    if (mappedEventType === 'clicked') {
-      console.log('🖱️ CLICK EVENT PROCESSING SUMMARY:', {
-        eventId: eventRecord.id,
-        emailRecordId: emailRecordId || 'not found',
-        emailId: emailId || 'not provided',
-        emailRecordFound: !!emailRecordId,
-        eventLinked: !!emailRecordId,
-        statusUpdated: emailRecordId ? 'yes (if not duplicate)' : 'no (email record not found)',
-        clicked_at: emailRecordId ? 'should be set in emails table' : 'not set (email record not found)',
-      })
     }
 
     return NextResponse.json({

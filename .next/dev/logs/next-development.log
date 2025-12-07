@@ -1,1317 +1,690 @@
-[00:00:00.625] Server  LOG      ✓ Ready in 396ms
-[00:00:14.493] Server  WARN     ⚠ Cross origin request detected from noninvincibly-epitomic-frida.ngrok-free.dev to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+[00:00:00.431] Server  LOG      ✓ Ready in 278ms
+[00:00:00.891] Server  WARN     ⚠ Cross origin request detected from noninvincibly-epitomic-frida.ngrok-free.dev to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-[00:00:14.689] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:14.689] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:14.689] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:14.689] Browser LOG     %c[Vercel Web Analytics]%c [pageview] https://noninvincibly-epitomic-frida.ngrok-free.dev/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"https://noninvincibly-epitomic-frida.ngrok-free.dev/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765090533244}
-[00:00:18.938] Server  LOG     Campaign deleted successfully: 81e68944-ed3f-46da-aee9-42181424a891 (QT training)
-[00:00:28.081] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:28.081] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:28.081] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:28.081] Browser LOG     %c[Vercel Web Analytics]%c [pageview] https://noninvincibly-epitomic-frida.ngrok-free.dev/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"https://noninvincibly-epitomic-frida.ngrok-free.dev/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765090546868}
-[00:02:45.523] Server  LOG     Generated campaign ID: "8de76f2f-db46-4875-8b4a-b25a62762c56" "for campaign:" "Test"
-[00:02:45.817] Server  LOG     Campaign created successfully with ID: "8de76f2f-db46-4875-8b4a-b25a62762c56"
-[00:02:46.056] Browser LOG     Campaign creation response: {"data":{"business_function":"all","completed_at":null,"created_at":"2025-12-07T06:58:04.619141+00:00","id":"8de76f2f-db46-4875-8b4a-b25a62762c56","launched_at":null,"name":"Test","organization_id":"466c426f-92ca-4daf-a4bb-7c05d6da4594","status":"draft","tags":["Web3","crypto","blockchain"],"updated_at":"2025-12-07T06:58:04.619141+00:00"},"error":null}
-[00:02:46.056] Browser LOG     Campaign created with ID: 8de76f2f-db46-4875-8b4a-b25a62762c56 Type: string
-[00:02:46.991] Browser LOG     Campaign verified in database
-[00:02:48.297] Browser LOG     Found 1 recipients for campaign launch
-[00:02:48.297] Browser LOG     Launching campaign with ID: 8de76f2f-db46-4875-8b4a-b25a62762c56 Type: string Recipients: 1
-[00:02:48.297] Browser LOG     Launch URL: /api/campaigns/8de76f2f-db46-4875-8b4a-b25a62762c56/launch
-[00:02:48.422] Server  ERROR    ⨯ ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-
-
-[00:02:48.673] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:02:49.192] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:02:49.192] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:02:49.939] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:02:49.939] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:02:49.939] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:02:49.939] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:02:49.939] Browser ERROR   Error fetching campaigns: {}
-[00:02:53.741] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:02:53.741] Browser ERROR   Launch API error: {"error":"HTTP 500: "} Status: 500
-[00:02:53.741] Browser ERROR   Error launching campaign: {}
-[00:02:55.250] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:02:55.933] Browser ERROR   Error fetching campaigns: {}
-[00:02:55.933] Browser ERROR   Error fetching dashboard metrics: {}
-[00:02:55.934] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:02:59.929] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:02:59.929] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:02:59.931] Browser ERROR   Error fetching dashboard metrics: {}
-[00:02:59.931] Browser ERROR   Error fetching campaigns: {}
-[00:02:59.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:02:59.931] Browser ERROR   Error fetching campaigns: {}
-[00:02:59.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:01.946] Browser ERROR   Error fetching campaigns: {}
-[00:03:01.946] Browser ERROR   Error fetching dashboard metrics: {}
-[00:03:01.946] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:01.946] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:05.948] Browser ERROR   Error fetching dashboard metrics: {}
-[00:03:05.948] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:05.948] Browser ERROR   Error fetching campaigns: {}
-[00:03:05.948] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:05.948] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:05.948] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:07.940] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:07.940] Browser ERROR   Error fetching dashboard metrics: {}
-[00:03:07.940] Browser ERROR   Error fetching campaigns: {}
-[00:03:07.940] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:09.913] Browser ERROR   Error fetching campaigns: {}
-[00:03:09.913] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:09.918] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:13.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:13.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:13.932] Browser ERROR   Error fetching dashboard metrics: {}
-[00:03:13.932] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:13.932] Browser ERROR   Error fetching campaigns: {}
-[00:03:13.932] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:15.933] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:15.955] Browser ERROR   Error fetching dashboard metrics: {}
-[00:03:15.955] Browser ERROR   Error fetching campaigns: {}
-[00:03:15.955] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:19.921] Browser ERROR   Error fetching campaigns: {}
-[00:03:19.921] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:19.922] Browser ERROR   Error fetching dashboard metrics: {}
-[00:03:19.922] Browser ERROR   Error fetching campaigns: {}
-[00:03:19.922] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:20.957] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:20.962] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:25.953] Browser ERROR   Error fetching dashboard metrics: {}
-[00:03:25.953] Browser ERROR   Error fetching campaigns: {}
-[00:03:25.953] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:25.954] Browser ERROR   Error fetching dashboard metrics: {}
-[00:03:25.954] Browser ERROR   Error fetching campaigns: {}
-[00:03:25.954] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:29.948] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:29.948] Browser ERROR   Error fetching campaigns: {}
-[00:03:29.948] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:31.918] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:32.928] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:32.933] Browser ERROR   Error fetching campaigns: {}
-[00:03:32.933] Browser ERROR   Error fetching dashboard metrics: {}
-[00:03:32.933] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:32.933] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:35.943] Browser ERROR   Error fetching campaigns: {}
-[00:03:35.943] Browser ERROR   Error fetching dashboard metrics: {}
-[00:03:35.943] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:35.943] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:37.926] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:37.926] Browser ERROR   Error fetching dashboard metrics: {}
-[00:03:37.927] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:37.927] Browser ERROR   Error fetching campaigns: {}
-[00:03:39.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:39.933] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:41.947] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:41.947] Browser ERROR   Error fetching campaigns: {}
-[00:03:41.947] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:43.935] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:43.936] Browser ERROR   Error fetching campaigns: {}
-[00:03:43.936] Browser ERROR   Error fetching dashboard metrics: {}
-[00:03:43.936] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:47.933] Browser ERROR   Error fetching campaigns: {}
-[00:03:47.934] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:47.934] Browser ERROR   Error fetching dashboard metrics: {}
-[00:03:47.934] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:47.969] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:47.969] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:49.931] Browser ERROR   Error fetching campaigns: {}
-[00:03:49.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:49.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:49.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:49.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:49.931] Browser ERROR   Error fetching campaigns: {}
-[00:03:49.931] Browser ERROR   Error fetching dashboard metrics: {}
-[00:03:49.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:49.931] Browser ERROR   Error fetching campaigns: {}
-[00:03:49.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:52.923] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:52.923] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:55.936] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:55.936] Browser ERROR   Error fetching campaigns: {}
-[00:03:55.936] Browser ERROR   Error fetching dashboard metrics: {}
-[00:03:55.936] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:55.949] Browser ERROR   Error fetching dashboard metrics: {}
-[00:03:55.949] Browser ERROR   Error fetching campaigns: {}
-[00:03:55.949] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:03:55.949] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:00.931] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:00.932] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:01.947] Browser ERROR   Error fetching campaigns: {}
-[00:04:01.947] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:01.947] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:01.947] Browser ERROR   Error fetching campaigns: {}
-[00:04:01.947] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:01.947] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:07.941] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:07.941] Browser ERROR   Error fetching campaigns: {}
-[00:04:07.941] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:07.941] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:07.941] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:07.941] Browser ERROR   Error fetching campaigns: {}
-[00:04:07.941] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:07.941] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:13.945] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:13.945] Browser ERROR   Error fetching campaigns: {}
-[00:04:13.945] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:13.947] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:13.947] Browser ERROR   Error fetching campaigns: {}
-[00:04:13.947] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:19.964] Browser ERROR   Error fetching campaigns: {}
-[00:04:19.964] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:19.964] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:19.964] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:19.964] Browser ERROR   Error fetching campaigns: {}
-[00:04:19.964] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:25.934] Browser ERROR   Error fetching campaigns: {}
-[00:04:25.934] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:25.934] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:25.934] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:25.941] Browser ERROR   Error fetching campaigns: {}
-[00:04:25.941] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:25.941] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:25.941] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:31.914] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:31.914] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:31.914] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:31.914] Browser ERROR   Error fetching campaigns: {}
-[00:04:31.914] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:31.925] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:31.925] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:31.925] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:31.925] Browser ERROR   Error fetching campaigns: {}
-[00:04:31.925] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:37.959] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:37.959] Browser ERROR   Error fetching campaigns: {}
-[00:04:37.959] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:37.959] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:37.961] Browser ERROR   Error fetching campaigns: {}
-[00:04:37.961] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:37.961] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:37.961] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:43.934] Browser ERROR   Error fetching campaigns: {}
-[00:04:43.934] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:43.934] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:43.939] Browser ERROR   Error fetching campaigns: {}
-[00:04:43.939] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:43.939] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:49.944] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:49.944] Browser ERROR   Error fetching campaigns: {}
-[00:04:49.944] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:49.944] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:49.944] Browser ERROR   Error fetching campaigns: {}
-[00:04:49.944] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:49.945] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:49.945] Browser ERROR   Error fetching campaigns: {}
-[00:04:49.945] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:49.945] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:49.945] Browser ERROR   Error fetching campaigns: {}
-[00:04:49.945] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:55.929] Browser ERROR   Error fetching campaigns: {}
-[00:04:55.929] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:55.929] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:04:55.933] Browser ERROR   Error fetching dashboard metrics: {}
-[00:04:55.933] Browser ERROR   Error fetching campaigns: {}
-[00:04:55.933] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:05:01.927] Browser ERROR   Error fetching dashboard metrics: {}
-[00:05:01.927] Browser ERROR   Error fetching campaigns: {}
-[00:05:01.927] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:05:01.929] Browser ERROR   Error fetching dashboard metrics: {}
-[00:05:01.929] Browser ERROR   Error fetching campaigns: {}
-[00:05:01.929] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:05:07.977] Browser ERROR   Error fetching campaigns: {}
-[00:05:07.977] Browser ERROR   Error fetching dashboard metrics: {}
-[00:05:07.977] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
-[00:05:07.984] Browser ERROR   Error fetching dashboard metrics: {}
-[00:05:07.984] Browser ERROR   Error fetching campaigns: {}
-[00:05:07.984] Browser ERROR   ./app/api/campaigns/[id]/launch/route.ts:429:11
-Ecmascript file had an error
-  427 |     // Step 3: Save email records to database and create events
-  428 |     const results = []
-> 429 |     const processedRecipients = new Set<string>()
-      |           ^^^^^^^^^^^^^^^^^^^
-  430 |     
-  431 |     // Process successful sends
-  432 |     for (let i = 0; i < batchResult.data.length; i++) {
-
-the name `processedRecipients` is defined multiple times
+[00:00:00.991] Browser ERROR   Error fetching dashboard metrics: {}
+[00:00:00.991] Browser ERROR   Error fetching campaigns: {}
+[00:00:08.188] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:09.017] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:09.017] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:09.017] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:00:09.017] Browser LOG     %c[Vercel Web Analytics]%c [pageview] https://noninvincibly-epitomic-frida.ngrok-free.dev/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"https://noninvincibly-epitomic-frida.ngrok-free.dev/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765090956065}
+[00:00:09.742] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:09.742] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:00:09.742] Browser LOG     %c[Vercel Web Analytics]%c [pageview] https://noninvincibly-epitomic-frida.ngrok-free.dev/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"https://noninvincibly-epitomic-frida.ngrok-free.dev/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765090957230}
+[00:00:13.728] Server  LOG     Campaign deleted successfully: 8de76f2f-db46-4875-8b4a-b25a62762c56 (Test)
+[00:00:26.996] Server  LOG     Generated campaign ID: "0cfeedf8-053d-4598-95be-9ca563527c2b" "for campaign:" "Blockchain Training"
+[00:00:27.169] Server  LOG     Campaign created successfully with ID: "0cfeedf8-053d-4598-95be-9ca563527c2b"
+[00:00:27.387] Browser LOG     Campaign creation response: {"data":{"business_function":"all","completed_at":null,"created_at":"2025-12-07T07:02:55.291688+00:00","id":"0cfeedf8-053d-4598-95be-9ca563527c2b","launched_at":null,"name":"Blockchain Training","organization_id":"466c426f-92ca-4daf-a4bb-7c05d6da4594","status":"draft","tags":["web3","crypto"],"updated_at":"2025-12-07T07:02:55.291688+00:00"},"error":null}
+[00:00:27.387] Browser LOG     Campaign created with ID: 0cfeedf8-053d-4598-95be-9ca563527c2b Type: string
+[00:00:28.065] Browser LOG     Campaign verified in database
+[00:00:29.214] Browser LOG     Found 1 recipients for campaign launch
+[00:00:29.214] Browser LOG     Launching campaign with ID: 0cfeedf8-053d-4598-95be-9ca563527c2b Type: string Recipients: 1
+[00:00:29.214] Browser LOG     Launch URL: /api/campaigns/0cfeedf8-053d-4598-95be-9ca563527c2b/launch
+[00:00:29.657] Server  LOG     Launching campaign with ID: "0cfeedf8-053d-4598-95be-9ca563527c2b" "Type:" "string"
+[00:00:30.203] Server  LOG     📧 Starting email generation queue for 1 recipients
+[00:00:30.203] Server  LOG     🔄 [Queue 1/1] Processing: karthikeya.somayajula@gmail.com
+[00:00:30.203] Server  LOG     Generating email for recipient 1/1: karthikeya.somayajula@gmail.com
+[00:00:32.650] Server  LOG     ⚠️ Rate limit hit (429), retrying in 1000ms (attempt 1/5)
+[00:00:33.856] Server  LOG     ⚠️ Rate limit hit (429), retrying in 2000ms (attempt 2/5)
+[00:00:36.038] Server  LOG     ⚠️ Rate limit hit (429), retrying in 4000ms (attempt 3/5)
+[00:00:40.331] Server  LOG     ⚠️ Rate limit hit (429), retrying in 8000ms (attempt 4/5)
+[00:00:48.728] Server  ERROR   ❌ [Queue 1/1] Error generating email for karthikeya.somayajula@gmail.com: Error: Gemini API rate limit exceeded after 5 attempts: {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. ",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+
+[00:00:48.728] Server  LOG     📊 Email generation queue completed: 0 successful, 1 failed
+[00:00:49.405] Server  LOG     Campaign launch summary: 0 sent, 1 failed out of 1 total
+[00:01:55.883] Browser ERROR   Error launching campaign: {}
+[00:01:58.598] Server  LOG     Campaign deleted successfully: 0cfeedf8-053d-4598-95be-9ca563527c2b (Blockchain Training)
+[00:04:35.243] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:35.243] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:04:35.243] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:04:35.243] Browser LOG     %c[Vercel Web Analytics]%c [pageview] https://noninvincibly-epitomic-frida.ngrok-free.dev/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"https://noninvincibly-epitomic-frida.ngrok-free.dev/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765091223039}
+[00:04:51.427] Server  LOG     Generated campaign ID: "8ced85e8-63f9-4b00-b734-edb7a43c61df" "for campaign:" "Blockchain Training"
+[00:04:51.602] Server  LOG     Campaign created successfully with ID: "8ced85e8-63f9-4b00-b734-edb7a43c61df"
+[00:04:51.875] Browser LOG     Campaign creation response: {"data":{"business_function":"all","completed_at":null,"created_at":"2025-12-07T07:07:19.710107+00:00","id":"8ced85e8-63f9-4b00-b734-edb7a43c61df","launched_at":null,"name":"Blockchain Training","organization_id":"466c426f-92ca-4daf-a4bb-7c05d6da4594","status":"draft","tags":["web3"],"updated_at":"2025-12-07T07:07:19.710107+00:00"},"error":null}
+[00:04:51.875] Browser LOG     Campaign created with ID: 8ced85e8-63f9-4b00-b734-edb7a43c61df Type: string
+[00:04:52.529] Browser LOG     Campaign verified in database
+[00:04:53.746] Server  LOG     Launching campaign with ID: "8ced85e8-63f9-4b00-b734-edb7a43c61df" "Type:" "string"
+[00:04:53.753] Browser LOG     Found 1 recipients for campaign launch
+[00:04:53.753] Browser LOG     Launching campaign with ID: 8ced85e8-63f9-4b00-b734-edb7a43c61df Type: string Recipients: 1
+[00:04:53.753] Browser LOG     Launch URL: /api/campaigns/8ced85e8-63f9-4b00-b734-edb7a43c61df/launch
+[00:04:54.290] Server  LOG     📧 Starting email generation queue for 1 recipients
+[00:04:54.290] Server  LOG     🔄 [Queue 1/1] Processing: karthikeya.somayajula@gmail.com
+[00:04:54.291] Server  LOG     Generating email for recipient 1/1: karthikeya.somayajula@gmail.com
+[00:04:54.636] Server  ERROR   ❌ Quota exhausted - not retrying. Error: {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. ",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+
+[00:04:54.636] Server  LOG     ⚠️ API call failed, retrying in 1000ms (attempt 1/5): "Gemini API quota exhausted: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n"
+[00:04:55.898] Server  ERROR   ❌ Quota exhausted - not retrying. Error: {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. ",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+
+[00:04:55.899] Server  LOG     ⚠️ API call failed, retrying in 2000ms (attempt 2/5): "Gemini API quota exhausted: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n"
+[00:04:58.061] Server  ERROR   ❌ Quota exhausted - not retrying. Error: {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. ",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+
+[00:04:58.061] Server  LOG     ⚠️ API call failed, retrying in 4000ms (attempt 3/5): "Gemini API quota exhausted: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n"
+[00:05:02.355] Server  ERROR   ❌ Quota exhausted - not retrying. Error: {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. ",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+
+[00:05:02.355] Server  LOG     ⚠️ API call failed, retrying in 8000ms (attempt 4/5): "Gemini API quota exhausted: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. \",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n"
+[00:05:10.643] Server  ERROR   ❌ Quota exhausted - not retrying. Error: {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. ",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+
+[00:05:10.709] Server  ERROR   ❌ [Queue 1/1] Error generating email for karthikeya.somayajula@gmail.com: Error: Gemini API quota exhausted: {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. ",
+    "status": "RESOURCE_EXHAUSTED"
+  }
+}
+
+[00:05:10.709] Server  LOG     📊 Email generation queue completed: 0 successful, 1 failed
+[00:05:11.323] Server  LOG     Campaign launch summary: 0 sent, 1 failed out of 1 total
+[00:05:18.627] Browser ERROR   Error launching campaign: {}
+[00:05:32.994] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:32.994] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:05:32.994] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:05:32.994] Browser LOG     %c[Vercel Web Analytics]%c [pageview] https://noninvincibly-epitomic-frida.ngrok-free.dev/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"https://noninvincibly-epitomic-frida.ngrok-free.dev/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765091280955}
+[00:05:35.803] Server  LOG     Campaign deleted successfully: 8ced85e8-63f9-4b00-b734-edb7a43c61df (Blockchain Training)
+[00:05:45.190] Server  LOG     Generated campaign ID: "bd99bf25-f811-4e13-8a43-49d43bba567e" "for campaign:" "Blockchain Training"
+[00:05:45.353] Server  LOG     Campaign created successfully with ID: "bd99bf25-f811-4e13-8a43-49d43bba567e"
+[00:05:45.610] Browser LOG     Campaign creation response: {"data":{"business_function":"all","completed_at":null,"created_at":"2025-12-07T07:08:13.462798+00:00","id":"bd99bf25-f811-4e13-8a43-49d43bba567e","launched_at":null,"name":"Blockchain Training","organization_id":"466c426f-92ca-4daf-a4bb-7c05d6da4594","status":"draft","tags":["web3","crypto"],"updated_at":"2025-12-07T07:08:13.462798+00:00"},"error":null}
+[00:05:45.610] Browser LOG     Campaign created with ID: bd99bf25-f811-4e13-8a43-49d43bba567e Type: string
+[00:05:46.235] Browser LOG     Campaign verified in database
+[00:05:47.599] Server  LOG     Launching campaign with ID: "bd99bf25-f811-4e13-8a43-49d43bba567e" "Type:" "string"
+[00:05:47.604] Browser LOG     Found 1 recipients for campaign launch
+[00:05:47.604] Browser LOG     Launching campaign with ID: bd99bf25-f811-4e13-8a43-49d43bba567e Type: string Recipients: 1
+[00:05:47.604] Browser LOG     Launch URL: /api/campaigns/bd99bf25-f811-4e13-8a43-49d43bba567e/launch
+[00:05:48.951] Server  LOG     Campaign launch summary: 0 sent, 1 failed out of 1 total
+[00:05:53.703] Browser ERROR   Error launching campaign: {}
+[00:05:57.479] Server  LOG     Campaign deleted successfully: bd99bf25-f811-4e13-8a43-49d43bba567e (Blockchain Training)
+[00:08:10.235] Server  LOG        Reload env: .env.local
+[00:08:16.334] Server  LOG        Reload env: .env
+[00:08:27.198] Server  LOG        Reload env: .env.local
+[00:09:14.613] Browser ERROR   Error fetching campaigns: {}
+[00:09:14.613] Browser ERROR   Error fetching dashboard metrics: {}
+[00:09:19.358] Browser ERROR   Error fetching campaigns: {}
+[00:09:39.040] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:39.040] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:09:39.040] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:09:39.040] Browser LOG     %c[Vercel Web Analytics]%c [pageview] https://noninvincibly-epitomic-frida.ngrok-free.dev/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"https://noninvincibly-epitomic-frida.ngrok-free.dev/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765091525761}
+[00:10:09.136] Server  LOG     Generated campaign ID: "f8bca0a7-a13f-4442-a43f-bb55acfe5a12" "for campaign:" "QT training"
+[00:10:09.323] Server  LOG     Campaign created successfully with ID: "f8bca0a7-a13f-4442-a43f-bb55acfe5a12"
+[00:10:09.533] Browser LOG     Campaign creation response: {"data":{"business_function":"all","completed_at":null,"created_at":"2025-12-07T07:12:37.439933+00:00","id":"f8bca0a7-a13f-4442-a43f-bb55acfe5a12","launched_at":null,"name":"QT training","organization_id":"466c426f-92ca-4daf-a4bb-7c05d6da4594","status":"draft","tags":["web3","crypto","blockchain"],"updated_at":"2025-12-07T07:12:37.439933+00:00"},"error":null}
+[00:10:09.533] Browser LOG     Campaign created with ID: f8bca0a7-a13f-4442-a43f-bb55acfe5a12 Type: string
+[00:10:10.208] Browser LOG     Campaign verified in database
+[00:10:11.525] Server  LOG     Launching campaign with ID: "f8bca0a7-a13f-4442-a43f-bb55acfe5a12" "Type:" "string"
+[00:10:11.535] Browser LOG     Found 1 recipients for campaign launch
+[00:10:11.535] Browser LOG     Launching campaign with ID: f8bca0a7-a13f-4442-a43f-bb55acfe5a12 Type: string Recipients: 1
+[00:10:11.535] Browser LOG     Launch URL: /api/campaigns/f8bca0a7-a13f-4442-a43f-bb55acfe5a12/launch
+[00:10:15.710] Server  LOG     📧 Generated email for karthikeya.somayajula@gmail.com
+[00:10:15.711] Server  LOG     🔗 Clickable links found: 1
+[00:10:15.711] Server  LOG        Link URLs: https://acme-corp.secure-portal.io/web3-security-update/acknowledgement/karthikeya
+[00:10:15.712] Server  LOG     Sending batch of 1 emails via Resend...
+[00:10:19.530] Server  LOG     Resend batch API success: {}
+[00:10:19.531] Server  LOG     Saving email record with resend_email_id: f9509139-19ee-4820-8257-aa82c18cd0df for recipient: karthikeya.somayajula@gmail.com
+[00:10:19.726] Server  LOG     Email saved successfully: {}
+[00:10:20.082] Server  LOG     Campaign launch summary: 1 sent, 0 failed out of 1 total
+[00:10:28.262] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:12:56.420Z"
+[00:10:28.263] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:10:28.263] Server  LOG     🔑 Signature present: false
+[00:10:28.263] Server  LOG     🔔 Resend webhook received: {}
+[00:10:28.264] Server  LOG     Extracted webhook data: {}
+[00:10:28.264] Server  LOG     🔍 Looking up email record with resend_email_id: f9509139-19ee-4820-8257-aa82c18cd0df
+[00:10:28.474] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:10:28.656] Server  LOG     ✅ Extracted campaign_id from email record: "f8bca0a7-a13f-4442-a43f-bb55acfe5a12"
+[00:10:28.656] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:10:28.657] Server  LOG     ✅ Found email record: {}
+[00:10:28.849] Server  LOG     ⚠️ Duplicate event detected, skipping ALL processing: {}
+[00:10:29.036] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:12:57.194Z"
+[00:10:29.037] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:10:29.037] Server  LOG     🔑 Signature present: false
+[00:10:29.038] Server  LOG     🔔 Resend webhook received: {}
+[00:10:29.039] Server  LOG     Extracted webhook data: {}
+[00:10:29.039] Server  LOG     🔍 Looking up email record with resend_email_id: f9509139-19ee-4820-8257-aa82c18cd0df
+[00:10:29.242] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:10:29.418] Server  LOG     ✅ Extracted campaign_id from email record: "f8bca0a7-a13f-4442-a43f-bb55acfe5a12"
+[00:10:29.418] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:10:29.419] Server  LOG     ✅ Found email record: {}
+[00:10:29.959] Server  LOG     📝 Inserting email event with final values: {}
+[00:10:30.167] Server  LOG     Email event saved successfully: {}
+[00:10:30.344] Server  LOG     Updating email status to: delivered {}
+[00:10:30.519] Server  LOG     ✅ Email status updated successfully
+[00:11:50.253] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:11:50.254] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:11:50.254] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:11:50.254] Browser LOG     %c[Vercel Web Analytics]%c [pageview] https://noninvincibly-epitomic-frida.ngrok-free.dev/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"https://noninvincibly-epitomic-frida.ngrok-free.dev/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765091658243}
+[00:11:55.104] Server  LOG     Campaign deleted successfully: f8bca0a7-a13f-4442-a43f-bb55acfe5a12 (QT training)
+[00:12:01.174] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:12:01.174] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:12:01.174] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:12:01.174] Browser LOG     %c[Vercel Web Analytics]%c [pageview] https://noninvincibly-epitomic-frida.ngrok-free.dev/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"https://noninvincibly-epitomic-frida.ngrok-free.dev/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765091668085}
+[00:13:09.821] Server  LOG     Generated campaign ID: "063c9c33-8d7c-450c-bd75-a800ff64670e" "for campaign:" "Test"
+[00:13:10.177] Server  LOG     Campaign created successfully with ID: "063c9c33-8d7c-450c-bd75-a800ff64670e"
+[00:13:10.405] Browser LOG     Campaign creation response: {"data":{"business_function":"all","completed_at":null,"created_at":"2025-12-07T07:15:38.290976+00:00","id":"063c9c33-8d7c-450c-bd75-a800ff64670e","launched_at":null,"name":"Test","organization_id":"466c426f-92ca-4daf-a4bb-7c05d6da4594","status":"draft","tags":["web3","crypto","blockchain"],"updated_at":"2025-12-07T07:15:38.290976+00:00"},"error":null}
+[00:13:10.405] Browser LOG     Campaign created with ID: 063c9c33-8d7c-450c-bd75-a800ff64670e Type: string
+[00:13:11.143] Browser LOG     Campaign verified in database
+[00:13:12.281] Server  LOG     Launching campaign with ID: "063c9c33-8d7c-450c-bd75-a800ff64670e" "Type:" "string"
+[00:13:12.356] Browser LOG     Found 1 recipients for campaign launch
+[00:13:12.356] Browser LOG     Launching campaign with ID: 063c9c33-8d7c-450c-bd75-a800ff64670e Type: string Recipients: 1
+[00:13:12.356] Browser LOG     Launch URL: /api/campaigns/063c9c33-8d7c-450c-bd75-a800ff64670e/launch
+[00:13:15.910] Server  LOG     📧 Generated email for karthikeya.somayajula@gmail.com
+[00:13:15.910] Server  LOG     🔗 Clickable links found: 1
+[00:13:15.911] Server  LOG        Link URLs: https://secure-portal.acme-corp.com/web3-integration-review/karthikeya-somayajula
+[00:13:15.911] Server  LOG     Sending batch of 1 emails via Resend...
+[00:13:17.552] Server  LOG     Resend batch API success: {}
+[00:13:17.552] Server  LOG     Saving email record with resend_email_id: 010ba7af-c406-46ad-b649-63504d254c93 for recipient: karthikeya.somayajula@gmail.com
+[00:13:17.844] Server  LOG     Email saved successfully: {}
+[00:13:18.290] Server  LOG     Campaign launch summary: 1 sent, 0 failed out of 1 total
+[00:13:31.516] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:15:59.675Z"
+[00:13:31.517] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:13:31.517] Server  LOG     🔑 Signature present: false
+[00:13:31.518] Server  LOG     🔔 Resend webhook received: {}
+[00:13:31.519] Server  LOG     Extracted webhook data: {}
+[00:13:31.519] Server  LOG     🔍 Looking up email record with resend_email_id: 010ba7af-c406-46ad-b649-63504d254c93
+[00:13:31.680] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:13:31.895] Server  LOG     ✅ Extracted campaign_id from email record: "063c9c33-8d7c-450c-bd75-a800ff64670e"
+[00:13:31.895] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:13:31.896] Server  LOG     ✅ Found email record: {}
+[00:13:32.472] Server  LOG     📝 Inserting email event with final values: {}
+[00:13:32.548] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:16:00.707Z"
+[00:13:32.549] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:13:32.549] Server  LOG     🔑 Signature present: false
+[00:13:32.549] Server  LOG     🔔 Resend webhook received: {}
+[00:13:32.550] Server  LOG     Extracted webhook data: {}
+[00:13:32.550] Server  LOG     🔍 Looking up email record with resend_email_id: 010ba7af-c406-46ad-b649-63504d254c93
+[00:13:32.642] Server  LOG     Email event saved successfully: {}
+[00:13:32.715] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:13:32.808] Server  LOG     ⚠️ Email status already updated for sent, skipping duplicate update: already marked as sent
+[00:13:32.875] Server  LOG     ✅ Extracted campaign_id from email record: "063c9c33-8d7c-450c-bd75-a800ff64670e"
+[00:13:32.875] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:13:32.876] Server  LOG     ✅ Found email record: {}
+[00:13:33.523] Server  LOG     📝 Inserting email event with final values: {}
+[00:13:33.731] Server  LOG     Email event saved successfully: {}
+[00:13:33.902] Server  LOG     Updating email status to: delivered {}
+[00:13:34.121] Server  LOG     ✅ Email status updated successfully
+[00:13:58.034] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:16:26.193Z"
+[00:13:58.034] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:13:58.034] Server  LOG     🔑 Signature present: false
+[00:13:58.035] Server  LOG     🔔 Resend webhook received: {}
+[00:13:58.035] Server  LOG     👁️ OPEN EVENT DETECTED: {}
+[00:13:58.035] Server  LOG     Extracted webhook data: {}
+[00:13:58.035] Server  LOG     🔍 Looking up email record with resend_email_id: f9509139-19ee-4820-8257-aa82c18cd0df
+[00:13:58.265] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:13:58.444] Server  LOG     Email not found on first try, retrying...
+[00:13:59.115] Server  WARN    ⚠️ No email record found for resend_email_id: f9509139-19ee-4820-8257-aa82c18cd0df
+[00:13:59.115] Server  WARN    This might happen if webhook arrives before email is saved to database
+[00:13:59.116] Server  WARN    Will use tags if available, otherwise event will be saved without linking
+[00:13:59.292] Server  LOG     📝 Inserting email event with final values: {}
+[00:13:59.594] Server  LOG     Email event saved successfully: {}
+[00:13:59.595] Server  LOG     Attempting to link event to email with resend_email_id: f9509139-19ee-4820-8257-aa82c18cd0df
+[00:13:59.777] Server  LOG     Email record not found on attempt 1, retrying in 500ms...
+[00:14:00.525] Server  LOG     Email record not found on attempt 2, retrying in 1000ms...
+[00:14:01.762] Server  WARN    ⚠️ Email record not found after 3 attempts for resend_email_id: f9509139-19ee-4820-8257-aa82c18cd0df
+[00:14:01.762] Server  WARN    ⚠️ Cannot update email status: email record not found for resend_email_id: f9509139-19ee-4820-8257-aa82c18cd0df after 3 retry attempts
+[00:14:01.762] Server  WARN    Event saved but not linked to email. This may happen if:
+[00:14:01.763] Server  WARN      1. Email record was never created in the database
+[00:14:01.763] Server  WARN      2. resend_email_id mismatch between webhook and database
+[00:14:01.763] Server  WARN      3. Webhook arrived significantly before email record was saved
+[00:14:01.763] Server  WARN    The event will remain unlinked. Consider implementing a background job to link orphaned events.
+[00:14:29.698] Server  LOG     Campaign deleted successfully: 063c9c33-8d7c-450c-bd75-a800ff64670e (Test)
+[00:16:43.423] Server  LOG     Generated campaign ID: "b7a5a82a-a9ef-4007-a5a5-634ab71ea556" "for campaign:" "Test"
+[00:16:43.591] Server  LOG     Campaign created successfully with ID: "b7a5a82a-a9ef-4007-a5a5-634ab71ea556"
+[00:16:43.892] Browser LOG     Campaign creation response: {"data":{"business_function":"all","completed_at":null,"created_at":"2025-12-07T07:19:11.707445+00:00","id":"b7a5a82a-a9ef-4007-a5a5-634ab71ea556","launched_at":null,"name":"Test","organization_id":"466c426f-92ca-4daf-a4bb-7c05d6da4594","status":"draft","tags":["Web3","crypto","blockchain"],"updated_at":"2025-12-07T07:19:11.707445+00:00"},"error":null}
+[00:16:43.892] Browser LOG     Campaign created with ID: b7a5a82a-a9ef-4007-a5a5-634ab71ea556 Type: string
+[00:16:44.612] Browser LOG     Campaign verified in database
+[00:16:45.745] Server  LOG     Launching campaign with ID: "b7a5a82a-a9ef-4007-a5a5-634ab71ea556" "Type:" "string"
+[00:16:45.851] Browser LOG     Found 1 recipients for campaign launch
+[00:16:45.851] Browser LOG     Launching campaign with ID: b7a5a82a-a9ef-4007-a5a5-634ab71ea556 Type: string Recipients: 1
+[00:16:45.851] Browser LOG     Launch URL: /api/campaigns/b7a5a82a-a9ef-4007-a5a5-634ab71ea556/launch
+[00:16:50.527] Server  LOG     📧 Generated email for karthik.somayajula12@gmail.com
+[00:16:50.528] Server  LOG     🔗 Clickable links found: 1
+[00:16:50.528] Server  LOG        Link URLs: https://acme-corp-web3-security.io/verify/karthikeya.somayajula
+[00:16:50.529] Server  LOG     Sending batch of 1 emails via Resend...
+[00:16:51.930] Server  LOG     Resend batch API success: {}
+[00:16:51.931] Server  LOG     Saving email record with resend_email_id: dcc4dd84-9168-47af-a69d-9cb09bad46d3 for recipient: karthik.somayajula12@gmail.com
+[00:16:52.127] Server  LOG     Email saved successfully: {}
+[00:16:53.298] Server  LOG     Campaign launch summary: 1 sent, 0 failed out of 1 total
+[00:17:15.318] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:19:43.477Z"
+[00:17:15.318] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:17:15.318] Server  LOG     🔑 Signature present: false
+[00:17:15.319] Server  LOG     🔔 Resend webhook received: {}
+[00:17:15.320] Server  LOG     Extracted webhook data: {}
+[00:17:15.320] Server  LOG     🔍 Looking up email record with resend_email_id: dcc4dd84-9168-47af-a69d-9cb09bad46d3
+[00:17:15.537] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:17:15.785] Server  LOG     ✅ Extracted campaign_id from email record: "b7a5a82a-a9ef-4007-a5a5-634ab71ea556"
+[00:17:15.786] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:17:15.786] Server  LOG     ✅ Found email record: {}
+[00:17:15.818] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:19:43.977Z"
+[00:17:15.819] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:17:15.819] Server  LOG     🔑 Signature present: false
+[00:17:15.820] Server  LOG     🔔 Resend webhook received: {}
+[00:17:15.820] Server  LOG     Extracted webhook data: {}
+[00:17:15.820] Server  LOG     🔍 Looking up email record with resend_email_id: dcc4dd84-9168-47af-a69d-9cb09bad46d3
+[00:17:16.009] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:17:16.241] Server  LOG     ✅ Extracted campaign_id from email record: "b7a5a82a-a9ef-4007-a5a5-634ab71ea556"
+[00:17:16.241] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:17:16.242] Server  LOG     ✅ Found email record: {}
+[00:17:16.717] Server  LOG     📝 Inserting email event with final values: {}
+[00:17:16.799] Server  LOG     📝 Inserting email event with final values: {}
+[00:17:16.939] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:19:45.098Z"
+[00:17:16.940] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:17:16.940] Server  LOG     🔑 Signature present: false
+[00:17:16.941] Server  LOG     🔔 Resend webhook received: {}
+[00:17:16.942] Server  LOG     👁️ OPEN EVENT DETECTED: {}
+[00:17:16.942] Server  LOG     Extracted webhook data: {}
+[00:17:16.943] Server  LOG     🔍 Looking up email record with resend_email_id: dcc4dd84-9168-47af-a69d-9cb09bad46d3
+[00:17:16.948] Server  LOG     Email event saved successfully: {}
+[00:17:16.981] Server  LOG     Email event saved successfully: {}
+[00:17:17.147] Server  LOG     ⚠️ Email status already updated for sent, skipping duplicate update: already marked as sent
+[00:17:17.150] Server  LOG     Updating email status to: delivered {}
+[00:17:17.154] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:17:17.377] Server  LOG     ✅ Email status updated successfully
+[00:17:17.380] Server  LOG     ✅ Extracted campaign_id from email record: "b7a5a82a-a9ef-4007-a5a5-634ab71ea556"
+[00:17:17.380] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:17:17.381] Server  LOG     ✅ Found email record: {}
+[00:17:17.930] Server  LOG     📝 Inserting email event with final values: {}
+[00:17:18.169] Server  LOG     Email event saved successfully: {}
+[00:17:18.367] Server  LOG     Updating email status to: opened {}
+[00:17:18.591] Server  LOG     ✅ Email status updated successfully
+[00:17:51.897] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:20:20.056Z"
+[00:17:51.898] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:17:51.898] Server  LOG     🔑 Signature present: false
+[00:17:51.899] Server  LOG     🔔 Resend webhook received: {}
+[00:17:51.899] Server  LOG     🖱️ CLICK EVENT DETECTED: {}
+[00:17:51.900] Server  LOG     Extracted webhook data: {}
+[00:17:51.900] Server  LOG     🔍 Looking up email record with resend_email_id: 010ba7af-c406-46ad-b649-63504d254c93
+[00:17:52.231] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:17:52.416] Server  LOG     Email not found on first try, retrying...
+[00:17:53.110] Server  WARN    ⚠️ No email record found for resend_email_id: 010ba7af-c406-46ad-b649-63504d254c93
+[00:17:53.110] Server  WARN    This might happen if webhook arrives before email is saved to database
+[00:17:53.111] Server  WARN    Will use tags if available, otherwise event will be saved without linking
+[00:17:53.353] Server  LOG     📝 Inserting email event with final values: {}
+[00:17:53.354] Server  LOG     🖱️ Processing click event: {}
+[00:17:53.701] Server  LOG     Email event saved successfully: {}
+[00:17:53.701] Server  LOG     Attempting to link event to email with resend_email_id: 010ba7af-c406-46ad-b649-63504d254c93
+[00:17:53.880] Server  LOG     Email record not found on attempt 1, retrying in 500ms...
+[00:17:54.656] Server  LOG     Email record not found on attempt 2, retrying in 1000ms...
+[00:17:55.937] Server  WARN    ⚠️ Email record not found after 3 attempts for resend_email_id: 010ba7af-c406-46ad-b649-63504d254c93
+[00:17:55.937] Server  WARN    ⚠️ Cannot update email status: email record not found for resend_email_id: 010ba7af-c406-46ad-b649-63504d254c93 after 3 retry attempts
+[00:17:55.938] Server  WARN    Event saved but not linked to email. This may happen if:
+[00:17:55.938] Server  WARN      1. Email record was never created in the database
+[00:17:55.938] Server  WARN      2. resend_email_id mismatch between webhook and database
+[00:17:55.938] Server  WARN      3. Webhook arrived significantly before email record was saved
+[00:17:55.940] Server  WARN    The event will remain unlinked. Consider implementing a background job to link orphaned events.
+[00:18:20.148] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:18:20.494] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:18:20.494] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:18:20.494] Browser LOG     %c[Vercel Web Analytics]%c [pageview] https://noninvincibly-epitomic-frida.ngrok-free.dev/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"https://noninvincibly-epitomic-frida.ngrok-free.dev/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765092048458}
+[00:21:47.950] Server  LOG     Campaign deleted successfully: b7a5a82a-a9ef-4007-a5a5-634ab71ea556 (Test)
+[00:22:41.931] Server  LOG     Generated campaign ID: "be333bf5-df41-482f-aac8-d856eb04cf8c" "for campaign:" "Test"
+[00:22:42.156] Server  LOG     Campaign created successfully with ID: "be333bf5-df41-482f-aac8-d856eb04cf8c"
+[00:22:42.442] Browser LOG     Campaign creation response: {"data":{"business_function":"all","completed_at":null,"created_at":"2025-12-07T07:25:10.279573+00:00","id":"be333bf5-df41-482f-aac8-d856eb04cf8c","launched_at":null,"name":"Test","organization_id":"466c426f-92ca-4daf-a4bb-7c05d6da4594","status":"draft","tags":["Web3","Crypto","Blockchain"],"updated_at":"2025-12-07T07:25:10.279573+00:00"},"error":null}
+[00:22:42.442] Browser LOG     Campaign created with ID: be333bf5-df41-482f-aac8-d856eb04cf8c Type: string
+[00:22:43.469] Browser LOG     Campaign verified in database
+[00:22:44.709] Server  LOG     Launching campaign with ID: "be333bf5-df41-482f-aac8-d856eb04cf8c" "Type:" "string"
+[00:22:44.777] Browser LOG     Found 1 recipients for campaign launch
+[00:22:44.777] Browser LOG     Launching campaign with ID: be333bf5-df41-482f-aac8-d856eb04cf8c Type: string Recipients: 1
+[00:22:44.777] Browser LOG     Launch URL: /api/campaigns/be333bf5-df41-482f-aac8-d856eb04cf8c/launch
+[00:22:51.359] Server  LOG     📧 Generated email for yaswitha7555@gmail.com
+[00:22:51.359] Server  LOG     🔗 Clickable links found: 1
+[00:22:51.360] Server  LOG        Link URLs: https://acme-corp.secure-web3-portal.io/wallet-verification/yaswitha.kurra
+[00:22:51.360] Server  LOG     Sending batch of 1 emails via Resend...
+[00:22:52.948] Server  LOG     Resend batch API success: {}
+[00:22:52.948] Server  LOG     Saving email record with resend_email_id: 0fc4be55-4103-47b4-a34f-9969fe0b1c92 for recipient: yaswitha7555@gmail.com
+[00:22:53.346] Server  LOG     Email saved successfully: {}
+[00:22:53.692] Server  LOG     Campaign launch summary: 1 sent, 0 failed out of 1 total
+[00:23:01.833] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:25:29.992Z"
+[00:23:01.834] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:23:01.834] Server  LOG     🔑 Signature present: false
+[00:23:01.835] Server  LOG     🔔 Resend webhook received: {}
+[00:23:01.835] Server  LOG     Extracted webhook data: {}
+[00:23:01.835] Server  LOG     🔍 Looking up email record with resend_email_id: 0fc4be55-4103-47b4-a34f-9969fe0b1c92
+[00:23:02.033] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:23:02.281] Server  LOG     ✅ Extracted campaign_id from email record: "be333bf5-df41-482f-aac8-d856eb04cf8c"
+[00:23:02.281] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:23:02.281] Server  LOG     ✅ Found email record: {}
+[00:23:02.479] Server  LOG     ⚠️ Duplicate event detected, skipping ALL processing: {}
+[00:23:02.502] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:25:30.661Z"
+[00:23:02.503] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:23:02.503] Server  LOG     🔑 Signature present: false
+[00:23:02.505] Server  LOG     🔔 Resend webhook received: {}
+[00:23:02.505] Server  LOG     Extracted webhook data: {}
+[00:23:02.506] Server  LOG     🔍 Looking up email record with resend_email_id: 0fc4be55-4103-47b4-a34f-9969fe0b1c92
+[00:23:02.761] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:23:02.956] Server  LOG     ✅ Extracted campaign_id from email record: "be333bf5-df41-482f-aac8-d856eb04cf8c"
+[00:23:02.957] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:23:02.957] Server  LOG     ✅ Found email record: {}
+[00:23:03.585] Server  LOG     📝 Inserting email event with final values: {}
+[00:23:03.777] Server  LOG     Email event saved successfully: {}
+[00:23:04.087] Server  LOG     Updating email status to: delivered {}
+[00:23:04.395] Server  LOG     ✅ Email status updated successfully
+[00:23:39.035] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:26:07.194Z"
+[00:23:39.036] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:23:39.036] Server  LOG     🔑 Signature present: false
+[00:23:39.037] Server  LOG     🔔 Resend webhook received: {}
+[00:23:39.037] Server  LOG     👁️ OPEN EVENT DETECTED: {}
+[00:23:39.037] Server  LOG     Extracted webhook data: {}
+[00:23:39.038] Server  LOG     🔍 Looking up email record with resend_email_id: 0fc4be55-4103-47b4-a34f-9969fe0b1c92
+[00:23:39.235] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:23:39.453] Server  LOG     ✅ Extracted campaign_id from email record: "be333bf5-df41-482f-aac8-d856eb04cf8c"
+[00:23:39.453] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:23:39.453] Server  LOG     ✅ Found email record: {}
+[00:23:40.169] Server  LOG     📝 Inserting email event with final values: {}
+[00:23:40.496] Server  LOG     Email event saved successfully: {}
+[00:23:40.655] Server  LOG     Updating email status to: opened {}
+[00:23:40.907] Server  LOG     ✅ Email status updated successfully
+[00:23:50.064] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:26:18.223Z"
+[00:23:50.064] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:23:50.064] Server  LOG     🔑 Signature present: false
+[00:23:50.065] Server  LOG     🔔 Resend webhook received: {}
+[00:23:50.065] Server  LOG     🖱️ CLICK EVENT DETECTED: {}
+[00:23:50.065] Server  LOG     Extracted webhook data: {}
+[00:23:50.066] Server  LOG     🔍 Looking up email record with resend_email_id: 0fc4be55-4103-47b4-a34f-9969fe0b1c92
+[00:23:50.251] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:23:50.462] Server  LOG     ✅ Extracted campaign_id from email record: "be333bf5-df41-482f-aac8-d856eb04cf8c"
+[00:23:50.462] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:23:50.462] Server  LOG     ✅ Found email record: {}
+[00:23:51.181] Server  LOG     📝 Inserting email event with final values: {}
+[00:23:51.182] Server  LOG     🖱️ Processing click event: {}
+[00:23:51.364] Server  LOG     Email event saved successfully: {}
+[00:23:51.545] Server  LOG     Updating email status to: clicked {}
+[00:23:51.786] Server  ERROR   Error updating email status: {}
+[00:24:01.367] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:24:01.367] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:24:01.433] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:26:29.592Z"
+[00:24:01.434] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:24:01.434] Server  LOG     🔑 Signature present: false
+[00:24:01.435] Server  LOG     🔔 Resend webhook received: {}
+[00:24:01.436] Server  LOG     🖱️ CLICK EVENT DETECTED: {}
+[00:24:01.436] Server  LOG     Extracted webhook data: {}
+[00:24:01.436] Server  LOG     🔍 Looking up email record with resend_email_id: 0fc4be55-4103-47b4-a34f-9969fe0b1c92
+[00:24:01.444] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:26:29.603Z"
+[00:24:01.444] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:24:01.444] Server  LOG     🔑 Signature present: false
+[00:24:01.445] Server  LOG     🔔 Resend webhook received: {}
+[00:24:01.445] Server  LOG     🖱️ CLICK EVENT DETECTED: {}
+[00:24:01.445] Server  LOG     Extracted webhook data: {}
+[00:24:01.446] Server  LOG     🔍 Looking up email record with resend_email_id: 0fc4be55-4103-47b4-a34f-9969fe0b1c92
+[00:24:01.767] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:24:01.773] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:24:02.002] Server  LOG     ✅ Extracted campaign_id from email record: "be333bf5-df41-482f-aac8-d856eb04cf8c"
+[00:24:02.002] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:24:02.002] Server  LOG     ✅ Found email record: {}
+[00:24:02.018] Server  LOG     ✅ Extracted campaign_id from email record: "be333bf5-df41-482f-aac8-d856eb04cf8c"
+[00:24:02.019] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:24:02.019] Server  LOG     ✅ Found email record: {}
+[00:24:02.685] Server  LOG     📝 Inserting email event with final values: {}
+[00:24:02.685] Server  LOG     🖱️ Processing click event: {}
+[00:24:02.717] Server  LOG     📝 Inserting email event with final values: {}
+[00:24:02.718] Server  LOG     🖱️ Processing click event: {}
+[00:24:02.900] Server  LOG     Email event saved successfully: {}
+[00:24:02.927] Server  LOG     Email event saved successfully: {}
+[00:24:03.125] Server  LOG     Updating email status to: clicked {}
+[00:24:03.142] Server  LOG     Updating email status to: clicked {}
+[00:24:03.286] Server  ERROR   Error updating email status: {}
+[00:24:03.320] Server  ERROR   Error updating email status: {}
+[00:25:34.139] Server  LOG     Campaign deleted successfully: be333bf5-df41-482f-aac8-d856eb04cf8c (Test)
+[00:26:35.261] Server  LOG     Generated campaign ID: "9a5c69a7-6214-4b54-b00b-03debb127375" "for campaign:" "Test"
+[00:26:35.447] Server  LOG     Campaign created successfully with ID: "9a5c69a7-6214-4b54-b00b-03debb127375"
+[00:26:35.741] Browser LOG     Campaign creation response: {"data":{"business_function":"all","completed_at":null,"created_at":"2025-12-07T07:29:03.560219+00:00","id":"9a5c69a7-6214-4b54-b00b-03debb127375","launched_at":null,"name":"Test","organization_id":"466c426f-92ca-4daf-a4bb-7c05d6da4594","status":"draft","tags":["Web3","Crypto","Blockchain"],"updated_at":"2025-12-07T07:29:03.560219+00:00"},"error":null}
+[00:26:35.741] Browser LOG     Campaign created with ID: 9a5c69a7-6214-4b54-b00b-03debb127375 Type: string
+[00:26:36.532] Browser LOG     Campaign verified in database
+[00:26:37.759] Server  LOG     Launching campaign with ID: "9a5c69a7-6214-4b54-b00b-03debb127375" "Type:" "string"
+[00:26:37.830] Browser LOG     Found 1 recipients for campaign launch
+[00:26:37.830] Browser LOG     Launching campaign with ID: 9a5c69a7-6214-4b54-b00b-03debb127375 Type: string Recipients: 1
+[00:26:37.830] Browser LOG     Launch URL: /api/campaigns/9a5c69a7-6214-4b54-b00b-03debb127375/launch
+[00:26:41.110] Server  LOG     📧 Generated email for karthikeya.somayajula@gmail.com
+[00:26:41.110] Server  LOG     🔗 Clickable links found: 1
+[00:26:41.111] Server  LOG        Link URLs: https://acme-corp.secure-blockchain-access.com/verify?user_id=karthikeya.somayajula
+[00:26:41.111] Server  LOG     Sending batch of 1 emails via Resend...
+[00:26:42.883] Server  LOG     Resend batch API success: {}
+[00:26:42.884] Server  LOG     Saving email record with resend_email_id: 29ef28fb-35b2-4df7-a8d6-f4487ba77df0 for recipient: karthikeya.somayajula@gmail.com
+[00:26:43.080] Server  LOG     Email saved successfully: {}
+[00:26:43.439] Server  LOG     Campaign launch summary: 1 sent, 0 failed out of 1 total
+[00:26:50.722] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:26:50.722] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:26:51.319] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:29:19.478Z"
+[00:26:51.320] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:26:51.321] Server  LOG     🔑 Signature present: false
+[00:26:51.323] Server  LOG     🔔 Resend webhook received: {}
+[00:26:51.323] Server  LOG     Extracted webhook data: {}
+[00:26:51.323] Server  LOG     🔍 Looking up email record with resend_email_id: 29ef28fb-35b2-4df7-a8d6-f4487ba77df0
+[00:26:51.513] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:26:51.677] Server  LOG     ✅ Extracted campaign_id from email record: "9a5c69a7-6214-4b54-b00b-03debb127375"
+[00:26:51.677] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:26:51.677] Server  LOG     ✅ Found email record: {}
+[00:26:51.912] Server  LOG     ⚠️ Duplicate event detected, skipping ALL processing: {}
+[00:26:52.550] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:29:20.708Z"
+[00:26:52.551] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:26:52.551] Server  LOG     🔑 Signature present: false
+[00:26:52.552] Server  LOG     🔔 Resend webhook received: {}
+[00:26:52.553] Server  LOG     Extracted webhook data: {}
+[00:26:52.553] Server  LOG     🔍 Looking up email record with resend_email_id: 29ef28fb-35b2-4df7-a8d6-f4487ba77df0
+[00:26:52.771] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:26:53.031] Server  LOG     ✅ Extracted campaign_id from email record: "9a5c69a7-6214-4b54-b00b-03debb127375"
+[00:26:53.032] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:26:53.032] Server  LOG     ✅ Found email record: {}
+[00:26:53.824] Server  LOG     📝 Inserting email event with final values: {}
+[00:26:54.037] Server  LOG     Email event saved successfully: {}
+[00:26:54.261] Server  LOG     Updating email status to: delivered {}
+[00:26:54.493] Server  LOG     ✅ Email status updated successfully
+[00:30:58.230] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:33:26.393Z"
+[00:30:58.231] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:30:58.231] Server  LOG     🔑 Signature present: false
+[00:30:58.232] Server  LOG     🔔 Resend webhook received: {}
+[00:30:58.232] Server  LOG     👁️ OPEN EVENT DETECTED: {}
+[00:30:58.232] Server  LOG     Extracted webhook data: {}
+[00:30:58.232] Server  LOG     🔍 Looking up email record with resend_email_id: 29ef28fb-35b2-4df7-a8d6-f4487ba77df0
+[00:30:58.407] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:30:58.603] Server  LOG     ✅ Extracted campaign_id from email record: "9a5c69a7-6214-4b54-b00b-03debb127375"
+[00:30:58.603] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:30:58.604] Server  LOG     ✅ Found email record: {}
+[00:30:59.169] Server  LOG     📝 Inserting email event with final values: {}
+[00:30:59.372] Server  LOG     Email event saved successfully: {}
+[00:30:59.565] Server  LOG     Updating email status to: opened {}
+[00:30:59.739] Server  LOG     ✅ Email status updated successfully
+[00:31:37.545] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:34:05.707Z"
+[00:31:37.545] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:31:37.546] Server  LOG     🔑 Signature present: false
+[00:31:37.547] Server  LOG     🔔 Resend webhook received: {}
+[00:31:37.548] Server  LOG     🖱️ CLICK EVENT DETECTED: {}
+[00:31:37.548] Server  LOG     Extracted webhook data: {}
+[00:31:37.548] Server  LOG     🔍 Looking up email record with resend_email_id: 29ef28fb-35b2-4df7-a8d6-f4487ba77df0
+[00:31:37.858] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:31:38.062] Server  LOG     ✅ Extracted campaign_id from email record: "9a5c69a7-6214-4b54-b00b-03debb127375"
+[00:31:38.062] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:31:38.063] Server  LOG     ✅ Found email record: {}
+[00:31:38.709] Server  LOG     📝 Inserting email event with final values: {}
+[00:31:38.710] Server  LOG     🖱️ Processing click event: {}
+[00:31:38.895] Server  LOG     Email event saved successfully: {}
+[00:31:38.978] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:34:07.141Z"
+[00:31:38.979] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:31:38.979] Server  LOG     🔑 Signature present: false
+[00:31:38.980] Server  LOG     🔔 Resend webhook received: {}
+[00:31:38.981] Server  LOG     🖱️ CLICK EVENT DETECTED: {}
+[00:31:38.981] Server  LOG     Extracted webhook data: {}
+[00:31:38.981] Server  LOG     🔍 Looking up email record with resend_email_id: 29ef28fb-35b2-4df7-a8d6-f4487ba77df0
+[00:31:39.083] Server  LOG     Updating email status to: clicked {}
+[00:31:39.171] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:31:39.361] Server  LOG     ✅ Extracted campaign_id from email record: "9a5c69a7-6214-4b54-b00b-03debb127375"
+[00:31:39.361] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:31:39.361] Server  LOG     ✅ Found email record: {}
+[00:31:39.506] Server  ERROR   Error updating email status: {}
+[00:31:39.563] Server  LOG     ⚠️ Duplicate event detected, skipping ALL processing: {}
+[00:31:47.756] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:31:47.834] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:31:47.834] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:31:47.834] Browser LOG     %c[Vercel Web Analytics]%c [pageview] https://noninvincibly-epitomic-frida.ngrok-free.dev/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"https://noninvincibly-epitomic-frida.ngrok-free.dev/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765092855847}
+[00:31:51.673] Server  LOG     Campaign deleted successfully: 9a5c69a7-6214-4b54-b00b-03debb127375 (Test)
+[00:36:17.122] Browser WARN    Network error fetching campaigns - server may not be running or network unavailable
+[00:36:17.122] Browser WARN    Network error fetching metrics - server may not be running or network unavailable
+[00:36:17.527] Browser WARN    Network error fetching campaigns - server may not be running or network unavailable
+[00:36:25.388] Browser WARN    Network error fetching campaigns - server may not be running or network unavailable
+[00:36:25.388] Browser WARN    Network error fetching metrics - server may not be running or network unavailable
+[00:36:27.756] Browser WARN    Network error fetching campaigns - server may not be running or network unavailable
+[00:36:35.655] Browser WARN    Network error fetching campaigns - server may not be running or network unavailable
+[00:36:35.655] Browser WARN    Network error fetching metrics - server may not be running or network unavailable
+[00:37:16.728] Browser WARN    Network error fetching campaigns - server may not be running or network unavailable
+[00:37:16.728] Browser WARN    Network error fetching metrics - server may not be running or network unavailable
+[00:37:18.013] Browser WARN    Network error fetching campaigns - server may not be running or network unavailable
+[00:37:18.013] Browser WARN    Network error fetching metrics - server may not be running or network unavailable
+[00:37:19.886] Browser WARN    Network error fetching campaigns - server may not be running or network unavailable
+[00:38:24.629] Server  ERROR   Error fetching campaign stats: {}
+[00:43:03.457] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:43:03.632] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:43:03.632] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:43:03.632] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765093531694}
+[00:49:31.314] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:49:31.483] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:49:31.483] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:49:31.483] Browser LOG     %c[Vercel Web Analytics]%c [pageview] https://noninvincibly-epitomic-frida.ngrok-free.dev/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"https://noninvincibly-epitomic-frida.ngrok-free.dev/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765093919461}
+[00:52:31.946] Server  ERROR   Error fetching campaign stats: {}
+[00:52:32.912] Browser ERROR   Error fetching campaigns: {}
+[00:53:29.518] Server  LOG      ✓ Compiled in 57ms
+[00:54:52.579] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:54:52.579] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:54:52.579] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:54:52.579] Browser LOG     %c[Vercel Web Analytics]%c [pageview] https://noninvincibly-epitomic-frida.ngrok-free.dev/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"https://noninvincibly-epitomic-frida.ngrok-free.dev/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765094240634}
+[00:55:22.077] Server  LOG     Generated campaign ID: "1545439e-28ac-4d6c-be26-23f2eed64eb0" "for campaign:" "QT training"
+[00:55:22.278] Server  LOG     Campaign created successfully with ID: "1545439e-28ac-4d6c-be26-23f2eed64eb0"
+[00:55:22.511] Browser LOG     Campaign creation response: {"data":{"business_function":"all","completed_at":null,"created_at":"2025-12-07T07:57:50.395435+00:00","id":"1545439e-28ac-4d6c-be26-23f2eed64eb0","launched_at":null,"name":"QT training","organization_id":"466c426f-92ca-4daf-a4bb-7c05d6da4594","status":"draft","tags":["Christmas offer","cloud credits"],"updated_at":"2025-12-07T07:57:50.395435+00:00"},"error":null}
+[00:55:22.511] Browser LOG     Campaign created with ID: 1545439e-28ac-4d6c-be26-23f2eed64eb0 Type: string
+[00:55:23.175] Browser LOG     Campaign verified in database
+[00:55:24.343] Server  LOG     Launching campaign with ID: "1545439e-28ac-4d6c-be26-23f2eed64eb0" "Type:" "string"
+[00:55:24.375] Browser LOG     Found 1 recipients for campaign launch
+[00:55:24.375] Browser LOG     Launching campaign with ID: 1545439e-28ac-4d6c-be26-23f2eed64eb0 Type: string Recipients: 1
+[00:55:24.375] Browser LOG     Launch URL: /api/campaigns/1545439e-28ac-4d6c-be26-23f2eed64eb0/launch
+[00:55:26.643] Server  LOG     📧 Generated email for karthikeya.somayajula@gmail.com
+[00:55:26.643] Server  LOG     🔗 Clickable links found: 1
+[00:55:26.643] Server  LOG        Link URLs: https://acme-corp.com/cloudcredits/2023-christmas-offer
+[00:55:26.644] Server  LOG     Sending batch of 1 emails via Resend...
+[00:55:30.206] Server  LOG     Resend batch API success: {}
+[00:55:30.207] Server  LOG     Saving email record with resend_email_id: b1191571-53ae-4c00-91b2-d45b3cde3a19 for recipient: karthikeya.somayajula@gmail.com
+[00:55:30.396] Server  LOG     Email saved successfully: {}
+[00:55:30.769] Server  LOG     Campaign launch summary: 1 sent, 0 failed out of 1 total
+[00:55:38.635] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:58:06.810Z"
+[00:55:38.635] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:55:38.635] Server  LOG     🔑 Signature present: false
+[00:55:38.636] Server  LOG     🔔 Resend webhook received: {}
+[00:55:38.637] Server  LOG     Extracted webhook data: {}
+[00:55:38.637] Server  LOG     🔍 Looking up email record with resend_email_id: b1191571-53ae-4c00-91b2-d45b3cde3a19
+[00:55:38.853] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:55:39.046] Server  LOG     ✅ Extracted campaign_id from email record: "1545439e-28ac-4d6c-be26-23f2eed64eb0"
+[00:55:39.046] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:55:39.047] Server  LOG     ✅ Found email record: {}
+[00:55:39.374] Server  LOG     ⚠️ Duplicate event detected, skipping ALL processing: {}
+[00:55:39.803] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:58:07.978Z"
+[00:55:39.803] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:55:39.803] Server  LOG     🔑 Signature present: false
+[00:55:39.804] Server  LOG     🔔 Resend webhook received: {}
+[00:55:39.804] Server  LOG     Extracted webhook data: {}
+[00:55:39.804] Server  LOG     🔍 Looking up email record with resend_email_id: b1191571-53ae-4c00-91b2-d45b3cde3a19
+[00:55:39.987] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:55:40.187] Server  LOG     ✅ Extracted campaign_id from email record: "1545439e-28ac-4d6c-be26-23f2eed64eb0"
+[00:55:40.188] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:55:40.188] Server  LOG     ✅ Found email record: {}
+[00:55:40.861] Server  LOG     📝 Inserting email event with final values: {}
+[00:55:41.056] Server  LOG     Email event saved successfully: {}
+[00:55:41.253] Server  LOG     Updating email status to: delivered {}
+[00:55:41.461] Server  LOG     ✅ Email status updated successfully
+[00:55:53.932] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:58:22.107Z"
+[00:55:53.933] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:55:53.933] Server  LOG     🔑 Signature present: false
+[00:55:53.934] Server  LOG     🔔 Resend webhook received: {}
+[00:55:53.934] Server  LOG     👁️ OPEN EVENT DETECTED: {}
+[00:55:53.934] Server  LOG     Extracted webhook data: {}
+[00:55:53.934] Server  LOG     🔍 Looking up email record with resend_email_id: b1191571-53ae-4c00-91b2-d45b3cde3a19
+[00:55:54.110] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:55:54.296] Server  LOG     ✅ Extracted campaign_id from email record: "1545439e-28ac-4d6c-be26-23f2eed64eb0"
+[00:55:54.297] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:55:54.297] Server  LOG     ✅ Found email record: {}
+[00:55:55.083] Server  LOG     📝 Inserting email event with final values: {}
+[00:55:55.389] Server  LOG     Email event saved successfully: {}
+[00:55:55.575] Server  LOG     Updating email status to: opened {}
+[00:55:55.840] Server  LOG     ✅ Email status updated successfully
+[00:55:59.210] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:58:27.386Z"
+[00:55:59.211] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:55:59.211] Server  LOG     🔑 Signature present: false
+[00:55:59.212] Server  LOG     🔔 Resend webhook received: {}
+[00:55:59.212] Server  LOG     🖱️ CLICK EVENT DETECTED: {}
+[00:55:59.213] Server  LOG     Extracted webhook data: {}
+[00:55:59.213] Server  LOG     🔍 Looking up email record with resend_email_id: b1191571-53ae-4c00-91b2-d45b3cde3a19
+[00:55:59.395] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:55:59.573] Server  LOG     ✅ Extracted campaign_id from email record: "1545439e-28ac-4d6c-be26-23f2eed64eb0"
+[00:55:59.574] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:55:59.574] Server  LOG     ✅ Found email record: {}
+[00:56:00.164] Server  LOG     📝 Inserting email event with final values: {}
+[00:56:00.165] Server  LOG     🖱️ Processing click event: {}
+[00:56:00.371] Server  LOG     Email event saved successfully: {}
+[00:56:00.557] Server  LOG     Updating email status to: clicked {}
+[00:56:00.725] Server  ERROR   Error updating email status: {}
+[00:56:02.232] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:56:02.232] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:56:11.815] Server  LOG     🔔 Webhook POST received at: "2025-12-07T07:58:39.990Z"
+[00:56:11.815] Server  LOG     📍 Request origin: "noninvincibly-epitomic-frida.ngrok-free.dev"
+[00:56:11.816] Server  LOG     🔑 Signature present: false
+[00:56:11.816] Server  LOG     🔔 Resend webhook received: {}
+[00:56:11.817] Server  LOG     🖱️ CLICK EVENT DETECTED: {}
+[00:56:11.817] Server  LOG     Extracted webhook data: {}
+[00:56:11.817] Server  LOG     🔍 Looking up email record with resend_email_id: b1191571-53ae-4c00-91b2-d45b3cde3a19
+[00:56:12.124] Server  LOG     📧 Recent emails in DB: [{...}]
+[00:56:12.333] Server  LOG     ✅ Extracted campaign_id from email record: "1545439e-28ac-4d6c-be26-23f2eed64eb0"
+[00:56:12.333] Server  LOG     ✅ Extracted user_id (recipient_id) from email record: "5e6acbbf-4f57-4845-9347-038bc555dc3c"
+[00:56:12.334] Server  LOG     ✅ Found email record: {}
+[00:56:12.968] Server  LOG     📝 Inserting email event with final values: {}
+[00:56:12.969] Server  LOG     🖱️ Processing click event: {}
+[00:56:13.278] Server  LOG     Email event saved successfully: {}
+[00:56:13.463] Server  LOG     Updating email status to: clicked {}
+[00:56:13.649] Server  ERROR   Error updating email status: {}
+[00:56:31.870] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:56:31.870] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:56:37.906] Server  LOG     Campaign deleted successfully: 1545439e-28ac-4d6c-be26-23f2eed64eb0 (QT training)
+[00:56:48.421] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:56:48.555] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:56:48.555] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:56:48.555] Browser LOG     %c[Vercel Web Analytics]%c [pageview] https://noninvincibly-epitomic-frida.ngrok-free.dev/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"https://noninvincibly-epitomic-frida.ngrok-free.dev/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765094356571}
+[01:05:15.686] Server  ERROR   Error fetching campaign stats: {}
+[01:05:15.692] Server  WARN    Error fetching campaign stats: {}
+[01:10:04.813] Server  LOG      ✓ Compiled in 26ms
+[01:10:07.170] Server  LOG      ✓ Compiled in 41ms
+[01:10:09.498] Server  LOG      ✓ Compiled in 30ms
+[01:10:34.528] Server  LOG      ✓ Compiled in 23ms
+[01:10:36.167] Server  LOG      ✓ Compiled in 60ms
+[01:10:45.846] Server  LOG      ✓ Compiled in 24ms
+[01:11:06.976] Server  LOG      ✓ Compiled in 71ms
+[01:11:17.784] Server  LOG      ✓ Compiled in 24ms
+[01:12:24.712] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:12:25.004] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[01:12:25.004] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[01:12:25.004] Browser LOG     %c[Vercel Web Analytics]%c [pageview] https://noninvincibly-epitomic-frida.ngrok-free.dev/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"https://noninvincibly-epitomic-frida.ngrok-free.dev/","sdkn":"@vercel/analytics/next","sdkv":"1.6.1","sv":"0.1.3","ts":1765095292915}

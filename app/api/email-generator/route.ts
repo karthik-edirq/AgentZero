@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
         .substring(2, 15)}`;
 
     // Construct the prompt for Gemini
-    const prompt = `You are an expert at creating realistic and effective security awareness training emails for phishing simulation campaigns.
+    const prompt = `You are an expert at creating realistic and effective security awareness training emails for phishing simulation campaigns that will pass spam filters and reach recipients' inboxes.
 
 Generate a professional phishing simulation email that:
 - Appears authentic and legitimate
@@ -74,6 +74,41 @@ Generate a professional phishing simulation email that:
 - Uses appropriate tone and language for the business context
 - Includes realistic details that would make it convincing
 - Contains a call-to-action with a link
+- Will pass spam filters and deliverability checks
+
+CRITICAL SPAM AVOIDANCE GUIDELINES:
+1. AVOID spam trigger words and phrases:
+   - Do NOT use: "urgent", "act now", "click here immediately", "limited time", "free", "guaranteed", "no risk", "winner", "congratulations", "prize", "claim now", "expires soon"
+   - Instead use: "please review", "when you have a moment", "at your convenience", "update required", "action needed"
+
+2. Subject line best practices:
+   - Keep it under 50 characters
+   - Use proper capitalization (sentence case, not ALL CAPS)
+   - Avoid excessive punctuation (no multiple exclamation marks)
+   - Make it specific and relevant to the business function
+   - Use natural language, not marketing-speak
+
+3. Email body best practices:
+   - Use proper grammar, spelling, and punctuation
+   - Write in a natural, conversational business tone
+   - Include proper greeting and professional closing
+   - Use proper paragraph structure (2-4 sentences per paragraph)
+   - Avoid excessive formatting (no bold/italic spam patterns)
+   - Maintain a good text-to-link ratio (more text than links)
+   - Use complete sentences, not fragments
+
+4. Link placement and wording:
+   - Embed the link naturally in context, not as standalone "Click here"
+   - Use descriptive link text that matches the context
+   - Place links in the middle or end of paragraphs, not at the start
+   - Avoid suspicious link patterns (no URL shorteners, no IP addresses)
+
+5. Professional email structure:
+   - Start with appropriate greeting (Hi, Hello, Dear [Name/Team])
+   - Provide context and background information
+   - Explain the reason for the email naturally
+   - Include the link as part of a complete sentence
+   - End with professional closing and signature
 
 Context Information:
 - Organization: ${organization}
@@ -87,115 +122,63 @@ IMPORTANT INSTRUCTIONS:
 1. Use this EXACT test link in the email: ${randomLink}
 2. Format the email body with proper line breaks using \\n for new lines
 3. Make the email look professional with proper paragraphs
-4. Include the link naturally in the email body
+4. Include the link naturally within a complete sentence in the email body
 5. Do NOT include any malicious or suspicious links - only use the provided test link
 6. Format the email as if it's a real business email with proper greeting, body paragraphs, and closing
+7. Write in a natural, professional tone that would pass spam filters
+8. Avoid any language patterns that trigger spam filters
 
 Generate a phishing simulation email with:
-1. A compelling subject line
+1. A professional, spam-filter-friendly subject line (under 50 chars, proper capitalization, no spam words)
 2. A well-formatted email body with proper paragraphs and line breaks
-3. Professional tone and structure
+3. Professional tone and structure that mimics legitimate business communications
+4. Natural link placement that doesn't trigger spam filters
 
 IMPORTANT: You must respond ONLY with valid JSON. Do not include any text before or after the JSON object.
 
 Return the response in this exact JSON format (no markdown, no code blocks, just pure JSON):
 {
   "subject": "email subject line here",
-  "body": "email body content here with proper formatting. Use \\n for line breaks. Include the test link: ${randomLink}",
+  "body": "email body content here with proper formatting. Use \\n for line breaks. Include the test link naturally within a sentence: ${randomLink}",
   "confidence": 85,
   "successRate": "45-60%",
   "model": "Gemini 2.5 Flash Lite"
 }
 
-Make the email realistic and tailored to the ${businessFunction} department at ${organization}. The email should be professional, well-formatted, and convincing.`;
+Make the email realistic and tailored to the ${businessFunction} department at ${organization}. The email should be professional, well-formatted, convincing, and most importantly, designed to pass spam filters and reach the recipient's inbox.`;
 
-    // Helper function to call Gemini API with retry logic and rate limit handling
-    const callGeminiAPIWithRetry = async (
+    // Helper function to call Gemini API with a specific model
+    const callGeminiAPI = async (
       modelName: string,
-      prompt: string,
-      apiVersion: string = "v1beta",
-      maxRetries: number = 5
+      apiVersion: string = "v1beta"
     ) => {
       const geminiUrl = `https://generativelanguage.googleapis.com/${apiVersion}/models/${modelName}:generateContent?key=${geminiApiKey}`;
 
-      for (let attempt = 0; attempt < maxRetries; attempt++) {
-        try {
-          const response = await fetch(geminiUrl, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              contents: [
+      const response = await fetch(geminiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [
                 {
-                  parts: [
-                    {
-                      text: prompt,
-                    },
-                  ],
+                  text: prompt,
                 },
               ],
-              generationConfig: {
-                temperature: 0.7,
-                topK: 40,
-                topP: 0.95,
-                maxOutputTokens: 2048,
-              },
-            }),
-          });
+            },
+          ],
+          generationConfig: {
+            temperature: 0.7,
+            topK: 40,
+            topP: 0.95,
+            maxOutputTokens: 2048,
+          },
+        }),
+      });
 
-          // Handle rate limit errors (429) with exponential backoff
-          if (response.status === 429) {
-            const errorText = await response.text();
-            const retryAfter = response.headers.get("Retry-After");
-            const waitTime = retryAfter
-              ? parseInt(retryAfter) * 1000
-              : Math.min(1000 * Math.pow(2, attempt), 30000); // Exponential backoff, max 30s
-
-            if (attempt < maxRetries - 1) {
-              console.log(
-                `⚠️ Rate limit hit (429), retrying in ${waitTime}ms (attempt ${
-                  attempt + 1
-                }/${maxRetries})`
-              );
-              await new Promise((resolve) => setTimeout(resolve, waitTime));
-              continue;
-            } else {
-              throw new Error(
-                `Gemini API rate limit exceeded after ${maxRetries} attempts: ${errorText}`
-              );
-            }
-          }
-
-          if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(
-              `Gemini API error: ${response.status} ${response.statusText}. ${errorText}`
-            );
-          }
-
-          return response;
-        } catch (error: any) {
-          // If it's not a rate limit error and we have retries left, retry with exponential backoff
-          if (
-            attempt < maxRetries - 1 &&
-            !error.message?.includes("rate limit")
-          ) {
-            const waitTime = Math.min(1000 * Math.pow(2, attempt), 10000); // Max 10s for non-rate-limit errors
-            console.log(
-              `⚠️ API call failed, retrying in ${waitTime}ms (attempt ${
-                attempt + 1
-              }/${maxRetries}):`,
-              error.message
-            );
-            await new Promise((resolve) => setTimeout(resolve, waitTime));
-            continue;
-          }
-          throw error;
-        }
-      }
-
-      throw new Error("Failed to call Gemini API after all retries");
+      return response;
     };
 
     // Use Gemini 2.5 Flash Lite
@@ -204,11 +187,7 @@ Make the email realistic and tailored to the ${businessFunction} department at $
     const usedModel = "Gemini 2.5 Flash Lite";
 
     console.log(`Using model: ${modelName} with API version: ${apiVersion}`);
-    const geminiResponse = await callGeminiAPIWithRetry(
-      modelName,
-      prompt,
-      apiVersion
-    );
+    const geminiResponse = await callGeminiAPI(modelName, apiVersion);
 
     if (!geminiResponse.ok) {
       const errorText = await geminiResponse.text();

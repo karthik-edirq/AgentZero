@@ -4,5 +4,6 @@
   "/api/campaigns/route": "app/api/campaigns/route.js",
   "/api/metrics/dashboard/route": "app/api/metrics/dashboard/route.js",
   "/api/recipients/route": "app/api/recipients/route.js",
+  "/api/resend/webhook/route": "app/api/resend/webhook/route.js",
   "/page": "app/page.js"
 }

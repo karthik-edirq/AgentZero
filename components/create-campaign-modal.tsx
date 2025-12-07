@@ -101,6 +101,13 @@ export function CreateCampaignModal({
         businessFunction: businessFunc,
       })
       const response = await fetch(`/api/recipients?${params.toString()}`)
+      
+      // Check if response is ok before parsing JSON
+      if (!response.ok) {
+        const errorText = await response.text()
+        throw new Error(`Failed to fetch recipients: ${response.status} ${response.statusText}. ${errorText}`)
+      }
+
       const result = await response.json()
 
       if (result.error) {
@@ -112,6 +119,7 @@ export function CreateCampaignModal({
       setFormData((prev) => ({ ...prev, numberOfTargets: count }))
     } catch (error: any) {
       console.error("Error fetching recipients:", error)
+      // Only log the error, don't show it to user as this is an auto-fetch
       setRecipientCount(0)
       setFormData((prev) => ({ ...prev, numberOfTargets: 0 }))
     } finally {

@@ -7,7 +7,17 @@ export async function GET(request: NextRequest) {
     const organization = searchParams.get('organization')
     const businessFunction = searchParams.get('businessFunction')
 
-    const supabase = createServerClient()
+    let supabase
+    try {
+      supabase = createServerClient()
+    } catch (clientError: any) {
+      console.error('Failed to create Supabase client:', clientError)
+      return NextResponse.json(
+        { data: null, error: 'Database connection failed. Please check your Supabase configuration.' },
+        { status: 500 }
+      )
+    }
+
     let query = supabase
       .from('recipients')
       .select(`
@@ -16,11 +26,16 @@ export async function GET(request: NextRequest) {
       `)
 
     if (organization) {
-      const { data: org } = await supabase
+      const { data: org, error: orgError } = await supabase
         .from('organizations')
         .select('id')
         .eq('name', organization)
         .single()
+
+      if (orgError && orgError.code !== 'PGRST116') {
+        // PGRST116 is "not found" which is fine, we just don't filter
+        console.error('Error fetching organization:', orgError)
+      }
 
       if (org) {
         query = query.eq('organization_id', org.id)
@@ -33,12 +48,16 @@ export async function GET(request: NextRequest) {
 
     const { data, error } = await query
 
-    if (error) throw error
+    if (error) {
+      console.error('Error fetching recipients:', error)
+      throw error
+    }
 
-    return NextResponse.json({ data, error: null })
+    return NextResponse.json({ data: data || [], error: null })
   } catch (error: any) {
+    console.error('Error in GET /api/recipients:', error)
     return NextResponse.json(
-      { data: null, error: error.message },
+      { data: null, error: error.message || 'Failed to fetch recipients' },
       { status: 500 }
     )
   }

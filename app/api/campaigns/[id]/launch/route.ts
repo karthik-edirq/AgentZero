@@ -113,95 +113,10 @@ export async function POST(
 
     const generatedEmails: GeneratedEmail[] = []
     const generationErrors: Array<{ recipient: string; error: string }> = []
-    
-    // Track processed recipients to prevent duplicates
-    const processedRecipients = new Set<string>()
 
-    // Helper function to call Gemini API with retry logic and rate limit handling
-    const callGeminiWithRetry = async (prompt: string, maxRetries: number = 5): Promise<any> => {
-      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${geminiApiKey}`
-      
-      for (let attempt = 0; attempt < maxRetries; attempt++) {
-        try {
-          const geminiResponse = await fetch(geminiUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              contents: [{ parts: [{ text: prompt }] }],
-              generationConfig: {
-                temperature: 0.7,
-                topK: 40,
-                topP: 0.95,
-                maxOutputTokens: 2048,
-              },
-            }),
-          })
-
-          // Handle rate limit errors (429) with exponential backoff
-          if (geminiResponse.status === 429) {
-            const errorText = await geminiResponse.text()
-            const retryAfter = geminiResponse.headers.get('Retry-After')
-            const waitTime = retryAfter 
-              ? parseInt(retryAfter) * 1000 
-              : Math.min(1000 * Math.pow(2, attempt), 30000) // Exponential backoff, max 30s
-            
-            if (attempt < maxRetries - 1) {
-              console.log(`⚠️ Rate limit hit (429), retrying in ${waitTime}ms (attempt ${attempt + 1}/${maxRetries})`)
-              await new Promise(resolve => setTimeout(resolve, waitTime))
-              continue
-            } else {
-              throw new Error(`Gemini API rate limit exceeded after ${maxRetries} attempts: ${errorText}`)
-            }
-          }
-
-          if (!geminiResponse.ok) {
-            const errorText = await geminiResponse.text()
-            throw new Error(`Gemini API error: ${geminiResponse.status} ${geminiResponse.statusText}. ${errorText}`)
-          }
-
-          return await geminiResponse.json()
-        } catch (error: any) {
-          // If it's not a rate limit error and we have retries left, retry with exponential backoff
-          if (attempt < maxRetries - 1 && !error.message?.includes('rate limit')) {
-            const waitTime = Math.min(1000 * Math.pow(2, attempt), 10000) // Max 10s for non-rate-limit errors
-            console.log(`⚠️ API call failed, retrying in ${waitTime}ms (attempt ${attempt + 1}/${maxRetries}):`, error.message)
-            await new Promise(resolve => setTimeout(resolve, waitTime))
-            continue
-          }
-          throw error
-        }
-      }
-      
-      throw new Error('Failed to call Gemini API after all retries')
-    }
-
-    // Queue-based email generation: Process one recipient at a time, sequentially
-    // This ensures only one API request is sent per recipient and prevents rate limits
-    console.log(`📧 Starting email generation queue for ${recipients.length} recipients`)
-    
-    for (let i = 0; i < recipients.length; i++) {
-      const recipient = recipients[i]
-      const recipientKey = recipient.id || recipient.email || `recipient-${i}`
-      
-      // Skip if already processed (prevent duplicates)
-      if (processedRecipients.has(recipientKey)) {
-        console.log(`⏭️ Skipping duplicate recipient: ${recipient.email || recipient.name}`)
-        continue
-      }
-      
-      // Mark as processing
-      processedRecipients.add(recipientKey)
-      
-      // Add delay between API calls to avoid hitting rate limits
-      // Use a more conservative delay to stay well under rate limits
-      if (i > 0) {
-        const delay = 1000 // 1 second delay between calls to stay well under rate limits
-        console.log(`⏳ Waiting ${delay}ms before next request (queue position: ${i + 1}/${recipients.length})`)
-        await new Promise(resolve => setTimeout(resolve, delay))
-      }
-      
+    // Generate emails for all recipients
+    for (const recipient of recipients) {
       try {
-        console.log(`🔄 [Queue ${i + 1}/${recipients.length}] Processing: ${recipient.email || recipient.name}`)
         // Build tags context with emphasis
         const tagsContext = campaign.tags && campaign.tags.length > 0
           ? `\n\n*** CRITICAL: CAMPAIGN TAGS (HIGH PRIORITY - USE THESE TO SHAPE THE EMAIL) ***
@@ -217,14 +132,49 @@ The email MUST align with and reflect these tags. Use them to determine:
 IMPORTANT: The tags are the MOST IMPORTANT factor in determining the email content.`
           : ''
 
-        const prompt = `You are an expert at creating realistic and effective security awareness training emails for phishing simulation campaigns.
+        const prompt = `You are an expert at creating realistic and effective security awareness training emails for phishing simulation campaigns that will pass spam filters and reach recipients' inboxes.
 
 Generate a professional phishing simulation email that:
 - Appears authentic and legitimate
 - Is tailored for: ${recipient.role || recipient.business_function || 'employee'}
 - Uses appropriate tone and language for the business context
 - Includes realistic details that would make it convincing
-- Contains a call-to-action with a clickable link${tagsContext}
+- Contains a call-to-action with a clickable link
+- Will pass spam filters and deliverability checks${tagsContext}
+
+CRITICAL SPAM AVOIDANCE GUIDELINES:
+1. AVOID spam trigger words and phrases:
+   - Do NOT use: "urgent", "act now", "click here immediately", "limited time", "free", "guaranteed", "no risk", "winner", "congratulations", "prize", "claim now", "expires soon"
+   - Instead use: "please review", "when you have a moment", "at your convenience", "update required", "action needed"
+
+2. Subject line best practices:
+   - Keep it under 50 characters
+   - Use proper capitalization (sentence case, not ALL CAPS)
+   - Avoid excessive punctuation (no multiple exclamation marks)
+   - Make it specific and relevant to the business function
+   - Use natural language, not marketing-speak
+
+3. Email body best practices:
+   - Use proper grammar, spelling, and punctuation
+   - Write in a natural, conversational business tone
+   - Include proper greeting and professional closing
+   - Use proper paragraph structure (2-4 sentences per paragraph)
+   - Avoid excessive formatting (no bold/italic spam patterns)
+   - Maintain a good text-to-link ratio (more text than links)
+   - Use complete sentences, not fragments
+
+4. Link placement and wording:
+   - Embed the link naturally in context, not as standalone "Click here"
+   - Use descriptive link text that matches the context
+   - Place links in the middle or end of paragraphs, not at the start
+   - Avoid suspicious link patterns (no URL shorteners, no IP addresses)
+
+5. Professional email structure:
+   - Start with appropriate greeting (Hi, Hello, Dear [Name/Team])
+   - Provide context and background information
+   - Explain the reason for the email naturally
+   - Include the link as part of a complete sentence
+   - End with professional closing and signature
 
 Context Information:
 - Organization: ${campaign.organization?.name || 'Company'}
@@ -234,29 +184,48 @@ Context Information:
 - Recipient Name: ${recipient.name || 'Team Member'}
 
 Generate a phishing simulation email with:
-1. A compelling subject line that aligns with the campaign tags
+1. A professional, spam-filter-friendly subject line (under 50 chars, proper capitalization, no spam words) that aligns with the campaign tags
 2. A well-formatted email body with proper paragraphs and line breaks
 3. Professional tone and structure that matches the campaign theme
-4. A clickable link that fits the scenario (use a realistic-looking URL)
+4. A clickable link that fits the scenario (use a realistic-looking URL) embedded naturally in the text
 
-CRITICAL: The email body MUST include at least one clickable link. You can format it as:
-- Markdown format: [Click here](https://example.com/link)
+CRITICAL: The email body MUST include at least one clickable link. Format it as:
+- Markdown format: [descriptive text](https://example.com/link) - use descriptive text, NOT "Click here"
 - Or plain URL: https://example.com/link
 - The link should be relevant to the phishing scenario (e.g., password reset, invoice payment, document verification)
+- Embed the link naturally within a complete sentence
 
 IMPORTANT: You must respond ONLY with valid JSON. Do not include any text before or after the JSON object.
 
 Return the response in this exact JSON format:
 {
   "subject": "email subject line here",
-  "body": "email body content here with proper formatting. Use \\n for line breaks. MUST include at least one clickable link in markdown format [text](url) or as plain URL https://example.com",
+  "body": "email body content here with proper formatting. Use \\n for line breaks. MUST include at least one clickable link in markdown format [descriptive text](url) or as plain URL https://example.com. Embed links naturally within sentences.",
   "confidence": 85,
   "successRate": "45-60%",
   "model": "Gemini 2.5 Flash Lite"
 }`
 
-        console.log(`Generating email for recipient ${i + 1}/${recipients.length}: ${recipient.email || recipient.name}`)
-        const geminiData = await callGeminiWithRetry(prompt)
+        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${geminiApiKey}`
+        const geminiResponse = await fetch(geminiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: {
+              temperature: 0.7,
+              topK: 40,
+              topP: 0.95,
+              maxOutputTokens: 2048,
+            },
+          }),
+        })
+
+        if (!geminiResponse.ok) {
+          throw new Error(`Gemini API error: ${geminiResponse.statusText}`)
+        }
+
+        const geminiData = await geminiResponse.json()
         const generatedText = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || ''
 
         // Parse JSON from response
@@ -377,7 +346,7 @@ Return the response in this exact JSON format:
         
         // Count and log links
         const linkCount = (formattedHtml.match(/<a\s+href=/gi) || []).length
-        console.log(`✅ [Queue ${i + 1}/${recipients.length}] Successfully generated email for ${recipient.email || recipient.name}`)
+        console.log(`📧 Generated email for ${recipient.email}`)
         console.log(`🔗 Clickable links found: ${linkCount}`)
         if (linkCount > 0) {
           const linkMatches = formattedHtml.match(/<a\s+href="([^"]+)"/gi) || []
@@ -397,17 +366,12 @@ Return the response in this exact JSON format:
           formattedHtml,
         })
       } catch (error: any) {
-        console.error(`❌ [Queue ${i + 1}/${recipients.length}] Error generating email for ${recipient.email || recipient.name}:`, error)
         generationErrors.push({
-          recipient: recipient.email || recipient.name || 'Unknown',
-          error: error.message || 'Email generation failed',
+          recipient: recipient.email,
+          error: error.message,
         })
-        // Remove from processed set so it can be retried if needed
-        processedRecipients.delete(recipientKey)
       }
     }
-    
-    console.log(`📊 Email generation queue completed: ${generatedEmails.length} successful, ${generationErrors.length} failed`)
 
     // Step 2: Batch send all generated emails via Resend Batch API
     // Reference: https://resend.com/docs/api-reference/emails/send-batch-emails
@@ -426,7 +390,7 @@ Return the response in this exact JSON format:
 
     // Step 3: Save email records to database and create events
     const results = []
-    const sentRecipients = new Set<string>()
+    const processedRecipients = new Set<string>()
     
     // Process successful sends
     for (let i = 0; i < batchResult.data.length; i++) {
@@ -435,7 +399,7 @@ Return the response in this exact JSON format:
       
       if (batchItem.id && emailIndex < generatedEmails.length) {
         const generatedEmail = generatedEmails[emailIndex]
-        sentRecipients.add(generatedEmail.recipient.email)
+        processedRecipients.add(generatedEmail.recipient.email)
         
         try {
           // Save email record to database with 'sent' status
@@ -506,7 +470,7 @@ Return the response in this exact JSON format:
       const emailIndex = batchError.index
       if (emailIndex < generatedEmails.length) {
         const generatedEmail = generatedEmails[emailIndex]
-        sentRecipients.add(generatedEmail.recipient.email)
+        processedRecipients.add(generatedEmail.recipient.email)
         
         // Check if we already have a result for this recipient
         const existingResult = results.find((r) => r.recipient === generatedEmail.recipient.email)
@@ -558,8 +522,8 @@ Return the response in this exact JSON format:
 
     // Process generation errors - save failed emails to database
     for (const genError of generationErrors) {
-      if (!sentRecipients.has(genError.recipient)) {
-        sentRecipients.add(genError.recipient)
+      if (!processedRecipients.has(genError.recipient)) {
+        processedRecipients.add(genError.recipient)
         
         // Find the recipient in generatedEmails to get full details
         const recipientInfo = recipients.find((r: any) => r.email === genError.recipient)
